@@ -7,6 +7,7 @@ import time
 
 from selection.algorithms.anytime_algorithm import AnytimeAlgorithm
 from selection.algorithms.auto_admin_algorithm import AutoAdminAlgorithm
+from selection.algorithms.cophy_algorithm import CoPhyAlgorithm
 from selection.algorithms.cophy_input_generation import CoPhyInputGeneration
 from selection.algorithms.db2advis_algorithm import DB2AdvisAlgorithm
 from selection.algorithms.dexter_algorithm import DexterAlgorithm
@@ -25,6 +26,7 @@ from selection.workload_parser import WorkloadParser
 ALGORITHMS = {
     "anytime": AnytimeAlgorithm,
     "auto_admin": AutoAdminAlgorithm,
+    "cophy": CoPhyAlgorithm,
     "cophy_input": CoPhyInputGeneration,
     "db2advis": DB2AdvisAlgorithm,
     "dexter": DexterAlgorithm,

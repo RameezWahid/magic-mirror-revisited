@@ -163,6 +163,15 @@ class CoPhyInputGeneration(SelectionAlgorithm):
         return useful_indexes, query_costs_for_index_combination
 
     def _calculate_best_indexes(self, workload: Workload) -> List:
+        # split into generate_input() and _write_output_files()
+        cophy_dict = self.generate_input(workload)
+        self._write_output_files(cophy_dict)
+
+        return []
+
+    # Performs the what-if enumeration and returns the solver input as a dict.
+    # Additionally, self.index_by_id maps the dict's index ids to Index objects.
+    def generate_input(self, workload: Workload) -> Dict:
         logging.info("Creating input for CoPhy")
         logging.info("Parameters: " + str(self.parameters))
 
@@ -203,6 +212,7 @@ class CoPhyInputGeneration(SelectionAlgorithm):
 
         # store index sizes and determine index_ids for later use in combinations
         index_ids = {}
+        self.index_by_id = {}
         for i, index in enumerate(sorted(useful_indexes)):
             assert index.estimated_size, "Index size must be set."
             cophy_dict["index_sizes"].append(
@@ -213,6 +223,7 @@ class CoPhyInputGeneration(SelectionAlgorithm):
                 }
             )
             index_ids[index] = i + 1
+            self.index_by_id[i + 1] = index
 
         # store indexes per combination
         # combination 0 := no index
@@ -246,6 +257,9 @@ class CoPhyInputGeneration(SelectionAlgorithm):
                         }
                     )
 
+        return cophy_dict
+
+    def _write_output_files(self, cophy_dict: Dict) -> None:
         ampl_file_path = None
         json_file_path = None
         if self.parameters["output_folder"]:
@@ -274,8 +288,6 @@ class CoPhyInputGeneration(SelectionAlgorithm):
 
         output_as_json(cophy_dict, json_file_path)
         output_as_ampl(cophy_dict, ampl_file_path)
-
-        return []
 
 
 def output_as_ampl(cophy_dict: Dict, file_path: str = None) -> None:
