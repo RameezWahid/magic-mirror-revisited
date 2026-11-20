@@ -1,0 +1,495 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/tpch_sf10_cophy_w2.json
+DEBUG:root:Database connector created: None
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: None
+DEBUG:root:Database with given scale factor already existing
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+INFO:root:Generating TPC-H Queries
+DEBUG:root:No need to run make
+INFO:root:Queries generated
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2704690.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1966788.86}, {'Runtimes': [], 'Hits': [], 'Cost': 2075782.93}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1963904.55}, {'Runtimes': [], 'Hits': [], 'Cost': 1947010.31}, {'Runtimes': [], 'Hits': [], 'Cost': 2181928.37}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 523649.25}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1558299.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3252519.6}, {'Runtimes': [], 'Hits': [], 'Cost': 430613.41}, {'Runtimes': [], 'Hits': [], 'Cost': 6561834.24}, {'Runtimes': [], 'Hits': [], 'Cost': 1954177.31}, {'Runtimes': [], 'Hits': [], 'Cost': 5176582.24}, {'Runtimes': [], 'Hits': [], 'Cost': 455671.08}]
+DEBUG:root:Overall Costs: 42614134.620000005
+INFO:root:Results written to benchmark_results/results_no_index_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Creating input for CoPhy
+INFO:root:Parameters: {'budget_MB': 250, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}
+INFO:root:Query-based enumeration of index combinations
+INFO:root:Evaluate 295 index combinations 
+INFO:root:  ... 295 / 295 done
+INFO:root:What-if time: 2.695235013961792 s
+DEBUG:pulp.apis.core:create the gurobi model
+Set parameter Username
+INFO:gurobipy:Set parameter Username
+Set parameter LicenseID to value 2860470
+INFO:gurobipy:Set parameter LicenseID to value 2860470
+Academic license - for non-commercial use only - expires 2027-09-04
+INFO:gurobipy:Academic license - for non-commercial use only - expires 2027-09-04
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 3 indexes
+DEBUG:root:Total cost cache hits:	3667
+DEBUG:root:Total cost requests:		5624
+DEBUG:root:Cost cache hit ratio:	65.2%
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': False, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 1966788.86}, {'Runtimes': [], 'Hits': [], 'Cost': 2075782.93}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1963904.55}, {'Runtimes': [], 'Hits': [], 'Cost': 1947010.31}, {'Runtimes': [], 'Hits': [], 'Cost': 2179158.72}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1558299.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 430613.41}, {'Runtimes': [], 'Hits': [], 'Cost': 6561834.24}, {'Runtimes': [], 'Hits': [], 'Cost': 1954177.31}, {'Runtimes': [], 'Hits': [], 'Cost': 5176582.24}, {'Runtimes': [], 'Hits': [], 'Cost': 455671.08}]
+DEBUG:root:Overall Costs: 42156892.54
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 6 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C part.p_size,C part.p_brand), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 1966788.86}, {'Runtimes': [], 'Hits': [], 'Cost': 2075782.93}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1963904.55}, {'Runtimes': [], 'Hits': [], 'Cost': 1947010.31}, {'Runtimes': [], 'Hits': [], 'Cost': 1832119.57}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 519279.78}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1558299.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 421222.27}, {'Runtimes': [], 'Hits': [], 'Cost': 6561834.24}, {'Runtimes': [], 'Hits': [], 'Cost': 1923326.33}, {'Runtimes': [], 'Hits': [], 'Cost': 4825778.39}, {'Runtimes': [], 'Hits': [], 'Cost': 455671.08}]
+DEBUG:root:Overall Costs: 41822173.06
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 4 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2704690.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1966788.86}, {'Runtimes': [], 'Hits': [], 'Cost': 2075782.93}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1770484.74}, {'Runtimes': [], 'Hits': [], 'Cost': 1947010.31}, {'Runtimes': [], 'Hits': [], 'Cost': 1832267.15}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1558299.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 430613.41}, {'Runtimes': [], 'Hits': [], 'Cost': 6561834.24}, {'Runtimes': [], 'Hits': [], 'Cost': 1954177.31}, {'Runtimes': [], 'Hits': [], 'Cost': 4825778.39}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 40954541.01
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 4 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2074914.57}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1962504.87}, {'Runtimes': [], 'Hits': [], 'Cost': 1932001.75}, {'Runtimes': [], 'Hits': [], 'Cost': 2179011.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 522209.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1551319.58}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239337.3}, {'Runtimes': [], 'Hits': [], 'Cost': 430613.41}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 1954177.31}, {'Runtimes': [], 'Hits': [], 'Cost': 1977162.67}, {'Runtimes': [], 'Hits': [], 'Cost': 455671.08}]
+DEBUG:root:Overall Costs: 34793155.24
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.05 s (Optimal), selected 6 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.05, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2075782.93}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1963904.55}, {'Runtimes': [], 'Hits': [], 'Cost': 1947010.31}, {'Runtimes': [], 'Hits': [], 'Cost': 2179011.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 106690.1}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1558299.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 430613.41}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 1954177.31}, {'Runtimes': [], 'Hits': [], 'Cost': 1977162.67}, {'Runtimes': [], 'Hits': [], 'Cost': 110912.67}]
+DEBUG:root:Overall Costs: 34057025.63
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.05 s (Optimal), selected 7 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_nationkey,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C part.p_size,C part.p_brand)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.05, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2704690.45}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2074914.57}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1769085.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1932001.75}, {'Runtimes': [], 'Hits': [], 'Cost': 1832267.15}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1551319.58}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 421222.27}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 1923326.33}, {'Runtimes': [], 'Hits': [], 'Cost': 1732256.14}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 33250203.25
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 5 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2704690.45}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2075782.93}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1963904.55}, {'Runtimes': [], 'Hits': [], 'Cost': 1116488.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2179011.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 106690.1}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1558299.06}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 430613.41}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 336263.03}, {'Runtimes': [], 'Hits': [], 'Cost': 1977162.67}, {'Runtimes': [], 'Hits': [], 'Cost': 455671.08}]
+DEBUG:root:Overall Costs: 31986794.95
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 6 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1959503.3}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1602105.47}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 117355.7}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1551220.28}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409054.48}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 336305.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1977162.67}, {'Runtimes': [], 'Hits': [], 'Cost': 455671.08}]
+DEBUG:root:Overall Costs: 31345249.93
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 10 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1101377.54}, {'Runtimes': [], 'Hits': [], 'Cost': 1602105.47}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1429162.33}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409035.92}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 336305.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1977162.67}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 30672977.67
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.05 s (Optimal), selected 10 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.05, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1255217.49}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2040233.63}, {'Runtimes': [], 'Hits': [], 'Cost': 1429162.33}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409035.92}, {'Runtimes': [], 'Hits': [], 'Cost': 3539057.99}, {'Runtimes': [], 'Hits': [], 'Cost': 336305.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1732256.16}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 29949848.44
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 8 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1602105.47}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 117355.7}, {'Runtimes': [], 'Hits': [], 'Cost': 2182219.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1433495.77}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409054.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2629230.15}, {'Runtimes': [], 'Hits': [], 'Cost': 336305.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1977162.67}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 29779594.46
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 10 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1255217.49}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 117355.7}, {'Runtimes': [], 'Hits': [], 'Cost': 2040233.63}, {'Runtimes': [], 'Hits': [], 'Cost': 1429162.33}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409054.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2629230.15}, {'Runtimes': [], 'Hits': [], 'Cost': 336305.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1732256.16}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 29041480.72
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 11 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1255217.49}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 117355.7}, {'Runtimes': [], 'Hits': [], 'Cost': 2040233.63}, {'Runtimes': [], 'Hits': [], 'Cost': 1429162.33}, {'Runtimes': [], 'Hits': [], 'Cost': 1535108.55}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409054.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2629230.15}, {'Runtimes': [], 'Hits': [], 'Cost': 336305.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1732256.16}, {'Runtimes': [], 'Hits': [], 'Cost': 110987.76}]
+DEBUG:root:Overall Costs: 28992643.74
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 13 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1255217.49}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2040233.63}, {'Runtimes': [], 'Hits': [], 'Cost': 1411445.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1583945.53}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409035.92}, {'Runtimes': [], 'Hits': [], 'Cost': 2629230.15}, {'Runtimes': [], 'Hits': [], 'Cost': 133142.9}, {'Runtimes': [], 'Hits': [], 'Cost': 1732256.16}, {'Runtimes': [], 'Hits': [], 'Cost': 110912.67}]
+DEBUG:root:Overall Costs: 28819066.58
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 15 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C orders.o_custkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112028.61}, {'Runtimes': [], 'Hits': [], 'Cost': 1255217.49}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2040233.63}, {'Runtimes': [], 'Hits': [], 'Cost': 1411445.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1535108.55}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409035.92}, {'Runtimes': [], 'Hits': [], 'Cost': 2629230.15}, {'Runtimes': [], 'Hits': [], 'Cost': 133142.9}, {'Runtimes': [], 'Hits': [], 'Cost': 1732245.82}, {'Runtimes': [], 'Hits': [], 'Cost': 110912.67}]
+DEBUG:root:Overall Costs: 28770219.26
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+DEBUG:pulp.apis.core:create the gurobi model
+DEBUG:pulp.apis.core:set the sense of the problem
+DEBUG:pulp.apis.core:add the variables to the problem
+DEBUG:pulp.apis.core:add the Constraints to the problem
+DEBUG:pulp.apis.core:Solve the Model using gurobi
+INFO:root:CoPhy solved in 0.04 s (Optimal), selected 16 indexes
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C orders.o_custkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_quantity), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C lineitem.l_suppkey,C lineitem.l_partkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'max_indexes_per_query': 1, 'solver': 'gurobi', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 2.7, 'what_if_cost_requests': 5624, 'solve_time_s': 0.04, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300582.19}, {'Runtimes': [], 'Hits': [], 'Cost': 2671243.43}, {'Runtimes': [], 'Hits': [], 'Cost': 443247.8}, {'Runtimes': [], 'Hits': [], 'Cost': 2071381.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1690875.09}, {'Runtimes': [], 'Hits': [], 'Cost': 1766083.5}, {'Runtimes': [], 'Hits': [], 'Cost': 1112015.28}, {'Runtimes': [], 'Hits': [], 'Cost': 1255217.49}, {'Runtimes': [], 'Hits': [], 'Cost': 2103060.71}, {'Runtimes': [], 'Hits': [], 'Cost': 115914.14}, {'Runtimes': [], 'Hits': [], 'Cost': 2040233.63}, {'Runtimes': [], 'Hits': [], 'Cost': 1411445.68}, {'Runtimes': [], 'Hits': [], 'Cost': 1535108.55}, {'Runtimes': [], 'Hits': [], 'Cost': 3239229.3}, {'Runtimes': [], 'Hits': [], 'Cost': 409035.92}, {'Runtimes': [], 'Hits': [], 'Cost': 2629230.15}, {'Runtimes': [], 'Hits': [], 'Cost': 133142.9}, {'Runtimes': [], 'Hits': [], 'Cost': 1732245.82}, {'Runtimes': [], 'Hits': [], 'Cost': 110912.67}]
+DEBUG:root:Overall Costs: 28770205.93
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv

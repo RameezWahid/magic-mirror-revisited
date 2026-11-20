@@ -1,0 +1,5 @@
+date: 2026-11-19T18:11:39+05:30
+host: /var/run/postgresql, port: 5432, database: indexselection_tpch___10
+PostgreSQL 18.7 (Ubuntu 18.7-1.pgdg26.04+2) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit
+hypopg: 1.4.5
+dexter: 0.6.3

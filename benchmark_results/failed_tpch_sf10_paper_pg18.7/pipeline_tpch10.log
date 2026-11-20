@@ -1,0 +1,7 @@
+2026-11-19 17:12:06 preflight failed, nothing was started
+2026-11-19 18:07:30 preflight failed, nothing was started
+2026-11-19 18:11:39 queue tpch10: PostgreSQL 18.7 at host=/var/run/postgresql port=5432
+2026-11-19 18:11:39 start [tpch10_5432]: scripts/run_repetitions.sh configs/tpch_sf10_paper.json tpch_sf10_paper_pg18.7 5432 3 /var/run/postgresql
+Repetition 1 / 3
+2026-11-19 18:21:47 end   [tpch10_5432] exit 1: scripts/run_repetitions.sh configs/tpch_sf10_paper.json tpch_sf10_paper_pg18.7 5432 3 /var/run/postgresql
+2026-11-19 18:21:47 queue tpch10 finished

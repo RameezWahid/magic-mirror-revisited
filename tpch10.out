@@ -1,0 +1,4 @@
+2026-11-19 19:23:47 queue tpch10: PostgreSQL 18.7 at host=/var/run/postgresql port=5432
+2026-11-19 19:23:47 start [tpch10_5432]: scripts/run_repetitions.sh configs/tpch_sf10_paper.json tpch_sf10_paper_pg18.7 5432 3 /var/run/postgresql
+2026-11-19 19:56:12 end   [tpch10_5432] exit 0: scripts/run_repetitions.sh configs/tpch_sf10_paper.json tpch_sf10_paper_pg18.7 5432 3 /var/run/postgresql
+2026-11-19 19:56:12 queue tpch10 finished
