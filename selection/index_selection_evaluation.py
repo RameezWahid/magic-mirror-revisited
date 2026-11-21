@@ -14,6 +14,7 @@ from selection.algorithms.dexter_algorithm import DexterAlgorithm
 from selection.algorithms.drop_heuristic_algorithm import DropHeuristicAlgorithm
 from selection.algorithms.extend_algorithm import ExtendAlgorithm
 from selection.algorithms.relaxation_algorithm import RelaxationAlgorithm
+from selection.algorithms.two_phase_greedy_algorithm import TwoPhaseGreedyAlgorithm
 from selection.benchmark import Benchmark
 from selection.dbms.hana_dbms import HanaDatabaseConnector
 from selection.dbms.postgres_dbms import PostgresDatabaseConnector
@@ -33,6 +34,7 @@ ALGORITHMS = {
     "drop": DropHeuristicAlgorithm,
     "extend": ExtendAlgorithm,
     "relaxation": RelaxationAlgorithm,
+    "two_phase_greedy": TwoPhaseGreedyAlgorithm,
     "no_index": NoIndexAlgorithm,
     "all_indexes": AllIndexesAlgorithm,
 }

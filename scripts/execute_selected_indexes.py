@@ -68,6 +68,10 @@ def selected_runs(rep_dir):
         for row, indexes in zip(rows, pickles):
             p = parse_parameters(row["parameters"])
             label = name
+            # Two-phase greedy with and without Wii end up in the same file.
+            # Give the Wii runs their own name so they don't get mixed up.
+            if name == "two_phase_greedy":
+                label += "_wii" if p.get("interception") == "wii" else ""
             if name == "no_index":
                 # No indexes at all. Everything else is compared against this.
                 yield label, "-", indexes
