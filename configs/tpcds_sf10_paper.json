@@ -197,6 +197,59 @@
                 ]
             },
             "timeout": 300
+        },
+        {
+            "name": "two_phase_greedy",
+            "parameters": {
+                "budget_MB": [
+                    250,
+                    500,
+                    1000,
+                    1500,
+                    2000,
+                    2500,
+                    3000,
+                    3500,
+                    4250,
+                    5000,
+                    5750,
+                    6500,
+                    8000,
+                    10000,
+                    12500,
+                    15000
+                ],
+                "max_indexes": 100,
+                "interception": "none"
+            },
+            "timeout": 300
+        },
+        {
+            "name": "two_phase_greedy",
+            "parameters": {
+                "budget_MB": [
+                    250,
+                    500,
+                    1000,
+                    1500,
+                    2000,
+                    2500,
+                    3000,
+                    3500,
+                    4250,
+                    5000,
+                    5750,
+                    6500,
+                    8000,
+                    10000,
+                    12500,
+                    15000
+                ],
+                "max_indexes": 100,
+                "interception": "wii",
+                "alpha": 0.9
+            },
+            "timeout": 300
         }
     ],
     "queries": [
