@@ -183,16 +183,27 @@ class Runner:
     # Reference: the same run with a threshold that can never be met (epsilon < 0),
     # so it has the same initial calls and bound bookkeeping, but never stops.
     # savings = 1 - calls_esc / calls_reference; loss = improvement_ref - improvement_esc.
-    def esc(self):
+    def esc(self, clamp=False):
+        # clamp=True also caps the improvement upper bound at the cost with all
+        # candidates available (see EarlyStoppingChecker); not part of the paper.
+        tag = "escc" if clamp else "esc"
         for k in (10, 20):
             for mode in ("none", "wii"):
-                base = {"max_indexes": k, "interception": mode, "esc": "esc_b"}
-                self.run(f"esc_ref_k{k}_{mode}", {**base, "esc_epsilon": -1.0})
+                base = {
+                    "max_indexes": k,
+                    "interception": mode,
+                    "esc": "esc_b",
+                    "esc_clamp": clamp,
+                }
+                self.run(f"{tag}_ref_k{k}_{mode}", {**base, "esc_epsilon": -1.0})
                 for epsilon in (0.01, 0.02, 0.05, 0.10):
                     self.run(
-                        f"esc_k{k}_{mode}_eps{epsilon}",
+                        f"{tag}_k{k}_{mode}_eps{epsilon}",
                         {**base, "esc_epsilon": epsilon},
                     )
+
+    def esc_clamp(self):
+        self.esc(clamp=True)
 
     def assumptions(self):
         """Does PostgreSQL's cost model behave as Wii assumes? (Algorithm 6)"""

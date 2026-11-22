@@ -78,7 +78,7 @@ def build(seed, queries=12, tables=4, columns=5):
     return qs, SyntheticCosts(benefit, base), base, candidates
 
 
-def run(seed, interception, epsilon=None, budget=None, k=5):
+def run(seed, interception, epsilon=None, budget=None, k=5, clamp=False):
     qs, costs, base, candidates = build(seed)
     oracle = BudgetAwareCostOracle(
         costs, Workload(qs), budget=budget, interception=interception,
@@ -88,7 +88,9 @@ def run(seed, interception, epsilon=None, budget=None, k=5):
     oracle.initialize(candidates)
     search = TwoPhaseGreedy(oracle, candidates, k)
     if epsilon is not None:
-        search.checker = EarlyStoppingChecker(oracle, k, epsilon=epsilon)
+        search.checker = EarlyStoppingChecker(
+            oracle, k, epsilon=epsilon, clamp_omega=clamp
+        )
     selected = search.run()
     improvement = 1 - sum(costs.cost(q, selected) for q in qs) / sum(base.values())
     return improvement, oracle, search
@@ -109,6 +111,16 @@ class TestEsc(unittest.TestCase):
             for _, _, lower, upper in search.checker.trace:
                 self.assertGreaterEqual(upper, reference - 1e-9)
                 self.assertGreaterEqual(upper, lower - 1e-9)
+
+    def test_clamped_bound_is_valid_and_not_looser(self):
+        for seed in range(15):
+            reference, _, _ = run(seed, "none")
+            _, _, plain = run(seed, "none", 0.05)
+            _, _, clamped = run(seed, "none", 0.05, clamp=True)
+            first_plain, first_clamped = plain.checker.trace[0], clamped.checker.trace[0]
+            self.assertLessEqual(first_clamped[3], first_plain[3] + 1e-12)
+            for _, _, _, upper in clamped.checker.trace:
+                self.assertGreaterEqual(upper, reference - 1e-9)
 
     def test_never_stops_with_negative_epsilon(self):
         _, _, search = run(3, "none", -1.0)

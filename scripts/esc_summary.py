@@ -17,18 +17,20 @@ def main(paths):
     rows = defaultdict(list)
     for path in paths:
         runs = load(path)
-        for run_id, run in runs.items():
-            if not run_id.startswith("esc_k"):
+        refs = {}
+        for run in runs.values():
+            parameters = run["parameters"]
+            if parameters.get("esc") == "esc_b" and parameters["esc_epsilon"] < 0:
+                refs[group(parameters)] = run
+        for run in runs.values():
+            parameters = run["parameters"]
+            if parameters.get("esc") != "esc_b" or parameters["esc_epsilon"] < 0:
                 continue
-            ref = runs.get(run_id.replace("esc_k", "esc_ref_k").rsplit("_eps", 1)[0])
+            ref = refs.get(group(parameters))
             if ref is None:
                 continue
             statistics = run["statistics"]
-            key = (
-                run["parameters"]["max_indexes"],
-                run["parameters"]["interception"],
-                run["parameters"]["esc_epsilon"],
-            )
+            key = group(parameters) + (parameters["esc_epsilon"],)
             rows[key].append(
                 (
                     100 * (1 - statistics["whatif_calls"] / ref["statistics"]["whatif_calls"]),
@@ -37,17 +39,25 @@ def main(paths):
                     statistics["esc_time_s"],
                 )
             )
-    print("K   mode  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
+    print("K   mode  clamp  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
     for key in sorted(rows):
         values = rows[key]
         n = len(values)
         print(
-            f"{key[0]:<3} {key[1]:<5} {key[2]:<7} "
+            f"{key[0]:<3} {key[1]:<5} {str(key[2]):<6} {key[3]:<7} "
             f"{sum(v[0] for v in values) / n:>13.1f}  "
             f"{sum(v[1] for v in values) / n:>22.2f}  "
             f"{sum(v[2] for v in values)}/{n:<12} "
             f"{sum(v[3] for v in values) / n:.3f}"
         )
+
+
+def group(parameters):
+    return (
+        parameters["max_indexes"],
+        parameters["interception"],
+        bool(parameters.get("esc_clamp", False)),
+    )
 
 
 if __name__ == "__main__":
