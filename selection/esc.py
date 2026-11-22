@@ -1,0 +1,111 @@
+import logging
+import time
+
+
+class EarlyStoppingChecker:
+    """Esc-B: early-stopping checker for budget-aware index tuning (Wang et al.,
+    "Esc: An Early-Stopping Checker for Budget-aware Index Tuning", PVLDB 2025).
+
+    The tuner may stop at what-if call t if
+        eta_U(final best) - eta_L(best at t) <= epsilon,
+    where eta is the percentage improvement 1 - cost(W, C) / cost(W, empty).
+
+    eta_L (what we already have for sure): simulated greedy search that finishes
+        the selection with derived costs only (no what-if calls). Derived costs
+        are upper bounds of the real cost, so this improvement is a lower bound.
+    eta_U (the most any final configuration could reach): the K indexes with the
+        largest workload-level MCI upper bound u(W, z) = sum_q u(q, z); the cost
+        cannot drop by more than their sum (Eq. 10 of the paper).
+
+    Only the variant without index interaction (Esc-B) is implemented.
+    Checked at the start of every greedy step of Phase 2 of two-phase greedy.
+    """
+
+    def __init__(self, oracle, max_indexes, epsilon=0.05, clamp_omega=False):
+        self.oracle = oracle
+        self.max_indexes = max_indexes
+        self.epsilon = epsilon
+        # Optional, not in the paper: the workload cannot cost less than the sum
+        # of the per-query costs with all candidates at once (Omega), so the
+        # upper bound on the improvement is capped there.
+        self.clamp_omega = clamp_omega
+        self.trace = []  # (calls, selected so far, eta_L, eta_U)
+        self.checks = 0
+        self.time = 0.0
+        self.stopped_at_calls = None
+
+    # Lower bound on the improvement of the best configuration at this point.
+    def simulated_greedy(self, selected, candidates):
+        oracle = self.oracle
+        queries = oracle.workload.queries
+        configuration = frozenset(selected)
+        per_query = {
+            q: oracle.derived_cost(q, oracle.relevant(q, configuration))
+            for q in queries
+        }
+        affected = {
+            z: [q for q in queries if oracle.relevant(q, [z])] for z in candidates
+        }
+        while len(configuration) < self.max_indexes:
+            best, best_gain, best_costs = None, 0.0, None
+            for z in candidates:
+                if z in configuration:
+                    continue
+                trial = configuration | {z}
+                costs = {
+                    q: oracle.derived_cost(q, oracle.relevant(q, trial))
+                    for q in affected[z]
+                }
+                gain = sum(per_query[q] - costs[q] for q in affected[z])
+                if gain > best_gain:
+                    best, best_gain, best_costs = z, gain, costs
+            if best is None:
+                break
+            configuration = configuration | {best}
+            per_query.update(best_costs)
+        return configuration, sum(per_query.values())
+
+    # Upper bound on the improvement of the final best configuration.
+    def improvement_upper_bound(self, candidates):
+        oracle = self.oracle
+        queries = oracle.workload.queries
+        empty = sum(oracle.empty_cost[q] for q in queries)
+        saving = {}
+        for z in candidates:
+            total = 0.0
+            for q in queries:
+                if oracle.relevant(q, [z]):
+                    bound = max(0.0, oracle.mci_bound(q, z))
+                    total += bound
+            saving[z] = total
+        top = sorted(candidates, key=lambda z: (-saving[z], z))[: self.max_indexes]
+        top = [z for z in top if saving[z] > 0]
+        # Eq. 10: the K largest workload-level bounds, summed. No per-query floor:
+        # with floors, picking the K largest sums would no longer be the best case.
+        lower_cost = max(0.0, empty - sum(saving[z] for z in top))
+        if self.clamp_omega:
+            # Every query costs at least c(q, Omega_q), whatever is selected.
+            lower_cost = max(
+                lower_cost, sum(oracle.omega_cost.get(q, 0.0) for q in queries)
+            )
+        return 1 - lower_cost / empty
+
+    def check(self, selected, candidates):
+        """Returns the configuration to stop with, or None to keep tuning."""
+        start = time.time()
+        oracle = self.oracle
+        empty = sum(oracle.empty_cost.values())
+        configuration, derived_cost = self.simulated_greedy(selected, candidates)
+        eta_lower = 1 - derived_cost / empty
+        eta_upper = self.improvement_upper_bound(candidates)
+        self.checks += 1
+        self.trace.append((oracle.calls, len(selected), eta_lower, eta_upper))
+        self.time += time.time() - start
+        if eta_upper - eta_lower <= self.epsilon:
+            self.stopped_at_calls = oracle.calls
+            logging.info(
+                f"Esc: stop at {oracle.calls} calls, "
+                f"eta_L={eta_lower:.4f}, eta_U={eta_upper:.4f}"
+            )
+            return configuration
+        return None

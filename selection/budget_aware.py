@@ -23,6 +23,7 @@ class BudgetAwareCostOracle:
         seed=0,
         record_gaps=False,
         table_rows=None,
+        need_omega=False,
     ):
         assert interception in INTERCEPTION_MODES, interception
         self.cost_evaluation = cost_evaluation
@@ -34,6 +35,8 @@ class BudgetAwareCostOracle:
         self.random = random.Random(seed)
         self.record_gaps = record_gaps
         self.table_rows = table_rows or {}
+        # Esc's bounds need c(q, Omega_q) too, also when Wii itself is off.
+        self.need_omega = need_omega
 
         self.query_columns = {q: set(q.columns) for q in workload.queries}
         # Every cost we already paid for, per query. Asking twice is free.
@@ -123,7 +126,7 @@ class BudgetAwareCostOracle:
             self.empty_cost[query] = self._whatif(query, frozenset())
         # Wii also wants the cost with every candidate at once. No subset gets
         # cheaper than that, so it's the floor for all of Wii's bounds.
-        if self.interception in ("wii", "wii_coverage"):
+        if self.interception in ("wii", "wii_coverage") or self.need_omega:
             for query, candidates in zip(self.workload.queries, candidates_per_query):
                 if not candidates:
                     self.omega_cost[query] = self.empty_cost[query]
@@ -294,6 +297,8 @@ class TwoPhaseGreedy:
         self.curve = []  # (calls, estimated workload cost of the best configuration)
         self.phase1_calls = None
         self.phase2_candidates = 0
+        self.checker = None  # optional EarlyStoppingChecker, used in phase 2
+        self.stopped_early = False
 
     def _size(self, configuration):
         return sum(self.index_size(index) for index in configuration)
@@ -315,6 +320,13 @@ class TwoPhaseGreedy:
         # Each round, add the one index that lowers the total cost most.
         # Stop at K indexes, or when nothing helps any more.
         while len(selected) < self.max_indexes:
+            # Esc: stop tuning if the best configuration found so far is close
+            # enough to the best one that continuing could possibly reach.
+            if phase == 2 and self.checker is not None:
+                stop = self.checker.check(selected, candidates)
+                if stop is not None:
+                    self.stopped_early = True
+                    return stop
             step_best, step_cost, step_per_query = None, best_cost, None
             used = self._size(selected) if self.storage_budget is not None else 0
             for index in candidates:

@@ -179,6 +179,21 @@ class Runner:
                 {"max_indexes": 20, "interception": "wii", "alpha": alpha},
             )
 
+    # Esc (early stopping) on top of two-phase greedy, with and without Wii.
+    # Reference: the same run with a threshold that can never be met (epsilon < 0),
+    # so it has the same initial calls and bound bookkeeping, but never stops.
+    # savings = 1 - calls_esc / calls_reference; loss = improvement_ref - improvement_esc.
+    def esc(self):
+        for k in (10, 20):
+            for mode in ("none", "wii"):
+                base = {"max_indexes": k, "interception": mode, "esc": "esc_b"}
+                self.run(f"esc_ref_k{k}_{mode}", {**base, "esc_epsilon": -1.0})
+                for epsilon in (0.01, 0.02, 0.05, 0.10):
+                    self.run(
+                        f"esc_k{k}_{mode}_eps{epsilon}",
+                        {**base, "esc_epsilon": epsilon},
+                    )
+
     def assumptions(self):
         """Does PostgreSQL's cost model behave as Wii assumes? (Algorithm 6)"""
         path = os.path.join(self.out_dir, "assumptions.json")
