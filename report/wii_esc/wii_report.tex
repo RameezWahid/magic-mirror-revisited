@@ -11,13 +11,13 @@
 \maketitle
 
 \begin{abstract}
-We evaluate a budget-aware two-phase greedy index tuner and the Wii call-skipping mechanism (Wang et al., SIGMOD 2024) on TPC-H at scale factor 10, using PostgreSQL 18.7 with default planner settings. Wii finds indexes that improve the workload cost by 32.2\% using 429 what-if calls, against 33.4\% with 3092 calls for the same tuner without Wii (96\% of the quality with 14\% of the calls); at tight call budgets (500--1000) it is 3--7 points better than the budgeted baseline. The alpha parameter trades calls for quality smoothly, random skipping is far worse than Wii's bound-based skipping, and the cost model satisfies Wii's monotonicity and submodularity assumptions in more than 98\% of tested cases. Our implementation of Esc (Wang et al., PVLDB 2025), an early-stopping checker on top of the same tuner, saves 17--28\% of the calls at $K=20$ without measurable loss when used without Wii, but cannot stop when combined with Wii, because Wii's skipped calls leave its upper bound loose. Against the eight algorithms of the original study at about 10~GB, the tuner with Wii is within about 1 point of the best (CoPhy, DTA, Relaxation) using 429 calls where they use 1\,860--28\,102. The Wii results are single runs on one set of table statistics; the Esc results are repeated over two or three independent draws.
+We evaluate a budget-aware two-phase greedy index tuner and the Wii call-skipping mechanism (Wang et al., SIGMOD 2024) on TPC-H at scale factor 10, using PostgreSQL 18.7 with default planner settings. Over four independent statistics draws, Wii finds indexes that improve the workload cost by 32.7\% on average (32.2--33.3\%) using 429--437 what-if calls, against 33.9\% with about 3\,040 calls for the same tuner without Wii (96\% of the quality with 14\% of the calls); at tight call budgets (500--1000) it is 3.3--7.7 points better than the budgeted baseline in every draw. The alpha parameter trades calls for quality smoothly, random skipping is far worse than Wii's bound-based skipping, and the cost model satisfies Wii's monotonicity and submodularity assumptions in more than 98\% of tested cases. Our implementation of Esc (Wang et al., PVLDB 2025), an early-stopping checker on top of the same tuner, saves 17--28\% of the calls at $K=20$ without measurable loss when used without Wii, but cannot stop when combined with Wii, because Wii's skipped calls leave its upper bound loose. Against the eight algorithms of the original study at about 10~GB, the tuner with Wii is within about 1 point of the best (CoPhy, DTA, Relaxation) using 429 calls where they use 1\,860--28\,102. All Wii results are means over four statistics draws and the Esc results over two or three; the assumption and gap experiments and the comparison with the original algorithms use one draw.
 \end{abstract}
 
 \section{Setup}
 \textbf{Tuner.} The project's platform now contains a two-phase greedy algorithm (per-query greedy search, then greedy over the union of the selected indexes) running behind a cost oracle that counts and limits what-if calls. The oracle has four modes: \emph{none} (every cost question is answered by a what-if call until the budget is spent, after which the cheapest known cost of a subset of the configuration is used), \emph{Wii}, \emph{Wii + coverage} (a refinement of Wii's bounds) and \emph{random} (skips a call with fixed probability; used as a control). Wii skips a call when the lower bound $L$ on the query's cost under a configuration is within a factor $\alpha$ of the upper bound $U$ (the cheapest known cost of any subset), i.e.\ $L/U\ge\alpha$, and uses $U$ instead. The initial calls (no-index cost, and the cost with all candidates for Wii) count against the budget.
 
-\textbf{Workload and environment.} TPC-H, SF10, 19 queries (2, 17 and 20 excluded, as in the platform's baseline experiments). PostgreSQL 18.7, HypoPG 1.4.5, all planner settings at their defaults (\texttt{max\_parallel\_workers\_per\_gather}=2, \texttt{work\_mem}=4\,MB, \texttt{shared\_buffers}=128\,MB, \texttt{random\_page\_cost}=4, \texttt{effective\_cache\_size}=4\,GB). Index width up to 2; the constraint is the number of indexes $K\in\{10,20\}$ with no storage limit. Table statistics were gathered once, with \texttt{ANALYZE}, and then frozen; the no-index workload cost is 42\,625\,951.
+\textbf{Workload and environment.} TPC-H, SF10, 19 queries (2, 17 and 20 excluded, as in the platform's baseline experiments). PostgreSQL 18.7, HypoPG 1.4.5, all planner settings at their defaults (\texttt{max\_parallel\_workers\_per\_gather}=2, \texttt{work\_mem}=4\,MB, \texttt{shared\_buffers}=128\,MB, \texttt{random\_page\_cost}=4, \texttt{effective\_cache\_size}=4\,GB). Index width up to 2; the constraint is the number of indexes $K\in\{10,20\}$ with no storage limit. Each statistics draw is a fresh \texttt{ANALYZE}; we report four draws (no-index workload cost 42\,621\,151 to 42\,660\,191), of which the first (42\,625\,951) was used for the assumption and gap experiments and for the comparison in Section~4.
 
 \textbf{Metric.} Improvement $=1-\text{cost}(\text{indexes})/\text{cost}(\emptyset)$, with the cost of the final configuration obtained by fresh what-if calls for every query (not from the tuner's own, possibly derived, numbers). ``Calls'' are what-if calls issued by the oracle; repeated questions and indexes irrelevant to a query are not counted.
 
@@ -25,21 +25,21 @@ We evaluate a budget-aware two-phase greedy index tuner and the Wii call-skippin
 \subsection{Quality against call budget}
 \begin{figure}[h]\centering
 \includegraphics[width=\textwidth]{fig_budget.png}
-\caption{Improvement (left) and what-if calls actually used (right) for $K=20$. Wii (alpha 0.9) always needs 429 calls and wii+coverage 149, so their curves are flat; the baseline is limited by the budget.}\label{fig:budget}
+\caption{Improvement (left) and what-if calls actually used (right) for $K=20$. Wii (alpha 0.9) always needs the same number of calls (429 in this draw, 429--437 over four draws) and wii+coverage about 149, so their curves are flat; the baseline is limited by the budget. Figures show the first statistics draw.}\label{fig:budget}
 \end{figure}
 
 \begin{table}[h]\centering\small
 \begin{tabular}{lrrrr}\toprule
 Budget $B$ & Baseline & Wii ($\alpha=0.9$) & Wii + coverage & Baseline calls\\\midrule
-500 & 25.60\% & 32.19\% (429 calls) & 30.82\% (149) & 500\\
-1000 & 28.84\% & 32.19\% & 30.82\% & 1000\\
-2000 & 33.36\% & 32.19\% & 30.82\% & 2000\\
-5000 (not binding) & 33.41\% & 32.19\% & -- & 3092\\\bottomrule
+500 & 25.57\% & 32.71\% (433 calls) & 31.23\% (149) & 500\\
+1000 & 29.37\% & 32.71\% & 31.23\% & 1000\\
+2000 & 33.88\% & 32.71\% & 31.23\% & 2000\\
+5000 (not binding) & 33.95\% & 32.71\% & -- & 3036\\\bottomrule
 \end{tabular}
-\caption{TPC-H SF10, $K=20$. For $K=10$ the Wii rows are identical and the baseline gives 25.60, 28.84, 32.40 and 33.01\% (2795 calls at $B=5000$).}\label{tab:main}
+\caption{TPC-H SF10, $K=20$, means over four statistics draws. Ranges over the draws: baseline 25.48--25.62, 28.83--29.97, 33.33--34.50 and 33.39--34.58\%; Wii 32.18--33.29\%; coverage 30.80--31.70\%. For $K=10$ the Wii rows are identical and the baseline gives 25.57, 29.37, 33.23 and 33.52\% (2\,723 calls at $B=5000$).}\label{tab:main}
 \end{table}
 
-Wii is 6.6 points better than the baseline at $B=500$ and 3.4 points better at $B=1000$. At $B=2000$ the baseline, now with enough calls, overtakes it. Wii never uses more than 429 calls, so the larger budgets of this sweep do not constrain it: the four Wii entries in Table~\ref{tab:main} are one and the same run. A sweep of smaller budgets would be needed to see where Wii itself starts to degrade; the 38 initial calls set a lower limit.
+Wii is 6.6--7.7 points better than the baseline at $B=500$ and 3.3--3.4 points better at $B=1000$, in each of the four draws. At $B=2000$ the baseline, now with enough calls, overtakes it by 1.2 points in every draw. The absolute values move by about 1 point between draws, but these paired differences hardly move. Wii never uses more than 437 calls, so the larger budgets of this sweep do not constrain it: within one draw the four Wii entries in Table~\ref{tab:main} are one and the same run. A sweep of smaller budgets would be needed to see where Wii itself starts to degrade; the 38 initial calls set a lower limit.
 
 \subsection{The role of alpha}
 \begin{figure}[h]\centering
@@ -51,17 +51,17 @@ Wii is 6.6 points better than the baseline at $B=500$ and 3.4 points better at $
 \begin{table}[h]\centering\small
 \begin{tabular}{lrrr}\toprule
 $\alpha$ & Wii improvement (calls) & Wii + coverage (calls) & Wii quality vs.\ unlimited\\\midrule
-0.5 & 30.37\% (268) & 28.29\% (63) & 90.9\%\\
-0.8 & 31.72\% (351) & 30.37\% (126) & 94.9\%\\
-0.9 & 32.19\% (429) & 30.82\% (149) & 96.3\%\\
-0.95 & 33.08\% (538) & 32.68\% (164) & 99.0\%\\\bottomrule
+0.5 & 30.77\% (268) & 29.73\% (66) & 90.6\%\\
+0.8 & 32.12\% (351) & 30.78\% (127) & 94.6\%\\
+0.9 & 32.71\% (433) & 31.23\% (149) & 96.3\%\\
+0.95 & 33.59\% (538) & 33.04\% (170) & 98.9\%\\\bottomrule
 \end{tabular}
-\caption{Alpha sweep ($K=20$, $B=1000$); the unlimited baseline reaches 33.41\% with 3092 calls.}\label{tab:alpha}
+\caption{Alpha sweep ($K=20$, $B=1000$), means over four draws (spread 0.5--1.2 points, up to 3 points for coverage at $\alpha=0.5$); the unlimited baseline reaches 33.95\% with about 3\,036 calls.}\label{tab:alpha}
 \end{table}
 
-With $\alpha=0.95$ Wii reaches 99\% of the unlimited baseline's improvement with 538 calls (17\% of 3092). The coverage refinement uses fewer calls at the same $\alpha$ but gives lower quality in every row on this workload.
+With $\alpha=0.95$ Wii reaches 99\% of the unlimited baseline's improvement with 538 calls (18\% of 3\,036). The coverage refinement uses fewer calls at the same $\alpha$ but gives lower quality in every row and every draw on this workload.
 
-\textbf{Random skipping.} Skipping 90\% of calls at random gives 26.9\%, 6.3\% and 19.7\% improvement for three seeds, using 167--260 calls, while Wii gets 32.2\% with 429. Which calls are skipped matters: Wii's bounds pick calls that carry little information, random skipping does not. The large spread between seeds (6--27\%) also means a single random seed would be misleading.
+\textbf{Random skipping.} Skipping 90\% of calls at random gives 23.0\%, 7.0\% and 20.1\% improvement for three seeds (means over four draws; the first seed ranges from 19.0 to 26.9\% between draws), using 149--260 calls, while Wii gets 32.7\% with 433. Which calls are skipped matters: Wii's bounds pick calls that carry little information, random skipping does not. The large spread between seeds (7--27\%) also means a single random seed would be misleading.
 
 \subsection{Why skipping is safe: derived against real costs}
 \begin{figure}[h]\centering
@@ -136,7 +136,7 @@ Wii reaches 67.8\%, within 1.5 points of CoPhy (66.3\%) and level with Relaxatio
 
 \section{Discussion and limitations}
 \begin{itemize}
-\item \textbf{Single statistics draw (Wii results and comparison).} Table statistics come from a random sample, and different \texttt{ANALYZE} runs move the no-index cost by about 0.1\% and the improvement of a run by up to 1--2 points (seen in earlier unfrozen runs: 32.95\% against 31.79\% for the same unlimited baseline). We froze the statistics, which makes runs repeatable but hides this spread; the conclusions above are about differences of several points, but differences below about 1--2 points (for example between alpha 0.9 and 0.95 coverage variants) should not be over-read.
+\item \textbf{Statistics draws.} Table statistics come from a random sample, and different \texttt{ANALYZE} runs move the no-index cost by about 0.1\% and the improvement of a run by about 1 point (Wii 32.2--33.3\%, unlimited baseline 33.4--34.6\% over four draws). Absolute improvements should not be read to better than about 1 point; differences between methods on the same draw, and the ordering of the methods, were stable. The assumption and gap experiments (Sections 2.3 and 2.4) and the comparison with the original algorithms (Section~4) use a single draw, and the baselines come from a different draw than our tuner.
 \item \textbf{Planner settings.} A teammate's run with \texttt{max\_parallel\_workers\_per\_gather}=8 gave a lower cost scale (no-index cost $\approx$34.95M) and, as reported to us, the same qualitative patterns; we did not verify those runs and report only the default-settings results here.
 \item \textbf{Estimated, not executed, costs.} As in the original platform, costs are optimizer estimates for hypothetical indexes; queries were not executed.
 \item \textbf{Comparison with the paper.} The paper evaluates on other DBMS and workloads, with a different cost scale, so absolute improvements are not comparable; our results agree qualitatively with its motivation (many what-if calls are redundant; skipping them by bounds keeps most of the quality; budget reallocation helps most when the budget is tight). We did not reproduce its numbers.
@@ -144,9 +144,9 @@ Wii reaches 67.8\%, within 1.5 points of CoPhy (66.3\%) and level with Relaxatio
 \end{itemize}
 
 \section{Status and next steps}
-\textbf{Done:} Wii on TPC-H SF10 with the alpha, random-skipping, gap and assumption experiments; Esc-B with its clamped variant and the analysis of why it cannot stop with Wii; the comparison with the eight original algorithms at about 10\,GB; plain Esc-B repeated over three independent \texttt{ANALYZE} draws (clamped: two).
+\textbf{Done:} Wii on TPC-H SF10 with the alpha, random-skipping, gap and assumption experiments; Esc-B with its clamped variant and the analysis of why it cannot stop with Wii; the comparison with the eight original algorithms at about 10\,GB; the Wii experiments repeated over four independent \texttt{ANALYZE} draws, plain Esc-B over three (clamped: two).
 
-\textbf{Still open:} (0) A storage-aware tie-break for the simulated completion (see above). (1) The Wii experiments themselves, including the comparison, rest on one statistics draw; repeat them over three draws and report the spread. (2) Add a sweep of small budgets (about 50--400) so that the budget limits Wii. (3) Run Esc under a limited call budget, where stopping early frees budget for something else. (4) Run the comparison with matched storage limits for our tuner. (5) Implement Esc-I and run TPC-DS.
+\textbf{Still open:} (0) A storage-aware tie-break for the simulated completion (see above). (1) Repeat the assumption and gap experiments and the comparison over several draws. (2) Add a sweep of small budgets (about 50--400) so that the budget limits Wii. (3) Run Esc under a limited call budget, where stopping early frees budget for something else. (4) Run the comparison with matched storage limits for our tuner. (5) Implement Esc-I and run TPC-DS.
 
 \section*{Reproducibility}
 Repository \texttt{RameezWahid/magic-mirror-revisited}, \texttt{main} (two-phase greedy and Wii: \texttt{selection/budget\_aware.py}, \texttt{selection/algorithms/two\_phase\_greedy\_algorithm.py}, \texttt{scripts/wii\_experiments.py}). Esc: branch \texttt{esc} (\texttt{selection/esc.py}, \texttt{scripts/esc\_summary.py}, \texttt{tests/test\_esc.py}), delivered as three patches. Command: \texttt{wii\_experiments.py configs/tpch\_sf10\_load.json <out> assumptions gaps wii alpha random unlimited}, and \texttt{... <out> esc esc\_clamp} for Esc; the baseline numbers come from the platform's \texttt{RESULTS.txt}; run data in \texttt{runs\_rep1.jsonl} and \texttt{assumptions.json}. Three repetitions gave identical results except one coverage run (164 or 165 calls, cost difference 10 out of $2.9\cdot10^7$), likely from floating-point summation order.
