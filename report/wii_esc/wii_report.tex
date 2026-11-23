@@ -11,13 +11,13 @@
 \maketitle
 
 \begin{abstract}
-We evaluate a budget-aware two-phase greedy index tuner and the Wii call-skipping mechanism (Wang et al., SIGMOD 2024) on TPC-H at scale factor 10, using PostgreSQL 18.7 with default planner settings. Over four independent statistics draws, Wii finds indexes that improve the workload cost by 32.7\% on average (32.2--33.3\%) using 429--437 what-if calls, against 33.9\% with about 3\,040 calls for the same tuner without Wii (96\% of the quality with 14\% of the calls); at tight call budgets (500--1000) it is 3.3--7.7 points better than the budgeted baseline in every draw. The alpha parameter trades calls for quality smoothly, random skipping is far worse than Wii's bound-based skipping, and the cost model satisfies Wii's monotonicity and submodularity assumptions in more than 98\% of tested cases. Our implementation of Esc (Wang et al., PVLDB 2025), an early-stopping checker on top of the same tuner, saves 17--28\% of the calls at $K=20$ without measurable loss when used without Wii, but cannot stop when combined with Wii, because Wii's skipped calls leave its upper bound loose. Against the eight algorithms of the original study at about 10~GB, the tuner with Wii is within about 1 point of the best (CoPhy, DTA, Relaxation) using 429 calls where they use 1\,860--28\,102. All Wii results are means over four statistics draws and the Esc results over two or three; the assumption and gap experiments and the comparison with the original algorithms use one draw.
+We evaluate a budget-aware two-phase greedy index tuner and the Wii call-skipping mechanism (Wang et al., SIGMOD 2024) on TPC-H at scale factor 10, using PostgreSQL 18.7 with default planner settings. Over four independent statistics draws, Wii finds indexes that improve the workload cost by 32.7\% on average (32.2--33.3\%) using 429--437 what-if calls, against 33.9\% with about 3\,040 calls for the same tuner without Wii (96\% of the quality with 14\% of the calls); at tight call budgets (500--1000) it is 3.3--7.7 points better than the budgeted baseline in every draw. The alpha parameter trades calls for quality smoothly, random skipping is far worse than Wii's bound-based skipping, and the cost model satisfies Wii's monotonicity and submodularity assumptions in more than 98\% of tested cases. Our implementation of Esc (Wang et al., PVLDB 2025), an early-stopping checker on top of the same tuner, saves 17--28\% of the calls at $K=20$ without measurable loss. Under storage budgets ($K=100$) it needs a storage-aware bound to stop at all; with it, Esc saves 5--28\% of the calls (more at larger budgets) in 14 of 16 budgets at a loss of at most 0.2 points, and it adds nothing on top of Wii, because Wii's skipped calls leave its upper bound loose. Against the eight algorithms of the original study at a 10~GB budget (three repetitions each), the two-phase tuner reaches 67.3\% relative cost with 2\,828 calls (CoPhy 66.3\% with 23\,066, Relaxation and DTA 67.6\%), and with Wii 68.3\% with 430 calls. The Wii results are means over four statistics draws and the Esc results over two or three; the assumption and gap experiments use one draw; costs are optimizer estimates.
 \end{abstract}
 
 \section{Setup}
 \textbf{Tuner.} The project's platform now contains a two-phase greedy algorithm (per-query greedy search, then greedy over the union of the selected indexes) running behind a cost oracle that counts and limits what-if calls. The oracle has four modes: \emph{none} (every cost question is answered by a what-if call until the budget is spent, after which the cheapest known cost of a subset of the configuration is used), \emph{Wii}, \emph{Wii + coverage} (a refinement of Wii's bounds) and \emph{random} (skips a call with fixed probability; used as a control). Wii skips a call when the lower bound $L$ on the query's cost under a configuration is within a factor $\alpha$ of the upper bound $U$ (the cheapest known cost of any subset), i.e.\ $L/U\ge\alpha$, and uses $U$ instead. The initial calls (no-index cost, and the cost with all candidates for Wii) count against the budget.
 
-\textbf{Workload and environment.} TPC-H, SF10, 19 queries (2, 17 and 20 excluded, as in the platform's baseline experiments). PostgreSQL 18.7, HypoPG 1.4.5, all planner settings at their defaults (\texttt{max\_parallel\_workers\_per\_gather}=2, \texttt{work\_mem}=4\,MB, \texttt{shared\_buffers}=128\,MB, \texttt{random\_page\_cost}=4, \texttt{effective\_cache\_size}=4\,GB). Index width up to 2; the constraint is the number of indexes $K\in\{10,20\}$ with no storage limit. Each statistics draw is a fresh \texttt{ANALYZE}; we report four draws (no-index workload cost 42\,621\,151 to 42\,660\,191), of which the first (42\,625\,951) was used for the assumption and gap experiments and for the comparison in Section~4.
+\textbf{Workload and environment.} TPC-H, SF10, 19 queries (2, 17 and 20 excluded, as in the platform's baseline experiments). PostgreSQL 18.7, HypoPG 1.4.5, all planner settings at their defaults (\texttt{max\_parallel\_workers\_per\_gather}=2, \texttt{work\_mem}=4\,MB, \texttt{shared\_buffers}=128\,MB, \texttt{random\_page\_cost}=4, \texttt{effective\_cache\_size}=4\,GB). Index width up to 2; the constraint is the number of indexes $K\in\{10,20\}$ with no storage limit, except in Section~4 and Section~3.1, which use storage budgets with $K=100$. Each statistics draw is a fresh \texttt{ANALYZE}; we report four draws (no-index workload cost 42\,621\,151 to 42\,660\,191), of which the first (42\,625\,951) was used for the assumption and gap experiments and for nothing else; Section~4 uses its own runs.
 
 \textbf{Metric.} Improvement $=1-\text{cost}(\text{indexes})/\text{cost}(\emptyset)$, with the cost of the final configuration obtained by fresh what-if calls for every query (not from the tuner's own, possibly derived, numbers). ``Calls'' are what-if calls issued by the oracle; repeated questions and indexes irrelevant to a query are not counted.
 
@@ -102,54 +102,82 @@ $K$ & Variant & $\epsilon$ & Calls saved & Improvement lost & Guarantee\\\midrul
 
 \textbf{The clamp is a heuristic.} With it, 7.4--7.5\% of calls are saved with Wii and 33--38\% without (two draws). But the clamp assumes that adding indexes never raises the estimated cost, and PostgreSQL does not guarantee that (see above): at $K=20$ without Wii the checker stopped with $\eta_L=0.3203$ above the clamped $\eta_U=0.3161$ (first draw), and in the second draw the violation counter registered one violation in each clamped $K=20$ run without Wii and none in any other run. The bound is then raised to $\eta_L$ and the event counted, so the clamped checker keeps no guarantee. In our runs the actual loss stayed below $\epsilon$ (at most 0.59 points, at $K=10$), but this is an observation, not a bound.
 
-\section{Comparison with the eight algorithms of the original study}
-The tuner's configurations are limited by the number of indexes $K$, not by storage, so each is compared with the baselines at the closest storage point of the original sweep (10\,GB budget; for AutoAdmin and Drop, which take an index count, $K=10$). The baseline numbers are means over three repetitions of the platform's runs on PostgreSQL 18.7 (same defaults, separate statistics draw), with a spread over repetitions of up to 1--3 points (CoPhy 2.5, DTA 3.2), so differences below about 2 points should not be read as a ranking.
+\subsection{Storage-limited setting}
+Under a storage budget two things change. (1) The simulated greedy that supplies $\eta_L$, and whose configuration is returned when Esc stops, ignored the budget, so the returned configuration could exceed it. This was found in review and is fixed: the simulation now obeys \texttt{budget\_MB}. (2) With $K=100$ the count limit never binds, so Eq.~10 sums the best 100 savings without regard to index size and $\eta_U$ stays far above $\eta_L$. We therefore also cap $\eta_U$ by the fractional knapsack bound (best saving per byte first, the last index counted in part); both relaxations are upper bounds, so the smaller is used. This is our addition, not the paper's. On synthetic cost data with a storage budget the count-only bound stopped in 0 of 15 runs and the storage-aware one in 15 of 15; unit tests check that the bound stays above the improvement the search reaches.
 
 \begin{table}[h]\centering\small
-\begin{tabular}{llrrr}
+\begin{tabular}{rrrrrrr}\toprule
+Budget (GB) & Calls, plain & Calls, Esc & Calls saved & Cost \%, plain & Cost \%, Esc & Stopped\\\midrule
+0.25 & 573 & 538 & +6.1\% & 98.9 & 98.9 & 3/3\\
+1 & 1011 & 906 & +10.4\% & 96.9 & 96.9 & 3/3\\
+2 & 1384 & 1214 & +12.3\% & 80.1 & 80.1 & 3/3\\
+2.5 & 1685 & 1704 & -1.1\% & 78.8 & 78.8 & 0/3\\
+3 & 1747 & 1766 & -1.1\% & 75.7 & 75.7 & 0/3\\
+4.25 & 2179 & 1960 & +10.1\% & 71.5 & 70.6 & 3/3\\
+6.5 & 2533 & 2147 & +15.2\% & 67.9 & 68.1 & 3/3\\
+10 & 2828 & 2184 & +22.8\% & 67.3 & 67.3 & 3/3\\
+15 & 3026 & 2184 & +27.8\% & 67.1 & 67.1 & 3/3\\\\\bottomrule
+\end{tabular}
+\caption{Esc-B ($\epsilon=5\%$) under storage budgets ($K=100$), TPC-H SF10, means over three repetitions. Cost is the relative workload cost. ``Stopped'': repetitions in which Esc stopped before the search ended. A negative saving at 2.5 and 3\,GB is the 19 extra calls Esc needs for the all-candidates costs.}\label{tab:escstorage}
+\end{table}
+
+Esc stopped in all three repetitions at 14 of the 16 budgets (not at 2.5 and 3\,GB). The calls saved grow with the budget, from 6\% at 250\,MB to 28\% at 15\,GB, because the plain search keeps spending calls while the improvement has stopped growing. The relative cost is the same as without Esc to within 0.2 points (at 6.5\,GB 68.1 against 67.9\%; at 4.25\,GB and 5.75\,GB it is lower, 70.6 against 71.5\% and 69.8 against 70.5\%). The paper reports about 60\% savings for two-phase greedy on TPC-H with SQL Server; we get at most 28\%. We have not measured how much of the stopping is due to the storage-aware bound on TPC-H; \texttt{configs/tpch\_sf10\_esc\_ablation.json} runs the same sweep with the count-only bound for that check.
+
+Esc saves what-if calls, not wall-clock time, here: a HypoPG what-if call costs only a millisecond or two, and the checker's simulated greedy at $K=100$ costs about as much. Esc's runtime is higher than the plain search at 9 of 16 budgets (for instance 8.4 against 4.1\,s at 8\,GB) and lower at 5 (3.5 against 4.9\,s at 15\,GB). Combined with Wii, Esc stopped only at budgets up to 2\,GB (and in two of three repetitions at 3.5\,GB), and saved at most two calls (407 against 405 at 3.5\,GB); at larger budgets it never stopped.
+
+\section{Comparison with the eight algorithms of the original study}
+Greedy, Wii, Esc and Wii~+~Esc were run through the platform like the original eight (\texttt{configs/tpch\_sf10\_new\_algos.json}), at the same 16 storage budgets with $K=100$, so the storage budget is the binding constraint, as for the original algorithms. Both sets of runs have three repetitions, each with its own statistics draw, on the same machine and settings, and the numbers are means. The spread over repetitions is up to 1.1 points for Extend and AutoAdmin, 2.5 for CoPhy and two-phase greedy, and 3.2 for DTA and Wii, so differences below 2--3 points should not be read as a ranking. AutoAdmin and Drop take an index count and Dexter a threshold, so they have one value.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{lrrrrr}
 \toprule
-Algorithm & Setting & Rel.\ cost \% & What-if calls & Runtime s\\
+Algorithm & 5\,GB & 10\,GB & 15\,GB & Calls (10\,GB) & Runtime s (10\,GB)\\
 \midrule
-Extend & 10 GB & 70.5 & 2552 & 3.9\\
-Relaxation & 10 GB & 67.6 & 1860 & 3.6\\
-DTA & 10 GB & 67.6 & 28102 & 52.5\\
-CoPhy & 10 GB & 66.3 & 23066 & 13.8\\
-DB2Advis & 10 GB & 70.0 & 38 & 0.1\\
-AutoAdmin & K=10 & 67.7 & 2671 & 3.9\\
-Drop & K=10 & 72.2 & 1066 & 2.5\\
-Two-phase greedy & K=20, 10.3 GB & 66.6 & 3092 & 4.5\\
-Wii ($\alpha{=}0.9$) & K=20, 9.9 GB & 67.8 & 429 & 0.7\\
-Wii + coverage & K=20, 10.6 GB & 69.2 & 149 & 0.3\\
-Two-phase + Esc-B (5\%) & K=20, 12.3 GB & 67.6 & 2179 & 3.3\\
+Extend & 70.6 & 70.5 & 70.5 & 2552 & 3.9\\
+Relaxation & 70.4 & 67.6 & 67.4 & 1860 & 3.6\\
+DTA & 70.8 & 67.6 & 67.3 & 28102 & 52.5\\
+CoPhy & 69.2 & 66.3 & 66.1 & 23066 & 13.8\\
+DB2Advis & 75.9 & 70.0 & 68.0 & 38 & 0.1\\
+Two-phase greedy & 72.4 & 67.3 & 67.1 & 2828 & 4.3\\
+\quad + Wii & 72.4 & 68.3 & 68.3 & 430 & 1.1\\
+\quad + Esc & 72.4 & 67.3 & 67.1 & 2184 & 4.9\\
+\quad + Wii + Esc & 72.4 & 68.3 & 68.3 & 430 & 0.9\\
+\midrule
+AutoAdmin (K=10) & \multicolumn{3}{c}{67.7} & 2671 & 3.9\\
+Drop (K=10) & \multicolumn{3}{c}{72.2} & 1066 & 2.5\\
+Dexter (10\%) & \multicolumn{3}{c}{70.7} & 0 & 2.4\\
 \bottomrule
 \end{tabular}
-
-\caption{Relative workload cost (lower is better), what-if calls and runtime at about 10\,GB. Dexter (no what-if calls; 10\% threshold) reaches 70.7\%. The Esc row comes from a different statistics draw, whose own never-stopping run gave 67.6\%, 3\,016 calls and 10.3\,GB.}\label{tab:compare}
+\caption{Relative workload cost (\%, lower is better) at 5, 10 and 15\,GB storage budgets, and what-if calls and algorithm runtime at 10\,GB. The last block has no storage budget: AutoAdmin and Drop at $K=10$ indexes, Dexter at a 10\% saving threshold.}\label{tab:compare}
 \end{table}
 
 \begin{figure}[h]\centering
 \includegraphics[width=\textwidth]{fig_compare.png}
-\caption{Relative workload cost against what-if calls (left) and runtime (right).}\label{fig:compare}
+\caption{Relative workload cost (left, from 1.5\,GB) and what-if calls (right) against the storage budget. Dashed: Wii and Esc on top of the two-phase tuner; Wii~+~Esc coincides with Wii.}\label{fig:compare}
 \end{figure}
 
-Wii reaches 67.8\%, within 1.5 points of CoPhy (66.3\%) and level with Relaxation, DTA and AutoAdmin (67.6--67.7\%), with 429 calls against 1\,860 (Relaxation), 2\,671 (AutoAdmin), 28\,102 (DTA) and 23\,066 (CoPhy). It beats Extend (70.5\%), Drop (72.2\%), DB2Advis (70.0\%) and Dexter (70.7\%). Only DB2Advis (38 calls) uses fewer calls, and it is 2.2 points worse. The two-phase tuner without Wii (66.6\%, 3\,092 calls) is the best of everything except CoPhy, at 13\% of CoPhy's calls. Esc-B (5\%) cuts the tuner's calls to 2\,179 (28\% fewer in that draw) at the same cost, but see the storage remark above. Caveats: our tuner uses index width 2 and a count limit rather than a storage limit, the baselines were run with the original study's configuration, and calls are counted by different code paths (the platform's cost-request counter for the baselines, the oracle's calls for ours).
+\textbf{At 10\,GB} CoPhy is best (66.3\%) but uses 23\,066 calls. The plain two-phase tuner is 1.0 point behind it (67.3\%) with 2\,828 calls, and level with Relaxation and DTA (67.6\%), AutoAdmin (67.7\%, $K=10$). With Wii the tuner is at 68.3\% with 430 calls: 2.0 points behind CoPhy, 0.7 behind Relaxation and DTA, with 1.9\% of CoPhy's calls, 23\% of Relaxation's and 1.5\% of DTA's. It beats Extend (70.5\%), DB2Advis (70.0\%), Drop (72.2\%) and Dexter (70.7\%). Only DB2Advis uses fewer calls (38) and it is 1.7 points worse than Wii. At 15\,GB the order is the same (CoPhy 66.1, two-phase 67.1, DTA 67.3, Relaxation 67.4, Wii 68.3). Wii is about one point worse than the plain tuner from 6.5\,GB on, as in the call-budget experiments.
+
+\textbf{At 5\,GB} the greedy variants (72.4\%) are worse than Extend, Relaxation and DTA (70.4--70.8\%) and than CoPhy (69.2\%). They are also worse than at 4.25\,GB (71.5\%, Wii 71.0\%): with more room the greedy search takes a different early index and ends up worse, which we did not investigate. Below about 4\,GB all algorithms except DB2Advis are within 2--3 points of each other.
+
+\textbf{Esc} changes the cost of the plain tuner by at most 0.2 points while saving up to 28\% of its calls (previous section), which puts it at 2\,184 calls at 10\,GB. Caveats: the tuner uses index width 2 and the original algorithms the study's own configuration; calls are counted by different code paths (the platform's cost-request counter for the original eight, the oracle's calls for ours); the original eight and our variants come from different runs; all costs are optimizer estimates.
 
 \section{Discussion and limitations}
 \begin{itemize}
-\item \textbf{Statistics draws.} Table statistics come from a random sample, and different \texttt{ANALYZE} runs move the no-index cost by about 0.1\% and the improvement of a run by about 1 point (Wii 32.2--33.3\%, unlimited baseline 33.4--34.6\% over four draws). Absolute improvements should not be read to better than about 1 point; differences between methods on the same draw, and the ordering of the methods, were stable. The assumption and gap experiments (Sections 2.3 and 2.4) and the comparison with the original algorithms (Section~4) use a single draw, and the baselines come from a different draw than our tuner.
+\item \textbf{Statistics draws.} Table statistics come from a random sample, and different \texttt{ANALYZE} runs move the no-index cost by about 0.1\% and the improvement of a run by about 1 point (Wii 32.2--33.3\%, unlimited baseline 33.4--34.6\% over four draws). Absolute improvements should not be read to better than about 1 point; differences between methods on the same draw, and the ordering of the methods, were stable. The assumption and gap experiments (Sections 2.3 and 2.4) use a single draw. The comparison with the original algorithms (Section~4) uses three repetitions on both sides.
 \item \textbf{Planner settings.} A teammate's run with \texttt{max\_parallel\_workers\_per\_gather}=8 gave a lower cost scale (no-index cost $\approx$34.95M) and, as reported to us, the same qualitative patterns; we did not verify those runs and report only the default-settings results here.
-\item \textbf{Estimated, not executed, costs.} As in the original platform, costs are optimizer estimates for hypothetical indexes; queries were not executed.
+\item \textbf{Estimated, not executed, costs.} As in the original platform, costs are optimizer estimates for hypothetical indexes; queries were not executed in the experiments of this report. Running the selected indexes and timing the queries (the third objective of the proposal) is done by \texttt{scripts/execute\_selected\_indexes.py}; its results are not part of this report yet.
 \item \textbf{Comparison with the paper.} The paper evaluates on other DBMS and workloads, with a different cost scale, so absolute improvements are not comparable; our results agree qualitatively with its motivation (many what-if calls are redundant; skipping them by bounds keeps most of the quality; budget reallocation helps most when the budget is tight). We did not reproduce its numbers.
 \item \textbf{One workload.} Only TPC-H at SF10 so far; TPC-DS is configured but not run.
 \end{itemize}
 
 \section{Status and next steps}
-\textbf{Done:} Wii on TPC-H SF10 with the alpha, random-skipping, gap and assumption experiments; Esc-B with its clamped variant and the analysis of why it cannot stop with Wii; the comparison with the eight original algorithms at about 10\,GB; the Wii experiments repeated over four independent \texttt{ANALYZE} draws, plain Esc-B over three (clamped: two).
+\textbf{Done:} Wii on TPC-H SF10 with the alpha, random-skipping, gap and assumption experiments (four statistics draws); Esc-B with its clamped variant, the storage fix and the storage-aware bound; the comparison with the eight original algorithms under storage budgets, three repetitions.
 
-\textbf{Still open:} (0) A storage-aware tie-break for the simulated completion (see above). (1) Repeat the assumption and gap experiments and the comparison over several draws. (2) Add a sweep of small budgets (about 50--400) so that the budget limits Wii. (3) Run Esc under a limited call budget, where stopping early frees budget for something else. (4) Run the comparison with matched storage limits for our tuner. (5) Implement Esc-I and run TPC-DS.
+\textbf{Still open:} (1) Real execution of the selected indexes (objective 3). (2) The ablation of the storage-aware bound on TPC-H. (3) A sweep of small call budgets (about 50--400) so that the budget limits Wii, and Esc under a call budget. (4) Repeat the assumption and gap experiments over several draws. (5) Esc-I and TPC-DS.
 
 \section*{Reproducibility}
-Repository \texttt{RameezWahid/magic-mirror-revisited}, \texttt{main} (two-phase greedy and Wii: \texttt{selection/budget\_aware.py}, \texttt{selection/algorithms/two\_phase\_greedy\_algorithm.py}, \texttt{scripts/wii\_experiments.py}). Esc: branch \texttt{esc} (\texttt{selection/esc.py}, \texttt{scripts/esc\_summary.py}, \texttt{tests/test\_esc.py}), delivered as three patches. Command: \texttt{wii\_experiments.py configs/tpch\_sf10\_load.json <out> assumptions gaps wii alpha random unlimited}, and \texttt{... <out> esc esc\_clamp} for Esc; the baseline numbers come from the platform's \texttt{RESULTS.txt}; run data in \texttt{runs\_rep1.jsonl} and \texttt{assumptions.json}. Three repetitions gave identical results except one coverage run (164 or 165 calls, cost difference 10 out of $2.9\cdot10^7$), likely from floating-point summation order.
+Repository \texttt{RameezWahid/magic-mirror-revisited}, \texttt{main} (two-phase greedy and Wii: \texttt{selection/budget\_aware.py}, \texttt{selection/algorithms/two\_phase\_greedy\_algorithm.py}, \texttt{scripts/wii\_experiments.py}). Esc: branch \texttt{esc-arijit} (\texttt{selection/esc.py}, \texttt{scripts/esc\_summary.py}, \texttt{scripts/compare\_algorithms.py}, \texttt{tests/test\_esc.py}). Storage-limited runs: \texttt{configs/tpch\_sf10\_new\_algos.json} through \texttt{scripts/run\_repetitions.sh} (three repetitions), then \texttt{scripts/analyze\_results.py}. Command: \texttt{wii\_experiments.py configs/tpch\_sf10\_load.json <out> assumptions gaps wii alpha random unlimited}, and \texttt{... <out> esc esc\_clamp} for Esc; the baseline numbers come from the platform's \texttt{RESULTS.txt}; run data in \texttt{runs\_rep1.jsonl} and \texttt{assumptions.json}. Three repetitions gave identical results except one coverage run (164 or 165 calls, cost difference 10 out of $2.9\cdot10^7$), likely from floating-point summation order.
 
 \section*{References}
 \begin{enumerate}\small
