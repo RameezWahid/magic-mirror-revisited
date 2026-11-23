@@ -1,0 +1,484 @@
+From 45309ded4f69cdb5458b6b54de65f2db5e23e6d9 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 22 Nov 2026 23:39:51 +0530
+Subject: [PATCH] Add Esc-B early stopping on top of the Wii oracle
+
+Esc (Wang et al., PVLDB 2025), variant without index interaction:
+checked at the start of every Phase-2 greedy step of two-phase greedy,
+stops when eta_U(final best) - eta_L(best so far) <= epsilon.
+- selection/esc.py: EarlyStoppingChecker (simulated greedy on derived costs
+  for eta_L; Eq. 10 top-K sum of workload-level MCI bounds for eta_U)
+- two-phase greedy: parameters esc ("none"/"esc_b"), esc_epsilon, esc_clamp
+- budget_aware.py: need_omega so Omega costs exist also without Wii; hook
+  in the greedy loop
+- scripts/wii_experiments.py: "esc" experiment; scripts/esc_summary.py
+- tests/test_esc.py: synthetic-cost tests (loss <= epsilon, bound validity)
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CjHr7mFBfqBd1hBxcjucKr
+---
+ scripts/esc_summary.py                        |  54 ++++++++
+ scripts/wii_experiments.py                    |  15 ++
+ .../algorithms/two_phase_greedy_algorithm.py  |  24 ++++
+ selection/budget_aware.py                     |  14 +-
+ selection/esc.py                              | 111 +++++++++++++++
+ tests/test_esc.py                             | 128 ++++++++++++++++++
+ 6 files changed, 345 insertions(+), 1 deletion(-)
+ create mode 100644 scripts/esc_summary.py
+ create mode 100644 selection/esc.py
+ create mode 100644 tests/test_esc.py
+
+diff --git a/scripts/esc_summary.py b/scripts/esc_summary.py
+new file mode 100644
+index 0000000..abb92a8
+--- /dev/null
++++ b/scripts/esc_summary.py
+@@ -0,0 +1,54 @@
++"""Esc results: calls saved and improvement lost against the never-stopping reference.
++
++Usage: python scripts/esc_summary.py <runs.jsonl> [<runs.jsonl> ...]
++Several files = several repetitions; the table shows the mean over them.
++"""
++import json
++import sys
++from collections import defaultdict
++
++
++def load(path):
++    with open(path) as f:
++        return {r["run_id"]: r for r in map(json.loads, filter(str.strip, f))}
++
++
++def main(paths):
++    rows = defaultdict(list)
++    for path in paths:
++        runs = load(path)
++        for run_id, run in runs.items():
++            if not run_id.startswith("esc_k"):
++                continue
++            ref = runs.get(run_id.replace("esc_k", "esc_ref_k").rsplit("_eps", 1)[0])
++            if ref is None:
++                continue
++            statistics = run["statistics"]
++            key = (
++                run["parameters"]["max_indexes"],
++                run["parameters"]["interception"],
++                run["parameters"]["esc_epsilon"],
++            )
++            rows[key].append(
++                (
++                    100 * (1 - statistics["whatif_calls"] / ref["statistics"]["whatif_calls"]),
++                    100 * (ref["improvement"] - run["improvement"]),
++                    statistics["esc_stopped_early"],
++                    statistics["esc_time_s"],
++                )
++            )
++    print("K   mode  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
++    for key in sorted(rows):
++        values = rows[key]
++        n = len(values)
++        print(
++            f"{key[0]:<3} {key[1]:<5} {key[2]:<7} "
++            f"{sum(v[0] for v in values) / n:>13.1f}  "
++            f"{sum(v[1] for v in values) / n:>22.2f}  "
++            f"{sum(v[2] for v in values)}/{n:<12} "
++            f"{sum(v[3] for v in values) / n:.3f}"
++        )
++
++
++if __name__ == "__main__":
++    main(sys.argv[1:])
+diff --git a/scripts/wii_experiments.py b/scripts/wii_experiments.py
+index 3f95774..86dc99e 100644
+--- a/scripts/wii_experiments.py
++++ b/scripts/wii_experiments.py
+@@ -179,6 +179,21 @@ class Runner:
+                 {"max_indexes": 20, "interception": "wii", "alpha": alpha},
+             )
+ 
++    # Esc (early stopping) on top of two-phase greedy, with and without Wii.
++    # Reference: the same run with a threshold that can never be met (epsilon < 0),
++    # so it has the same initial calls and bound bookkeeping, but never stops.
++    # savings = 1 - calls_esc / calls_reference; loss = improvement_ref - improvement_esc.
++    def esc(self):
++        for k in (10, 20):
++            for mode in ("none", "wii"):
++                base = {"max_indexes": k, "interception": mode, "esc": "esc_b"}
++                self.run(f"esc_ref_k{k}_{mode}", {**base, "esc_epsilon": -1.0})
++                for epsilon in (0.01, 0.02, 0.05, 0.10):
++                    self.run(
++                        f"esc_k{k}_{mode}_eps{epsilon}",
++                        {**base, "esc_epsilon": epsilon},
++                    )
++
+     def assumptions(self):
+         """Does PostgreSQL's cost model behave as Wii assumes? (Algorithm 6)"""
+         path = os.path.join(self.out_dir, "assumptions.json")
+diff --git a/selection/algorithms/two_phase_greedy_algorithm.py b/selection/algorithms/two_phase_greedy_algorithm.py
+index 522d103..f562d14 100644
+--- a/selection/algorithms/two_phase_greedy_algorithm.py
++++ b/selection/algorithms/two_phase_greedy_algorithm.py
+@@ -8,6 +8,7 @@ from selection.budget_aware import (
+     log_summary,
+     table_row_counts,
+ )
++from selection.esc import EarlyStoppingChecker
+ from selection.candidate_generation import (
+     candidates_per_query,
+     syntactically_relevant_indexes,
+@@ -29,6 +30,11 @@ DEFAULT_PARAMETERS = {
+     "budget_MB": None,
+     "max_index_width": DEFAULT_PARAMETER_VALUES["max_index_width"],
+     "record_gaps": False,
++    # Esc early stopping: "none" or "esc_b"; epsilon is the tolerated loss of
++    # improvement (0.05 = 5 percentage points). esc_clamp: see EarlyStoppingChecker.
++    "esc": "none",
++    "esc_epsilon": 0.05,
++    "esc_clamp": False,
+ }
+ 
+ 
+@@ -63,6 +69,7 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
+             seed=parameters["seed"],
+             record_gaps=parameters["record_gaps"],
+             table_rows=table_row_counts(self.database_connector),
++            need_omega=parameters["esc"] != "none",
+         )
+         # Column counts for the coverage refinement. Only coverage uses them, but
+         # they're cheap: no optimizer calls.
+@@ -79,6 +86,13 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
+             storage_budget=storage,
+             index_size=self._index_size,
+         )
++        if parameters["esc"] == "esc_b":
++            self.search.checker = EarlyStoppingChecker(
++                self.oracle,
++                parameters["max_indexes"],
++                epsilon=parameters["esc_epsilon"],
++                clamp_omega=parameters["esc_clamp"],
++            )
+         indexes = self.search.run()
+         log_summary(self.oracle, self.search)
+         self._store_statistics(time.time() - start)
+@@ -107,4 +121,14 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
+                 "total_time_s": round(runtime, 3),
+             }
+         )
++        checker = self.search.checker
++        if checker is not None:
++            self.parameters.update(
++                {
++                    "esc_stopped_early": self.search.stopped_early,
++                    "esc_checks": checker.checks,
++                    "esc_time_s": round(checker.time, 4),
++                    "esc_trace": checker.trace,
++                }
++            )
+         logging.debug(f"Two-phase greedy statistics: {self.parameters}")
+diff --git a/selection/budget_aware.py b/selection/budget_aware.py
+index 9a8af18..be9a8c5 100644
+--- a/selection/budget_aware.py
++++ b/selection/budget_aware.py
+@@ -23,6 +23,7 @@ class BudgetAwareCostOracle:
+         seed=0,
+         record_gaps=False,
+         table_rows=None,
++        need_omega=False,
+     ):
+         assert interception in INTERCEPTION_MODES, interception
+         self.cost_evaluation = cost_evaluation
+@@ -34,6 +35,8 @@ class BudgetAwareCostOracle:
+         self.random = random.Random(seed)
+         self.record_gaps = record_gaps
+         self.table_rows = table_rows or {}
++        # Esc's bounds need c(q, Omega_q) too, also when Wii itself is off.
++        self.need_omega = need_omega
+ 
+         self.query_columns = {q: set(q.columns) for q in workload.queries}
+         # Every cost we already paid for, per query. Asking twice is free.
+@@ -123,7 +126,7 @@ class BudgetAwareCostOracle:
+             self.empty_cost[query] = self._whatif(query, frozenset())
+         # Wii also wants the cost with every candidate at once. No subset gets
+         # cheaper than that, so it's the floor for all of Wii's bounds.
+-        if self.interception in ("wii", "wii_coverage"):
++        if self.interception in ("wii", "wii_coverage") or self.need_omega:
+             for query, candidates in zip(self.workload.queries, candidates_per_query):
+                 if not candidates:
+                     self.omega_cost[query] = self.empty_cost[query]
+@@ -294,6 +297,8 @@ class TwoPhaseGreedy:
+         self.curve = []  # (calls, estimated workload cost of the best configuration)
+         self.phase1_calls = None
+         self.phase2_candidates = 0
++        self.checker = None  # optional EarlyStoppingChecker, used in phase 2
++        self.stopped_early = False
+ 
+     def _size(self, configuration):
+         return sum(self.index_size(index) for index in configuration)
+@@ -315,6 +320,13 @@ class TwoPhaseGreedy:
+         # Each round, add the one index that lowers the total cost most.
+         # Stop at K indexes, or when nothing helps any more.
+         while len(selected) < self.max_indexes:
++            # Esc: stop tuning if the best configuration found so far is close
++            # enough to the best one that continuing could possibly reach.
++            if phase == 2 and self.checker is not None:
++                stop = self.checker.check(selected, candidates)
++                if stop is not None:
++                    self.stopped_early = True
++                    return stop
+             step_best, step_cost, step_per_query = None, best_cost, None
+             used = self._size(selected) if self.storage_budget is not None else 0
+             for index in candidates:
+diff --git a/selection/esc.py b/selection/esc.py
+new file mode 100644
+index 0000000..e1deab7
+--- /dev/null
++++ b/selection/esc.py
+@@ -0,0 +1,111 @@
++import logging
++import time
++
++
++class EarlyStoppingChecker:
++    """Esc-B: early-stopping checker for budget-aware index tuning (Wang et al.,
++    "Esc: An Early-Stopping Checker for Budget-aware Index Tuning", PVLDB 2025).
++
++    The tuner may stop at what-if call t if
++        eta_U(final best) - eta_L(best at t) <= epsilon,
++    where eta is the percentage improvement 1 - cost(W, C) / cost(W, empty).
++
++    eta_L (what we already have for sure): simulated greedy search that finishes
++        the selection with derived costs only (no what-if calls). Derived costs
++        are upper bounds of the real cost, so this improvement is a lower bound.
++    eta_U (the most any final configuration could reach): the K indexes with the
++        largest workload-level MCI upper bound u(W, z) = sum_q u(q, z); the cost
++        cannot drop by more than their sum (Eq. 10 of the paper).
++
++    Only the variant without index interaction (Esc-B) is implemented.
++    Checked at the start of every greedy step of Phase 2 of two-phase greedy.
++    """
++
++    def __init__(self, oracle, max_indexes, epsilon=0.05, clamp_omega=False):
++        self.oracle = oracle
++        self.max_indexes = max_indexes
++        self.epsilon = epsilon
++        # Optional, not in the paper: the workload cannot cost less than the sum
++        # of the per-query costs with all candidates at once (Omega), so the
++        # upper bound on the improvement is capped there.
++        self.clamp_omega = clamp_omega
++        self.trace = []  # (calls, selected so far, eta_L, eta_U)
++        self.checks = 0
++        self.time = 0.0
++        self.stopped_at_calls = None
++
++    # Lower bound on the improvement of the best configuration at this point.
++    def simulated_greedy(self, selected, candidates):
++        oracle = self.oracle
++        queries = oracle.workload.queries
++        configuration = frozenset(selected)
++        per_query = {
++            q: oracle.derived_cost(q, oracle.relevant(q, configuration))
++            for q in queries
++        }
++        affected = {
++            z: [q for q in queries if oracle.relevant(q, [z])] for z in candidates
++        }
++        while len(configuration) < self.max_indexes:
++            best, best_gain, best_costs = None, 0.0, None
++            for z in candidates:
++                if z in configuration:
++                    continue
++                trial = configuration | {z}
++                costs = {
++                    q: oracle.derived_cost(q, oracle.relevant(q, trial))
++                    for q in affected[z]
++                }
++                gain = sum(per_query[q] - costs[q] for q in affected[z])
++                if gain > best_gain:
++                    best, best_gain, best_costs = z, gain, costs
++            if best is None:
++                break
++            configuration = configuration | {best}
++            per_query.update(best_costs)
++        return configuration, sum(per_query.values())
++
++    # Upper bound on the improvement of the final best configuration.
++    def improvement_upper_bound(self, candidates):
++        oracle = self.oracle
++        queries = oracle.workload.queries
++        empty = sum(oracle.empty_cost[q] for q in queries)
++        saving = {}
++        for z in candidates:
++            total = 0.0
++            for q in queries:
++                if oracle.relevant(q, [z]):
++                    bound = max(0.0, oracle.mci_bound(q, z))
++                    total += bound
++            saving[z] = total
++        top = sorted(candidates, key=lambda z: (-saving[z], z))[: self.max_indexes]
++        top = [z for z in top if saving[z] > 0]
++        # Eq. 10: the K largest workload-level bounds, summed. No per-query floor:
++        # with floors, picking the K largest sums would no longer be the best case.
++        lower_cost = max(0.0, empty - sum(saving[z] for z in top))
++        if self.clamp_omega:
++            # Every query costs at least c(q, Omega_q), whatever is selected.
++            lower_cost = max(
++                lower_cost, sum(oracle.omega_cost.get(q, 0.0) for q in queries)
++            )
++        return 1 - lower_cost / empty
++
++    def check(self, selected, candidates):
++        """Returns the configuration to stop with, or None to keep tuning."""
++        start = time.time()
++        oracle = self.oracle
++        empty = sum(oracle.empty_cost.values())
++        configuration, derived_cost = self.simulated_greedy(selected, candidates)
++        eta_lower = 1 - derived_cost / empty
++        eta_upper = self.improvement_upper_bound(candidates)
++        self.checks += 1
++        self.trace.append((oracle.calls, len(selected), eta_lower, eta_upper))
++        self.time += time.time() - start
++        if eta_upper - eta_lower <= self.epsilon:
++            self.stopped_at_calls = oracle.calls
++            logging.info(
++                f"Esc: stop at {oracle.calls} calls, "
++                f"eta_L={eta_lower:.4f}, eta_U={eta_upper:.4f}"
++            )
++            return configuration
++        return None
+diff --git a/tests/test_esc.py b/tests/test_esc.py
+new file mode 100644
+index 0000000..0217f24
+--- /dev/null
++++ b/tests/test_esc.py
+@@ -0,0 +1,128 @@
++import random
++import unittest
++
++from selection.budget_aware import BudgetAwareCostOracle, TwoPhaseGreedy
++from selection.esc import EarlyStoppingChecker
++from selection.index import Index
++from selection.workload import Query, Workload
++
++
++class Table:
++    def __init__(self, name):
++        self.name = name
++
++    def __hash__(self):
++        return hash(self.name)
++
++    def __eq__(self, other):
++        return self.name == other.name
++
++    def __lt__(self, other):
++        return self.name < other.name
++
++
++class Column:
++    def __init__(self, table, name):
++        self.table, self.name = table, name
++
++    def __hash__(self):
++        return hash((self.table.name, self.name))
++
++    def __eq__(self, other):
++        return (self.table.name, self.name) == (other.table.name, other.name)
++
++    def __lt__(self, other):
++        return (self.table.name, self.name) < (other.table.name, other.name)
++
++    def __repr__(self):
++        return f"{self.table.name}.{self.name}"
++
++
++class SyntheticCosts:
++    """Monotone, submodular what-if cost: every covered leading column multiplies
++    the query's cost by (1 - benefit)."""
++
++    def __init__(self, benefit, base):
++        self.benefit, self.base = benefit, base
++
++    def cost(self, query, configuration):
++        covered = {}
++        for index in configuration:
++            lead = index.columns[0]
++            if lead in query.columns:
++                covered[lead] = max(covered.get(lead, 0), self.benefit[(query.nr, lead)])
++        cost = self.base[query.nr]
++        for benefit in covered.values():
++            cost *= 1 - benefit
++        return cost
++
++    def calculate_cost(self, workload, configuration, store_size=False):
++        return sum(self.cost(q, configuration) for q in workload.queries)
++
++    def which_indexes_utilized_and_cost(self, query, configuration):
++        return set(configuration), self.cost(query, configuration)
++
++
++def build(seed, queries=12, tables=4, columns=5):
++    rng = random.Random(seed)
++    cols = [Column(Table(f"t{t}"), f"c{c}") for t in range(tables) for c in range(columns)]
++    qs = [Query(i, "q", rng.sample(cols, rng.randint(3, 7))) for i in range(queries)]
++    benefit = {(q.nr, c): rng.uniform(0.02, 0.5) for q in qs for c in q.columns}
++    base = {q.nr: rng.uniform(1e3, 1e5) for q in qs}
++    candidates = [
++        [Index((c,)) for c in q.columns]
++        + [Index((a, b)) for a in q.columns for b in q.columns
++           if a != b and a.table == b.table]
++        for q in qs
++    ]
++    return qs, SyntheticCosts(benefit, base), base, candidates
++
++
++def run(seed, interception, epsilon=None, budget=None, k=5):
++    qs, costs, base, candidates = build(seed)
++    oracle = BudgetAwareCostOracle(
++        costs, Workload(qs), budget=budget, interception=interception,
++        need_omega=epsilon is not None,
++    )
++    oracle.candidate_counts = {}
++    oracle.initialize(candidates)
++    search = TwoPhaseGreedy(oracle, candidates, k)
++    if epsilon is not None:
++        search.checker = EarlyStoppingChecker(oracle, k, epsilon=epsilon)
++    selected = search.run()
++    improvement = 1 - sum(costs.cost(q, selected) for q in qs) / sum(base.values())
++    return improvement, oracle, search
++
++
++class TestEsc(unittest.TestCase):
++    def test_loss_never_exceeds_epsilon(self):
++        for seed in range(15):
++            reference, _, _ = run(seed, "none")
++            for epsilon in (0.01, 0.05, 0.10):
++                improvement, _, _ = run(seed, "none", epsilon)
++                self.assertLessEqual(reference - improvement, epsilon + 1e-9)
++
++    def test_upper_bound_never_below_final_improvement(self):
++        for seed in range(15):
++            reference, _, _ = run(seed, "none")
++            _, _, search = run(seed, "none", 0.05)
++            for _, _, lower, upper in search.checker.trace:
++                self.assertGreaterEqual(upper, reference - 1e-9)
++                self.assertGreaterEqual(upper, lower - 1e-9)
++
++    def test_never_stops_with_negative_epsilon(self):
++        _, _, search = run(3, "none", -1.0)
++        self.assertFalse(search.stopped_early)
++
++    def test_stops_with_large_epsilon(self):
++        _, oracle, search = run(3, "none", 1.0)
++        self.assertTrue(search.stopped_early)
++        self.assertEqual(search.checker.stopped_at_calls, oracle.calls)
++
++    def test_budget_respected_with_esc(self):
++        _, oracle, _ = run(2, "wii", 0.05, budget=150)
++        self.assertLessEqual(oracle.calls, 150)
++
++
++if __name__ == "__main__":
++    unittest.main()
+-- 
+2.43.0
+

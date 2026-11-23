@@ -1,0 +1,126 @@
+From 9acb6aad80bc1519905cbca9df8fcd0a3bed11a1 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 23 Nov 2026 10:20:46 +0530
+Subject: [PATCH] Esc: keep clamped bound consistent with achieved improvement,
+ count violations
+
+With the Omega clamp the upper bound could fall below the improvement
+already reached, because Postgres what-if costs are not monotone in the
+index set. Raise it to the reached improvement and count the events
+(esc_violations); the clamped checker is documented as a heuristic.
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CjHr7mFBfqBd1hBxcjucKr
+---
+ scripts/esc_summary.py                        |  6 ++++--
+ .../algorithms/two_phase_greedy_algorithm.py  |  1 +
+ selection/esc.py                              | 15 +++++++++++---
+ tests/test_esc.py                             | 20 +++++++++++++++++++
+ 4 files changed, 37 insertions(+), 5 deletions(-)
+
+diff --git a/scripts/esc_summary.py b/scripts/esc_summary.py
+index 92b6295..a212a9d 100644
+--- a/scripts/esc_summary.py
++++ b/scripts/esc_summary.py
+@@ -37,9 +37,10 @@ def main(paths):
+                     100 * (ref["improvement"] - run["improvement"]),
+                     statistics["esc_stopped_early"],
+                     statistics["esc_time_s"],
++                    statistics.get("esc_violations", 0),
+                 )
+             )
+-    print("K   mode  clamp  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
++    print("K   mode  clamp  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)  bound violations")
+     for key in sorted(rows):
+         values = rows[key]
+         n = len(values)
+@@ -48,7 +49,8 @@ def main(paths):
+             f"{sum(v[0] for v in values) / n:>13.1f}  "
+             f"{sum(v[1] for v in values) / n:>22.2f}  "
+             f"{sum(v[2] for v in values)}/{n:<12} "
+-            f"{sum(v[3] for v in values) / n:.3f}"
++            f"{sum(v[3] for v in values) / n:<15.3f} "
++            f"{sum(v[4] for v in values)}"
+         )
+ 
+ 
+diff --git a/selection/algorithms/two_phase_greedy_algorithm.py b/selection/algorithms/two_phase_greedy_algorithm.py
+index f562d14..f2c3787 100644
+--- a/selection/algorithms/two_phase_greedy_algorithm.py
++++ b/selection/algorithms/two_phase_greedy_algorithm.py
+@@ -127,6 +127,7 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
+                 {
+                     "esc_stopped_early": self.search.stopped_early,
+                     "esc_checks": checker.checks,
++                    "esc_violations": checker.violations,
+                     "esc_time_s": round(checker.time, 4),
+                     "esc_trace": checker.trace,
+                 }
+diff --git a/selection/esc.py b/selection/esc.py
+index e1deab7..60b97de 100644
+--- a/selection/esc.py
++++ b/selection/esc.py
+@@ -25,10 +25,16 @@ class EarlyStoppingChecker:
+         self.oracle = oracle
+         self.max_indexes = max_indexes
+         self.epsilon = epsilon
+-        # Optional, not in the paper: the workload cannot cost less than the sum
+-        # of the per-query costs with all candidates at once (Omega), so the
+-        # upper bound on the improvement is capped there.
++        # Optional, not in the paper: the workload is assumed to cost at least the
++        # sum of the per-query costs with all candidates at once (Omega), so the
++        # upper bound on the improvement is capped there. That holds only if
++        # adding indexes never raises the estimated cost, which Postgres does not
++        # guarantee. Where the cap falls below the improvement already reached
++        # (a violation of that assumption) the bound is raised to the reached
++        # improvement and the event is counted in `violations`. With the clamp the
++        # checker is therefore a heuristic, not a guarantee.
+         self.clamp_omega = clamp_omega
++        self.violations = 0
+         self.trace = []  # (calls, selected so far, eta_L, eta_U)
+         self.checks = 0
+         self.time = 0.0
+@@ -98,6 +104,9 @@ class EarlyStoppingChecker:
+         configuration, derived_cost = self.simulated_greedy(selected, candidates)
+         eta_lower = 1 - derived_cost / empty
+         eta_upper = self.improvement_upper_bound(candidates)
++        if self.clamp_omega and eta_upper < eta_lower:
++            self.violations += 1
++            eta_upper = eta_lower
+         self.checks += 1
+         self.trace.append((oracle.calls, len(selected), eta_lower, eta_upper))
+         self.time += time.time() - start
+diff --git a/tests/test_esc.py b/tests/test_esc.py
+index 6396ae2..7fd10da 100644
+--- a/tests/test_esc.py
++++ b/tests/test_esc.py
+@@ -122,6 +122,26 @@ class TestEsc(unittest.TestCase):
+             for _, _, _, upper in clamped.checker.trace:
+                 self.assertGreaterEqual(upper, reference - 1e-9)
+ 
++    def test_clamp_violation_is_counted_and_bound_stays_consistent(self):
++        # Simulate non-monotone costs: Omega cost far above what is reachable.
++        qs, costs, base, candidates = build(4)
++        oracle = BudgetAwareCostOracle(
++            costs, Workload(qs), budget=None, interception="none", need_omega=True
++        )
++        oracle.candidate_counts = {}
++        oracle.initialize(candidates)
++        for q, per_query in zip(qs, candidates):
++            for z in per_query:
++                oracle.eval_cost(q, frozenset([z]))
++        for q in qs:
++            oracle.omega_cost[q] = oracle.empty_cost[q]  # claims no improvement is possible
++        checker = EarlyStoppingChecker(oracle, 5, epsilon=0.05, clamp_omega=True)
++        flat = sorted({z for per_query in candidates for z in per_query})
++        checker.check([], flat)
++        self.assertEqual(checker.violations, 1)
++        _, _, lower, upper = checker.trace[0]
++        self.assertGreaterEqual(upper, lower)
++
+     def test_never_stops_with_negative_epsilon(self):
+         _, _, search = run(3, "none", -1.0)
+         self.assertFalse(search.stopped_early)
+-- 
+2.43.0
+

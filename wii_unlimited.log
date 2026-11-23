@@ -1,0 +1,9 @@
+2026-11-22 22:34:12,805 Postgres: Set random seed `SELECT setseed(0.17)`
+2026-11-22 22:34:12,809 Postgres: Set random seed `SELECT setseed(0.17)`
+2026-11-22 22:34:12,810 Generating TPC-H Queries
+2026-11-22 22:34:12,870 Queries generated
+2026-11-22 22:34:12,870 Dropping indexes
+2026-11-22 22:34:12,887 Postgres: Run `analyze`
+2026-11-22 22:34:27,214 Cost estimation with whatif
+2026-11-22 22:34:27,251 tpch: 19 queries, no-index cost 42685992
+2026-11-22 22:34:27,251 === experiment unlimited

@@ -1,0 +1,162 @@
+From b64fc919601b9a7d39053d4e13fa7d7b0ba93468 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 23 Nov 2026 04:30:21 +0530
+Subject: [PATCH] Esc: clamped-bound experiment, parameter-based summary
+
+- wii_experiments.py: "esc_clamp" experiment (escc_* run ids) that caps the
+  improvement upper bound at the all-candidates cost
+- esc_summary.py: pair runs with their never-stopping reference by
+  (K, mode, clamp) instead of by run id; new clamp column
+- tests: clamped bound is valid and never looser than the plain bound
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CjHr7mFBfqBd1hBxcjucKr
+---
+ scripts/esc_summary.py     | 30 ++++++++++++++++++++----------
+ scripts/wii_experiments.py | 19 +++++++++++++++----
+ tests/test_esc.py          | 16 ++++++++++++++--
+ 3 files changed, 49 insertions(+), 16 deletions(-)
+
+diff --git a/scripts/esc_summary.py b/scripts/esc_summary.py
+index abb92a8..92b6295 100644
+--- a/scripts/esc_summary.py
++++ b/scripts/esc_summary.py
+@@ -17,18 +17,20 @@ def main(paths):
+     rows = defaultdict(list)
+     for path in paths:
+         runs = load(path)
+-        for run_id, run in runs.items():
+-            if not run_id.startswith("esc_k"):
++        refs = {}
++        for run in runs.values():
++            parameters = run["parameters"]
++            if parameters.get("esc") == "esc_b" and parameters["esc_epsilon"] < 0:
++                refs[group(parameters)] = run
++        for run in runs.values():
++            parameters = run["parameters"]
++            if parameters.get("esc") != "esc_b" or parameters["esc_epsilon"] < 0:
+                 continue
+-            ref = runs.get(run_id.replace("esc_k", "esc_ref_k").rsplit("_eps", 1)[0])
++            ref = refs.get(group(parameters))
+             if ref is None:
+                 continue
+             statistics = run["statistics"]
+-            key = (
+-                run["parameters"]["max_indexes"],
+-                run["parameters"]["interception"],
+-                run["parameters"]["esc_epsilon"],
+-            )
++            key = group(parameters) + (parameters["esc_epsilon"],)
+             rows[key].append(
+                 (
+                     100 * (1 - statistics["whatif_calls"] / ref["statistics"]["whatif_calls"]),
+@@ -37,12 +39,12 @@ def main(paths):
+                     statistics["esc_time_s"],
+                 )
+             )
+-    print("K   mode  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
++    print("K   mode  clamp  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
+     for key in sorted(rows):
+         values = rows[key]
+         n = len(values)
+         print(
+-            f"{key[0]:<3} {key[1]:<5} {key[2]:<7} "
++            f"{key[0]:<3} {key[1]:<5} {str(key[2]):<6} {key[3]:<7} "
+             f"{sum(v[0] for v in values) / n:>13.1f}  "
+             f"{sum(v[1] for v in values) / n:>22.2f}  "
+             f"{sum(v[2] for v in values)}/{n:<12} "
+@@ -50,5 +52,13 @@ def main(paths):
+         )
+ 
+ 
++def group(parameters):
++    return (
++        parameters["max_indexes"],
++        parameters["interception"],
++        bool(parameters.get("esc_clamp", False)),
++    )
++
++
+ if __name__ == "__main__":
+     main(sys.argv[1:])
+diff --git a/scripts/wii_experiments.py b/scripts/wii_experiments.py
+index 86dc99e..2aa1dfe 100644
+--- a/scripts/wii_experiments.py
++++ b/scripts/wii_experiments.py
+@@ -183,17 +183,28 @@ class Runner:
+     # Reference: the same run with a threshold that can never be met (epsilon < 0),
+     # so it has the same initial calls and bound bookkeeping, but never stops.
+     # savings = 1 - calls_esc / calls_reference; loss = improvement_ref - improvement_esc.
+-    def esc(self):
++    def esc(self, clamp=False):
++        # clamp=True also caps the improvement upper bound at the cost with all
++        # candidates available (see EarlyStoppingChecker); not part of the paper.
++        tag = "escc" if clamp else "esc"
+         for k in (10, 20):
+             for mode in ("none", "wii"):
+-                base = {"max_indexes": k, "interception": mode, "esc": "esc_b"}
+-                self.run(f"esc_ref_k{k}_{mode}", {**base, "esc_epsilon": -1.0})
++                base = {
++                    "max_indexes": k,
++                    "interception": mode,
++                    "esc": "esc_b",
++                    "esc_clamp": clamp,
++                }
++                self.run(f"{tag}_ref_k{k}_{mode}", {**base, "esc_epsilon": -1.0})
+                 for epsilon in (0.01, 0.02, 0.05, 0.10):
+                     self.run(
+-                        f"esc_k{k}_{mode}_eps{epsilon}",
++                        f"{tag}_k{k}_{mode}_eps{epsilon}",
+                         {**base, "esc_epsilon": epsilon},
+                     )
+ 
++    def esc_clamp(self):
++        self.esc(clamp=True)
++
+     def assumptions(self):
+         """Does PostgreSQL's cost model behave as Wii assumes? (Algorithm 6)"""
+         path = os.path.join(self.out_dir, "assumptions.json")
+diff --git a/tests/test_esc.py b/tests/test_esc.py
+index 0217f24..6396ae2 100644
+--- a/tests/test_esc.py
++++ b/tests/test_esc.py
+@@ -78,7 +78,7 @@ def build(seed, queries=12, tables=4, columns=5):
+     return qs, SyntheticCosts(benefit, base), base, candidates
+ 
+ 
+-def run(seed, interception, epsilon=None, budget=None, k=5):
++def run(seed, interception, epsilon=None, budget=None, k=5, clamp=False):
+     qs, costs, base, candidates = build(seed)
+     oracle = BudgetAwareCostOracle(
+         costs, Workload(qs), budget=budget, interception=interception,
+@@ -88,7 +88,9 @@ def run(seed, interception, epsilon=None, budget=None, k=5):
+     oracle.initialize(candidates)
+     search = TwoPhaseGreedy(oracle, candidates, k)
+     if epsilon is not None:
+-        search.checker = EarlyStoppingChecker(oracle, k, epsilon=epsilon)
++        search.checker = EarlyStoppingChecker(
++            oracle, k, epsilon=epsilon, clamp_omega=clamp
++        )
+     selected = search.run()
+     improvement = 1 - sum(costs.cost(q, selected) for q in qs) / sum(base.values())
+     return improvement, oracle, search
+@@ -110,6 +112,16 @@ class TestEsc(unittest.TestCase):
+                 self.assertGreaterEqual(upper, reference - 1e-9)
+                 self.assertGreaterEqual(upper, lower - 1e-9)
+ 
++    def test_clamped_bound_is_valid_and_not_looser(self):
++        for seed in range(15):
++            reference, _, _ = run(seed, "none")
++            _, _, plain = run(seed, "none", 0.05)
++            _, _, clamped = run(seed, "none", 0.05, clamp=True)
++            first_plain, first_clamped = plain.checker.trace[0], clamped.checker.trace[0]
++            self.assertLessEqual(first_clamped[3], first_plain[3] + 1e-12)
++            for _, _, _, upper in clamped.checker.trace:
++                self.assertGreaterEqual(upper, reference - 1e-9)
++
+     def test_never_stops_with_negative_epsilon(self):
+         _, _, search = run(3, "none", -1.0)
+         self.assertFalse(search.stopped_early)
+-- 
+2.43.0
+

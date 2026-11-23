@@ -1,0 +1,200 @@
+2026-11-22 22:47:49,267 Postgres: Set random seed `SELECT setseed(0.17)`
+2026-11-22 22:47:49,272 Postgres: Set random seed `SELECT setseed(0.17)`
+2026-11-22 22:47:49,272 Generating TPC-H Queries
+2026-11-22 22:47:49,331 Queries generated
+2026-11-22 22:47:49,331 Dropping indexes
+2026-11-22 22:47:49,348 Cost estimation with whatif
+2026-11-22 22:47:49,380 tpch: 19 queries, no-index cost 42625951
+2026-11-22 22:47:49,380 === experiment assumptions
+2026-11-22 22:47:49,381 Cost estimation with whatif
+2026-11-22 22:47:51,274 assumption data points: 643
+2026-11-22 22:47:51,274 === experiment gaps
+2026-11-22 22:47:51,274 Dropping indexes
+2026-11-22 22:47:51,275 Cost estimation with whatif
+2026-11-22 22:47:52,970 Budget-aware tuning: calls=1000 (init 19), skipped=0, derived after budget=876
+2026-11-22 22:47:52,970 Cost estimation with whatif
+2026-11-22 22:47:53,001 gaps_k20_b1000_none: improvement 28.84%, calls 1000, skipped 0, 1.7s
+2026-11-22 22:47:53,001 === experiment wii
+2026-11-22 22:47:53,001 Dropping indexes
+2026-11-22 22:47:53,002 Cost estimation with whatif
+2026-11-22 22:47:53,715 Budget-aware tuning: calls=500 (init 19), skipped=0, derived after budget=704
+2026-11-22 22:47:53,716 Cost estimation with whatif
+2026-11-22 22:47:53,744 wii_k10_b500_none: improvement 25.60%, calls 500, skipped 0, 0.7s
+2026-11-22 22:47:53,744 Dropping indexes
+2026-11-22 22:47:53,744 Cost estimation with whatif
+2026-11-22 22:47:54,417 Budget-aware tuning: calls=429 (init 38), skipped=1315, derived after budget=0
+2026-11-22 22:47:54,418 Cost estimation with whatif
+2026-11-22 22:47:54,445 wii_k10_b500_wii: improvement 32.19%, calls 429, skipped 1315, 0.7s
+2026-11-22 22:47:54,445 Dropping indexes
+2026-11-22 22:47:54,445 Cost estimation with whatif
+2026-11-22 22:47:54,712 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:47:54,712 Cost estimation with whatif
+2026-11-22 22:47:54,743 wii_k10_b500_wii_coverage: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:47:54,743 Dropping indexes
+2026-11-22 22:47:54,743 Cost estimation with whatif
+2026-11-22 22:47:56,449 Budget-aware tuning: calls=1000 (init 19), skipped=0, derived after budget=857
+2026-11-22 22:47:56,449 Cost estimation with whatif
+2026-11-22 22:47:56,477 wii_k10_b1000_none: improvement 28.84%, calls 1000, skipped 0, 1.7s
+2026-11-22 22:47:56,477 Dropping indexes
+2026-11-22 22:47:56,478 Cost estimation with whatif
+2026-11-22 22:47:57,165 Budget-aware tuning: calls=429 (init 38), skipped=1315, derived after budget=0
+2026-11-22 22:47:57,165 Cost estimation with whatif
+2026-11-22 22:47:57,194 wii_k10_b1000_wii: improvement 32.19%, calls 429, skipped 1315, 0.7s
+2026-11-22 22:47:57,194 Dropping indexes
+2026-11-22 22:47:57,195 Cost estimation with whatif
+2026-11-22 22:47:57,457 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:47:57,457 Cost estimation with whatif
+2026-11-22 22:47:57,487 wii_k10_b1000_wii_coverage: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:47:57,487 Dropping indexes
+2026-11-22 22:47:57,487 Cost estimation with whatif
+2026-11-22 22:48:00,309 Budget-aware tuning: calls=2000 (init 19), skipped=0, derived after budget=1290
+2026-11-22 22:48:00,309 Cost estimation with whatif
+2026-11-22 22:48:00,337 wii_k10_b2000_none: improvement 32.40%, calls 2000, skipped 0, 2.8s
+2026-11-22 22:48:00,338 Dropping indexes
+2026-11-22 22:48:00,338 Cost estimation with whatif
+2026-11-22 22:48:01,049 Budget-aware tuning: calls=429 (init 38), skipped=1315, derived after budget=0
+2026-11-22 22:48:01,049 Cost estimation with whatif
+2026-11-22 22:48:01,078 wii_k10_b2000_wii: improvement 32.19%, calls 429, skipped 1315, 0.7s
+2026-11-22 22:48:01,078 Dropping indexes
+2026-11-22 22:48:01,079 Cost estimation with whatif
+2026-11-22 22:48:01,341 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:48:01,341 Cost estimation with whatif
+2026-11-22 22:48:01,372 wii_k10_b2000_wii_coverage: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:48:01,372 Dropping indexes
+2026-11-22 22:48:01,373 Cost estimation with whatif
+2026-11-22 22:48:05,306 Budget-aware tuning: calls=2795 (init 19), skipped=0, derived after budget=0
+2026-11-22 22:48:05,307 Cost estimation with whatif
+2026-11-22 22:48:05,334 wii_k10_b5000_none: improvement 33.01%, calls 2795, skipped 0, 3.9s
+2026-11-22 22:48:05,334 Dropping indexes
+2026-11-22 22:48:05,334 Cost estimation with whatif
+2026-11-22 22:48:06,021 Budget-aware tuning: calls=429 (init 38), skipped=1315, derived after budget=0
+2026-11-22 22:48:06,022 Cost estimation with whatif
+2026-11-22 22:48:06,048 wii_k10_b5000_wii: improvement 32.19%, calls 429, skipped 1315, 0.7s
+2026-11-22 22:48:06,048 Dropping indexes
+2026-11-22 22:48:06,049 Cost estimation with whatif
+2026-11-22 22:48:06,812 Budget-aware tuning: calls=500 (init 19), skipped=0, derived after budget=704
+2026-11-22 22:48:06,813 Cost estimation with whatif
+2026-11-22 22:48:06,843 wii_k20_b500_none: improvement 25.60%, calls 500, skipped 0, 0.8s
+2026-11-22 22:48:06,843 Dropping indexes
+2026-11-22 22:48:06,844 Cost estimation with whatif
+2026-11-22 22:48:07,529 Budget-aware tuning: calls=429 (init 38), skipped=1378, derived after budget=0
+2026-11-22 22:48:07,530 Cost estimation with whatif
+2026-11-22 22:48:07,560 wii_k20_b500_wii: improvement 32.19%, calls 429, skipped 1378, 0.7s
+2026-11-22 22:48:07,560 Dropping indexes
+2026-11-22 22:48:07,561 Cost estimation with whatif
+2026-11-22 22:48:07,827 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:48:07,828 Cost estimation with whatif
+2026-11-22 22:48:07,857 wii_k20_b500_wii_coverage: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:48:07,857 Dropping indexes
+2026-11-22 22:48:07,858 Cost estimation with whatif
+2026-11-22 22:48:09,530 Budget-aware tuning: calls=1000 (init 19), skipped=0, derived after budget=876
+2026-11-22 22:48:09,530 Cost estimation with whatif
+2026-11-22 22:48:09,563 wii_k20_b1000_none: improvement 28.84%, calls 1000, skipped 0, 1.7s
+2026-11-22 22:48:09,563 Dropping indexes
+2026-11-22 22:48:09,564 Cost estimation with whatif
+2026-11-22 22:48:10,299 Budget-aware tuning: calls=429 (init 38), skipped=1378, derived after budget=0
+2026-11-22 22:48:10,299 Cost estimation with whatif
+2026-11-22 22:48:10,331 wii_k20_b1000_wii: improvement 32.19%, calls 429, skipped 1378, 0.7s
+2026-11-22 22:48:10,332 Dropping indexes
+2026-11-22 22:48:10,333 Cost estimation with whatif
+2026-11-22 22:48:10,614 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:48:10,614 Cost estimation with whatif
+2026-11-22 22:48:10,645 wii_k20_b1000_wii_coverage: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:48:10,646 Dropping indexes
+2026-11-22 22:48:10,646 Cost estimation with whatif
+2026-11-22 22:48:13,561 Budget-aware tuning: calls=2000 (init 19), skipped=0, derived after budget=1955
+2026-11-22 22:48:13,562 Cost estimation with whatif
+2026-11-22 22:48:13,595 wii_k20_b2000_none: improvement 33.36%, calls 2000, skipped 0, 2.9s
+2026-11-22 22:48:13,595 Dropping indexes
+2026-11-22 22:48:13,596 Cost estimation with whatif
+2026-11-22 22:48:14,308 Budget-aware tuning: calls=429 (init 38), skipped=1378, derived after budget=0
+2026-11-22 22:48:14,308 Cost estimation with whatif
+2026-11-22 22:48:14,337 wii_k20_b2000_wii: improvement 32.19%, calls 429, skipped 1378, 0.7s
+2026-11-22 22:48:14,337 Dropping indexes
+2026-11-22 22:48:14,338 Cost estimation with whatif
+2026-11-22 22:48:14,618 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:48:14,618 Cost estimation with whatif
+2026-11-22 22:48:14,651 wii_k20_b2000_wii_coverage: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:48:14,651 Dropping indexes
+2026-11-22 22:48:14,652 Cost estimation with whatif
+2026-11-22 22:48:19,157 Budget-aware tuning: calls=3092 (init 19), skipped=0, derived after budget=0
+2026-11-22 22:48:19,157 Cost estimation with whatif
+2026-11-22 22:48:19,188 wii_k20_b5000_none: improvement 33.41%, calls 3092, skipped 0, 4.5s
+2026-11-22 22:48:19,188 Dropping indexes
+2026-11-22 22:48:19,189 Cost estimation with whatif
+2026-11-22 22:48:19,876 Budget-aware tuning: calls=429 (init 38), skipped=1378, derived after budget=0
+2026-11-22 22:48:19,876 Cost estimation with whatif
+2026-11-22 22:48:19,907 wii_k20_b5000_wii: improvement 32.19%, calls 429, skipped 1378, 0.7s
+2026-11-22 22:48:19,907 === experiment alpha
+2026-11-22 22:48:19,907 Dropping indexes
+2026-11-22 22:48:19,907 Cost estimation with whatif
+2026-11-22 22:48:20,327 Budget-aware tuning: calls=268 (init 38), skipped=847, derived after budget=0
+2026-11-22 22:48:20,327 Cost estimation with whatif
+2026-11-22 22:48:20,356 alpha_k20_b1000_wii_0.5: improvement 30.37%, calls 268, skipped 847, 0.4s
+2026-11-22 22:48:20,356 Dropping indexes
+2026-11-22 22:48:20,357 Cost estimation with whatif
+2026-11-22 22:48:20,913 Budget-aware tuning: calls=351 (init 38), skipped=1062, derived after budget=0
+2026-11-22 22:48:20,913 Cost estimation with whatif
+2026-11-22 22:48:20,943 alpha_k20_b1000_wii_0.8: improvement 31.72%, calls 351, skipped 1062, 0.6s
+2026-11-22 22:48:20,943 Dropping indexes
+2026-11-22 22:48:20,943 Cost estimation with whatif
+2026-11-22 22:48:21,635 Budget-aware tuning: calls=429 (init 38), skipped=1378, derived after budget=0
+2026-11-22 22:48:21,636 Cost estimation with whatif
+2026-11-22 22:48:21,665 alpha_k20_b1000_wii_0.9: improvement 32.19%, calls 429, skipped 1378, 0.7s
+2026-11-22 22:48:21,665 Dropping indexes
+2026-11-22 22:48:21,666 Cost estimation with whatif
+2026-11-22 22:48:22,437 Budget-aware tuning: calls=538 (init 38), skipped=1744, derived after budget=0
+2026-11-22 22:48:22,438 Cost estimation with whatif
+2026-11-22 22:48:22,468 alpha_k20_b1000_wii_0.95: improvement 33.08%, calls 538, skipped 1744, 0.8s
+2026-11-22 22:48:22,468 Dropping indexes
+2026-11-22 22:48:22,469 Cost estimation with whatif
+2026-11-22 22:48:22,597 Budget-aware tuning: calls=63 (init 38), skipped=948, derived after budget=0
+2026-11-22 22:48:22,597 Cost estimation with whatif
+2026-11-22 22:48:22,626 alpha_k20_b1000_wii_coverage_0.5: improvement 28.29%, calls 63, skipped 948, 0.1s
+2026-11-22 22:48:22,626 Dropping indexes
+2026-11-22 22:48:22,626 Cost estimation with whatif
+2026-11-22 22:48:22,842 Budget-aware tuning: calls=126 (init 38), skipped=1079, derived after budget=0
+2026-11-22 22:48:22,843 Cost estimation with whatif
+2026-11-22 22:48:22,871 alpha_k20_b1000_wii_coverage_0.8: improvement 30.37%, calls 126, skipped 1079, 0.2s
+2026-11-22 22:48:22,871 Dropping indexes
+2026-11-22 22:48:22,872 Cost estimation with whatif
+2026-11-22 22:48:23,137 Budget-aware tuning: calls=149 (init 38), skipped=1205, derived after budget=0
+2026-11-22 22:48:23,137 Cost estimation with whatif
+2026-11-22 22:48:23,165 alpha_k20_b1000_wii_coverage_0.9: improvement 30.82%, calls 149, skipped 1205, 0.3s
+2026-11-22 22:48:23,165 Dropping indexes
+2026-11-22 22:48:23,165 Cost estimation with whatif
+2026-11-22 22:48:23,437 Budget-aware tuning: calls=164 (init 38), skipped=1454, derived after budget=0
+2026-11-22 22:48:23,437 Cost estimation with whatif
+2026-11-22 22:48:23,466 alpha_k20_b1000_wii_coverage_0.95: improvement 32.68%, calls 164, skipped 1454, 0.3s
+2026-11-22 22:48:23,466 === experiment random
+2026-11-22 22:48:23,466 Dropping indexes
+2026-11-22 22:48:23,466 Cost estimation with whatif
+2026-11-22 22:48:23,740 Budget-aware tuning: calls=183 (init 19), skipped=1356, derived after budget=0
+2026-11-22 22:48:23,740 Cost estimation with whatif
+2026-11-22 22:48:23,771 random_k20_b1000_seed0: improvement 26.91%, calls 183, skipped 1356, 0.3s
+2026-11-22 22:48:23,771 Dropping indexes
+2026-11-22 22:48:23,772 Cost estimation with whatif
+2026-11-22 22:48:24,023 Budget-aware tuning: calls=167 (init 19), skipped=1311, derived after budget=0
+2026-11-22 22:48:24,023 Cost estimation with whatif
+2026-11-22 22:48:24,051 random_k20_b1000_seed1: improvement 6.29%, calls 167, skipped 1311, 0.3s
+2026-11-22 22:48:24,051 Dropping indexes
+2026-11-22 22:48:24,052 Cost estimation with whatif
+2026-11-22 22:48:24,437 Budget-aware tuning: calls=260 (init 19), skipped=2213, derived after budget=0
+2026-11-22 22:48:24,437 Cost estimation with whatif
+2026-11-22 22:48:24,467 random_k20_b1000_seed2: improvement 19.72%, calls 260, skipped 2213, 0.4s
+2026-11-22 22:48:24,467 === experiment unlimited
+2026-11-22 22:48:24,467 Dropping indexes
+2026-11-22 22:48:24,468 Cost estimation with whatif
+2026-11-22 22:48:28,941 Budget-aware tuning: calls=3092 (init 19), skipped=0, derived after budget=0
+2026-11-22 22:48:28,941 Cost estimation with whatif
+2026-11-22 22:48:28,973 unlimited_k20_none: improvement 33.41%, calls 3092, skipped 0, 4.5s
+2026-11-22 22:48:28,973 Dropping indexes
+2026-11-22 22:48:28,973 Cost estimation with whatif
+2026-11-22 22:48:29,532 Budget-aware tuning: calls=351 (init 38), skipped=1062, derived after budget=0
+2026-11-22 22:48:29,532 Cost estimation with whatif
+2026-11-22 22:48:29,561 unlimited_k20_wii_0.8: improvement 31.72%, calls 351, skipped 1062, 0.6s
+2026-11-22 22:48:29,561 Dropping indexes
+2026-11-22 22:48:29,562 Cost estimation with whatif
+2026-11-22 22:48:30,251 Budget-aware tuning: calls=429 (init 38), skipped=1378, derived after budget=0
+2026-11-22 22:48:30,251 Cost estimation with whatif
+2026-11-22 22:48:30,280 unlimited_k20_wii_0.9: improvement 32.19%, calls 429, skipped 1378, 0.7s
