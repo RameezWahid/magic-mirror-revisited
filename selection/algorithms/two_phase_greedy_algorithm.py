@@ -127,6 +127,7 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
                 {
                     "esc_stopped_early": self.search.stopped_early,
                     "esc_checks": checker.checks,
+                    "esc_violations": checker.violations,
                     "esc_time_s": round(checker.time, 4),
                     "esc_trace": checker.trace,
                 }

@@ -25,10 +25,16 @@ class EarlyStoppingChecker:
         self.oracle = oracle
         self.max_indexes = max_indexes
         self.epsilon = epsilon
-        # Optional, not in the paper: the workload cannot cost less than the sum
-        # of the per-query costs with all candidates at once (Omega), so the
-        # upper bound on the improvement is capped there.
+        # Optional, not in the paper: the workload is assumed to cost at least the
+        # sum of the per-query costs with all candidates at once (Omega), so the
+        # upper bound on the improvement is capped there. That holds only if
+        # adding indexes never raises the estimated cost, which Postgres does not
+        # guarantee. Where the cap falls below the improvement already reached
+        # (a violation of that assumption) the bound is raised to the reached
+        # improvement and the event is counted in `violations`. With the clamp the
+        # checker is therefore a heuristic, not a guarantee.
         self.clamp_omega = clamp_omega
+        self.violations = 0
         self.trace = []  # (calls, selected so far, eta_L, eta_U)
         self.checks = 0
         self.time = 0.0
@@ -98,6 +104,9 @@ class EarlyStoppingChecker:
         configuration, derived_cost = self.simulated_greedy(selected, candidates)
         eta_lower = 1 - derived_cost / empty
         eta_upper = self.improvement_upper_bound(candidates)
+        if self.clamp_omega and eta_upper < eta_lower:
+            self.violations += 1
+            eta_upper = eta_lower
         self.checks += 1
         self.trace.append((oracle.calls, len(selected), eta_lower, eta_upper))
         self.time += time.time() - start

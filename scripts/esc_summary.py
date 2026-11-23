@@ -37,9 +37,10 @@ def main(paths):
                     100 * (ref["improvement"] - run["improvement"]),
                     statistics["esc_stopped_early"],
                     statistics["esc_time_s"],
+                    statistics.get("esc_violations", 0),
                 )
             )
-    print("K   mode  clamp  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)")
+    print("K   mode  clamp  epsilon  calls saved %  improvement lost (pts)  stopped early  check time (s)  bound violations")
     for key in sorted(rows):
         values = rows[key]
         n = len(values)
@@ -48,7 +49,8 @@ def main(paths):
             f"{sum(v[0] for v in values) / n:>13.1f}  "
             f"{sum(v[1] for v in values) / n:>22.2f}  "
             f"{sum(v[2] for v in values)}/{n:<12} "
-            f"{sum(v[3] for v in values) / n:.3f}"
+            f"{sum(v[3] for v in values) / n:<15.3f} "
+            f"{sum(v[4] for v in values)}"
         )
 
 

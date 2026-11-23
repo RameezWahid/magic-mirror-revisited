@@ -122,6 +122,26 @@ class TestEsc(unittest.TestCase):
             for _, _, _, upper in clamped.checker.trace:
                 self.assertGreaterEqual(upper, reference - 1e-9)
 
+    def test_clamp_violation_is_counted_and_bound_stays_consistent(self):
+        # Simulate non-monotone costs: Omega cost far above what is reachable.
+        qs, costs, base, candidates = build(4)
+        oracle = BudgetAwareCostOracle(
+            costs, Workload(qs), budget=None, interception="none", need_omega=True
+        )
+        oracle.candidate_counts = {}
+        oracle.initialize(candidates)
+        for q, per_query in zip(qs, candidates):
+            for z in per_query:
+                oracle.eval_cost(q, frozenset([z]))
+        for q in qs:
+            oracle.omega_cost[q] = oracle.empty_cost[q]  # claims no improvement is possible
+        checker = EarlyStoppingChecker(oracle, 5, epsilon=0.05, clamp_omega=True)
+        flat = sorted({z for per_query in candidates for z in per_query})
+        checker.check([], flat)
+        self.assertEqual(checker.violations, 1)
+        _, _, lower, upper = checker.trace[0]
+        self.assertGreaterEqual(upper, lower)
+
     def test_never_stops_with_negative_epsilon(self):
         _, _, search = run(3, "none", -1.0)
         self.assertFalse(search.stopped_early)
