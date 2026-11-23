@@ -35,6 +35,7 @@ LABELS = {
     "extend": "Extend", "relaxation": "Relaxation", "anytime": "DTA", "cophy": "CoPhy",
     "db2advis": "DB2Advis", "auto_admin": "AutoAdmin", "drop": "Drop", "dexter": "Dexter",
     "two_phase_greedy": "Two-phase greedy", "two_phase_greedy_wii": "Two-phase greedy + Wii",
+    "two_phase_greedy_esc": "Two-phase greedy + Esc", "two_phase_greedy_wii_esc": "Two-phase greedy + Wii + Esc",
 }
 COLOR = dict(zip(ALGORITHMS, PALETTE))
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#e4e3df"
@@ -77,6 +78,8 @@ def load_platform_run(rep_dir):
                 calls = p["what_if_cost_requests"]
             if name == "two_phase_greedy":
                 label = "two_phase_greedy_wii" if p.get("interception") == "wii" else name
+                if p.get("esc", "none") != "none":
+                    label += "_esc"
                 calls = p["whatif_calls"]
             if name == "db2advis":
                 calls = requests
@@ -364,7 +367,8 @@ def report_platform_table(data, title, lines):
     if not data:
         return
     lines.append(f"\n[{title}] Platform runs (mean over repetitions): relative cost % | runtime s | calls")
-    for algorithm in ALGORITHMS + ["two_phase_greedy", "two_phase_greedy_wii"]:
+    for algorithm in ALGORITHMS + ["two_phase_greedy", "two_phase_greedy_wii",
+                                   "two_phase_greedy_esc", "two_phase_greedy_wii_esc"]:
         rows = data.get(algorithm)
         if not rows:
             continue
@@ -391,6 +395,12 @@ def main():
         if not os.path.isdir(path):
             continue
         data = load_platform(path)
+        # Greedy, Wii and Esc runs (configs/tpch_sf10_new_algos.json), if present
+        extra = os.path.join(runs_dir, run.replace("_paper_", "_new_algos_"))
+        if os.path.isdir(extra):
+            for algorithm, rows in load_platform(extra).items():
+                if algorithm != "no_index":
+                    data[algorithm] = rows
         report_platform_table(data, title, lines)
         plot_reproduction(data, title, out_dir, prefix)
         plot_new_algorithms(data, title, out_dir, prefix)

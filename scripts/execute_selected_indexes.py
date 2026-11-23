@@ -22,7 +22,7 @@ import time
 from selection.index_selection_evaluation import IndexSelection
 
 
-REPEATS = 3
+REPEATS = int(os.environ.get("REPEATS", 3))
 # 5 minutes. A query that takes longer is killed and written down as 5 minutes.
 TIMEOUT_MS = 300_000
 
@@ -31,9 +31,15 @@ TIMEOUT_MS = 300_000
 #   storage budgets in MB  (most algorithms)
 #   number of indexes      (AutoAdmin, Drop)
 #   min. saving in %       (Dexter)
-BUDGETS_MB = {250, 1000}
+# The two smallest budgets of the SF10 sweep (250, 1000) are below the point where the big
+# lineitem index fits, so almost nothing is built there. Use larger ones. Override with
+# the environment, for example:
+#   BUDGETS_MB=5000 ALGOS=extend,two_phase_greedy,two_phase_greedy_esc REPEATS=1
+BUDGETS_MB = {int(x) for x in os.environ.get("BUDGETS_MB", "1500,5000,10000").split(",")}
 INDEX_COUNTS = {3, 10}
 DEXTER_THRESHOLDS = {10}
+# Only run these algorithms (labels as printed in the log; no_index always runs).
+ALGOS = set(os.environ["ALGOS"].split(",")) if os.environ.get("ALGOS") else None
 
 
 # The platform doesn't write one pickle file per run. It keeps appending to the
@@ -76,6 +82,8 @@ def selected_runs(rep_dir):
             if name == "no_index":
                 # No indexes at all. Everything else is compared against this.
                 yield label, "-", indexes
+            elif ALGOS is not None and label not in ALGOS:
+                continue
             elif p.get("budget_MB") in BUDGETS_MB:
                 yield label, f"{p['budget_MB']}MB", indexes
             elif "budget_MB" not in p and p.get("max_indexes") in INDEX_COUNTS:
