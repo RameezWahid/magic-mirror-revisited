@@ -35,6 +35,9 @@ DEFAULT_PARAMETERS = {
     "esc": "none",
     "esc_epsilon": 0.05,
     "esc_clamp": False,
+    # Storage-aware (fractional knapsack) upper bound; false = the paper's count-only
+    # bound. Only meant for the ablation in configs/tpch_sf10_esc_ablation.json.
+    "esc_storage_bound": True,
 }
 
 
@@ -94,6 +97,7 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
                 clamp_omega=parameters["esc_clamp"],
                 storage_budget=storage,
                 index_size=self._index_size,
+                storage_bound=parameters["esc_storage_bound"],
             )
         indexes = self.search.run()
         log_summary(self.oracle, self.search)
