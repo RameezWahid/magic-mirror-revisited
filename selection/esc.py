@@ -21,9 +21,25 @@ class EarlyStoppingChecker:
     Checked at the start of every greedy step of Phase 2 of two-phase greedy.
     """
 
-    def __init__(self, oracle, max_indexes, epsilon=0.05, clamp_omega=False):
+    def __init__(
+        self,
+        oracle,
+        max_indexes,
+        epsilon=0.05,
+        clamp_omega=False,
+        storage_budget=None,
+        index_size=None,
+        storage_bound=True,
+    ):
         self.oracle = oracle
         self.max_indexes = max_indexes
+        # The simulated greedy must obey the same storage budget as the real
+        # one. Its configuration is what we return when we stop.
+        self.storage_budget = storage_budget
+        self.index_size = index_size
+        # Use the storage-aware (fractional knapsack) upper bound. Switchable only
+        # to compare it with the paper's count-only bound.
+        self.storage_bound = storage_bound
         self.epsilon = epsilon
         # Optional, not in the paper: the workload is assumed to cost at least the
         # sum of the per-query costs with all candidates at once (Omega), so the
@@ -52,10 +68,18 @@ class EarlyStoppingChecker:
         affected = {
             z: [q for q in queries if oracle.relevant(q, [z])] for z in candidates
         }
+        used = 0
+        if self.storage_budget is not None:
+            used = sum(self.index_size(z) for z in configuration)
         while len(configuration) < self.max_indexes:
             best, best_gain, best_costs = None, 0.0, None
             for z in candidates:
                 if z in configuration:
+                    continue
+                if (
+                    self.storage_budget is not None
+                    and used + self.index_size(z) > self.storage_budget
+                ):
                     continue
                 trial = configuration | {z}
                 costs = {
@@ -69,7 +93,26 @@ class EarlyStoppingChecker:
                 break
             configuration = configuration | {best}
             per_query.update(best_costs)
+            if self.storage_budget is not None:
+                used += self.index_size(best)
         return configuration, sum(per_query.values())
+
+    def _knapsack_bound(self, saving, candidates):
+        sized = []
+        for z in candidates:
+            if saving[z] > 0:
+                sized.append((saving[z], max(0, self.index_size(z) or 0), z))
+        # Indexes of no known size come first (always fit); then by saving per byte.
+        sized.sort(key=lambda t: (t[1] > 0, -(t[0] / t[1]) if t[1] > 0 else 0, t[2]))
+        room, total = self.storage_budget, 0.0
+        for value, size, _ in sized:
+            if size <= room:
+                total += value
+                room -= size
+            else:
+                total += value * room / size
+                break
+        return total
 
     # Upper bound on the improvement of the final best configuration.
     def improvement_upper_bound(self, candidates):
@@ -88,7 +131,15 @@ class EarlyStoppingChecker:
         top = [z for z in top if saving[z] > 0]
         # Eq. 10: the K largest workload-level bounds, summed. No per-query floor:
         # with floors, picking the K largest sums would no longer be the best case.
-        lower_cost = max(0.0, empty - sum(saving[z] for z in top))
+        best_saving = sum(saving[z] for z in top)
+        if self.storage_bound and self.storage_budget is not None and self.index_size is not None:
+            # Not in the paper: with a storage budget the final configuration also
+            # has to fit in it. Relaxing the count limit, the best total saving is
+            # the fractional knapsack bound (best saving per byte first, the last
+            # index counted in part). Both relaxations are upper bounds, so the
+            # smaller one is used.
+            best_saving = min(best_saving, self._knapsack_bound(saving, candidates))
+        lower_cost = max(0.0, empty - best_saving)
         if self.clamp_omega:
             # Every query costs at least c(q, Omega_q), whatever is selected.
             lower_cost = max(

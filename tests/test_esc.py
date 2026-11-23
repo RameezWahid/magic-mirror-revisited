@@ -78,7 +78,11 @@ def build(seed, queries=12, tables=4, columns=5):
     return qs, SyntheticCosts(benefit, base), base, candidates
 
 
-def run(seed, interception, epsilon=None, budget=None, k=5, clamp=False):
+def size_of(index):
+    return 1 + (len(index.columns) * 3 + hash(index.columns[0].name) % 5)
+
+
+def run(seed, interception, epsilon=None, budget=None, k=5, clamp=False, storage=None, aware=True):
     qs, costs, base, candidates = build(seed)
     oracle = BudgetAwareCostOracle(
         costs, Workload(qs), budget=budget, interception=interception,
@@ -86,10 +90,14 @@ def run(seed, interception, epsilon=None, budget=None, k=5, clamp=False):
     )
     oracle.candidate_counts = {}
     oracle.initialize(candidates)
-    search = TwoPhaseGreedy(oracle, candidates, k)
+    search = TwoPhaseGreedy(
+        oracle, candidates, k,
+        storage_budget=storage, index_size=size_of if storage else None,
+    )
     if epsilon is not None:
         search.checker = EarlyStoppingChecker(
-            oracle, k, epsilon=epsilon, clamp_omega=clamp
+            oracle, k, epsilon=epsilon, clamp_omega=clamp,
+            storage_budget=storage, index_size=size_of if storage else None, storage_bound=aware,
         )
     selected = search.run()
     improvement = 1 - sum(costs.cost(q, selected) for q in qs) / sum(base.values())
@@ -141,6 +149,39 @@ class TestEsc(unittest.TestCase):
         self.assertEqual(checker.violations, 1)
         _, _, lower, upper = checker.trace[0]
         self.assertGreaterEqual(upper, lower)
+
+    def test_storage_aware_bound_is_valid_and_not_looser(self):
+        for seed in range(15):
+            ref, _, _ = run(seed, "none", epsilon=-1.0, k=100, storage=40)
+            _, _, aware = run(seed, "none", epsilon=0.05, k=100, storage=40)
+            _, _, count_only = run(seed, "none", epsilon=0.05, k=100, storage=40, aware=False)
+            for _, _, _, upper in aware.checker.trace:
+                self.assertGreaterEqual(upper + 1e-9, ref)
+            self.assertLessEqual(aware.checker.trace[0][3], count_only.checker.trace[0][3] + 1e-9)
+
+    def test_storage_aware_bound_stops_at_least_as_often(self):
+        aware_stops = count_stops = 0
+        for seed in range(15):
+            _, _, aware = run(seed, "none", epsilon=0.05, k=100, storage=40)
+            _, _, count_only = run(seed, "none", epsilon=0.05, k=100, storage=40, aware=False)
+            aware_stops += aware.stopped_early
+            count_stops += count_only.stopped_early
+        self.assertGreaterEqual(aware_stops, count_stops)
+
+    def test_returned_configuration_fits_storage_budget(self):
+        for seed in range(15):
+            qs, costs, base, candidates = build(seed)
+            oracle = BudgetAwareCostOracle(
+                costs, Workload(qs), budget=None, interception="none", need_omega=True
+            )
+            oracle.candidate_counts = {}
+            oracle.initialize(candidates)
+            flat = sorted({z for per_query in candidates for z in per_query})
+            checker = EarlyStoppingChecker(
+                oracle, 100, epsilon=0.05, storage_budget=40, index_size=size_of
+            )
+            configuration, _ = checker.simulated_greedy([], flat)
+            self.assertLessEqual(sum(size_of(z) for z in configuration), 40)
 
     def test_never_stops_with_negative_epsilon(self):
         _, _, search = run(3, "none", -1.0)

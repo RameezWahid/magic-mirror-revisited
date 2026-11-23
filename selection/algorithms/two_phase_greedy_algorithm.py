@@ -92,6 +92,8 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
                 parameters["max_indexes"],
                 epsilon=parameters["esc_epsilon"],
                 clamp_omega=parameters["esc_clamp"],
+                storage_budget=storage,
+                index_size=self._index_size,
             )
         indexes = self.search.run()
         log_summary(self.oracle, self.search)
