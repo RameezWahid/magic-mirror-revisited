@@ -422,6 +422,8 @@ def main():
             report_unlimited(runs, title_v, lines)
     report_execution(os.path.join(runs_dir, "execution", "tpch_sf1_pg18.6.csv"),
                      "TPC-H SF1", out_dir, "tpch_sf1", lines)
+    report_execution(os.path.join(runs_dir, "execution", "tpch_sf10_pg18.6.csv"),
+                     "TPC-H SF10", out_dir, "tpch_sf10", lines)
     with open(os.path.join(out_dir, "RESULTS.txt"), "w") as f:
         f.write("\n".join(lines) + "\n")
     print("\n".join(lines))
