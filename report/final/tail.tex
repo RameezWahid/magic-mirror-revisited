@@ -1,0 +1,26 @@
+
+\section{Discussion and limitations}\label{sec:limits}
+\begin{itemize}
+\item \textbf{Estimates against execution.} Section~\ref{sec:exec} is the only part that measures real runtimes, at one budget (5\,GB) with one selection per configuration. It shows that estimated improvement does not predict measured improvement, so the quality figures of Sections~\ref{sec:repro}--\ref{sec:compare} describe the optimizer's model and nothing more. We did not find out which indexes cause the slowdowns, or why.
+\item \textbf{Statistics draws.} Each \texttt{ANALYZE} moves the improvement of a run by about 1 point (Wii 32.2--33.3\% over four draws). Absolute values should not be read to better than that; paired differences between methods on the same draw were stable. The assumption and gap experiments (Sections~\ref{sec:gaps} and~\ref{sec:assump}) use one draw, and the Esc results two or three.
+\item \textbf{Our own implementations.} Neither Wii nor Esc has public code, and we had no reference implementation to compare against. The paper's numbers are not reproduced: Esc saves up to 28\% of the calls here against about 60\% reported for SQL Server, and Wii's 86\% saving was measured on one workload. Of the Esc paper, only Esc-B is implemented; Esc-I, the rate-based filter and the MCTS variants are not.
+\item \textbf{Esc additions are ours.} The storage-aware bound and the clamp are not in the paper. The bound is valid by construction (checked by unit tests and on synthetic data). The clamp assumes monotone costs, which PostgreSQL does not guarantee (we saw $\eta_U<\eta_L$), so it is a heuristic. We did not measure on TPC-H how much of Esc's stopping the storage-aware bound is responsible for; the ablation configuration exists (\texttt{configs/tpch\_sf10\_esc\_ablation.json}) but its results are not part of this report.
+\item \textbf{Wii was never limited by its budget.} Wii used at most 437 calls, so the budgets of the sweep did not constrain it; a sweep at 50--400 calls, and Esc under a call budget, are open. The greedy variants dip at 5\,GB (72.4\% against 71.5\% at 4.25\,GB), which we did not investigate.
+\item \textbf{One workload, one DBMS.} Only TPC-H at SF10 on PostgreSQL; TPC-DS and JOB are not run. A teammate's run with \texttt{max\_parallel\_workers\_per\_gather}=8 gave a lower cost scale and, as reported to us, the same qualitative patterns; we report only the default-settings results.
+\end{itemize}
+
+\section{Conclusion}
+The reproduction supports the original study's main findings on PostgreSQL 18: quality is determined mainly by whether a few key indexes fit in the budget, most algorithms converge to similar estimated cost, and they differ mostly in run time and what-if calls. In estimated terms, Wii keeps most of the tuner's quality with a small fraction of its calls, and Esc saves calls under a storage budget once its bound accounts for storage, but it gives nothing on top of Wii. The real-execution check is a reminder that the estimates are the weak point: five of the six configurations we executed made the workload slower. The next steps that would matter most are executing more budgets and several selections per configuration, finding the indexes behind the slowdowns, the Wii sweep at small call budgets and the Esc ablation on TPC-H.
+
+\section*{Reproducibility}\begingroup\raggedright
+Repository \texttt{RameezWahid/magic-mirror-revisited}: reproduction on branch \texttt{sf10-arijit} (results in \texttt{benchmark\_results/tpch\_sf10\_paper\_pg18.7}, CoPhy width 2 in \texttt{tpch\_sf10\_cophy\_w2\_pg18.7}); two-phase greedy and Wii in \texttt{selection/budget\_aware.py} and \texttt{selection/algorithms/two\_phase\_greedy\_algorithm.py}; Esc on branch \texttt{esc-arijit} (\texttt{selection/esc.py}, \texttt{tests/test\_esc.py}, 10 unit tests); storage-limited runs with \texttt{configs/tpch\_sf10\_new\_algos.json} through \texttt{scripts/run\_repetitions.sh} and \texttt{scripts/analyze\_results.py}; real execution with \texttt{scripts/execute\_selected\_indexes.py} (results in \texttt{benchmark\_results/execution/tpch\_sf10\_pg18.6.csv}); the raw statistics-draw runs of Sections~\ref{sec:setup}--\ref{sec:esc} in \texttt{out/*/runs.jsonl}. Environment: PostgreSQL 18.7, HypoPG 1.4.5, Dexter 0.6.3, gurobipy 13, PuLP 3 (PuLP 4 is incompatible with the CoPhy code).
+
+\endgroup
+\section*{References}
+\begin{enumerate}\small
+\item J.\ Kossmann, S.\ Halfpap, M.\ Jankrift, R.\ Schlosser. Magic Mirror in My Hand, Which Is the Best in the Land? An Experimental Evaluation of Index Selection Algorithms. PVLDB 13(11), 2020.
+\item S.\ Halfpap et al. Looking Deeply into the Magic Mirror. PVLDB 17, 2024 (demonstration; platform used here).
+\item X.\ Wang, W.\ Wu, C.\ Wang, V.\ Narasayya, S.\ Chaudhuri. Wii: Dynamic Budget Reallocation In Index Tuning. SIGMOD 2024 (PACMMOD 2(3)).
+\item X.\ Wang, W.\ Wu, V.\ Narasayya, S.\ Chaudhuri. Esc: An Early-Stopping Checker for Budget-aware Index Tuning. PVLDB 18(5), 2025.
+\end{enumerate}
+\end{document}
