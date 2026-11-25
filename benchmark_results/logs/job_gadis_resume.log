@@ -1,0 +1,14 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/job_gadis_resume.json
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 296 genes (candidate indexes)

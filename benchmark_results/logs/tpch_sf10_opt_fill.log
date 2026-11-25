@@ -1,0 +1,1507 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/tpch_sf10_opt_fill.json
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Generating TPC-H Queries
+INFO:root:Queries generated
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_no_index_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 52
+INFO:root:Seed 2 from 52
+INFO:root:Seed 3 from 52
+INFO:root:Seed 4 from 52
+INFO:root:Seed 5 from 52
+INFO:root:Seed 6 from 52
+INFO:root:Seed 7 from 52
+INFO:root:Seed 8 from 52
+INFO:root:Seed 9 from 52
+INFO:root:Seed 10 from 52
+INFO:root:Seed 11 from 52
+INFO:root:Seed 12 from 52
+INFO:root:Seed 13 from 52
+INFO:root:Seed 14 from 52
+INFO:root:Seed 15 from 52
+INFO:root:Seed 16 from 52
+INFO:root:Seed 17 from 52
+INFO:root:Seed 18 from 52
+INFO:root:Seed 19 from 52
+INFO:root:Seed 20 from 52
+INFO:root:Seed 21 from 52
+INFO:root:Seed 22 from 52
+INFO:root:Seed 23 from 52
+INFO:root:Seed 24 from 52
+INFO:root:Seed 25 from 52
+INFO:root:Seed 26 from 52
+INFO:root:Seed 27 from 52
+INFO:root:Seed 28 from 52
+INFO:root:Seed 29 from 52
+INFO:root:Seed 30 from 52
+INFO:root:Seed 31 from 52
+INFO:root:Seed 32 from 52
+INFO:root:Seed 33 from 52
+INFO:root:Seed 34 from 52
+INFO:root:Seed 35 from 52
+INFO:root:Seed 36 from 52
+INFO:root:Seed 37 from 52
+INFO:root:Seed 38 from 52
+INFO:root:Seed 39 from 52
+INFO:root:Seed 40 from 52
+INFO:root:Seed 41 from 52
+INFO:root:Seed 42 from 52
+INFO:root:Seed 43 from 52
+INFO:root:Seed 44 from 52
+INFO:root:Seed 45 from 52
+INFO:root:Seed 46 from 52
+INFO:root:Seed 47 from 52
+INFO:root:Seed 48 from 52
+INFO:root:Seed 49 from 52
+INFO:root:Seed 50 from 52
+INFO:root:Seed 51 from 52
+INFO:root:Seed 52 from 52
+INFO:root:Indexes found: [I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand), I(C part.p_size,C part.p_container), I(C lineitem.l_shipdate), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C partsupp.ps_suppkey), I(C part.p_container,C part.p_size), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_acctbal), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C partsupp.ps_partkey), I(C part.p_brand,C part.p_type), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_suppkey), I(C orders.o_custkey), I(C part.p_size), I(C lineitem.l_partkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_custkey,C customer.c_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 250, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Creating input for CoPhy
+INFO:root:Parameters: {'budget_MB': 250, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}
+INFO:root:Query-based enumeration of index combinations
+INFO:root:Evaluate 1213 index combinations 
+INFO:root:  ... 1213 / 1213 done
+INFO:root:What-if time: 19.791534900665283 s
+Running HiGHS 1.16.0 (git hash: f3f113d): Copyright (c) 2026 under MIT licence terms
+Includes third-party software components, see THIRD_PARTY_NOTICES.md for full details
+INFO:root:CoPhy solved in 0.25 s (Optimal), selected 4 indexes
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 250, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': False, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.25, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.24 s (Optimal), selected 5 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_size,C part.p_container,C part.p_brand)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.24, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 1000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.28 s (Optimal), selected 5 indexes
+INFO:root:Indexes found: [I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey), I(C part.p_size,C part.p_brand,C part.p_container)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 1000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.28, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 1500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.25 s (Optimal), selected 4 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 1500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.25, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 2000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.27 s (Optimal), selected 5 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C part.p_brand,C part.p_size), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 2000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.27, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 2500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.41 s (Optimal), selected 5 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 2500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.41, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 3000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.55 s (Optimal), selected 5 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 3000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.55, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 3500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.43 s (Optimal), selected 6 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 3500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.43, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 4250, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.43 s (Optimal), selected 6 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C partsupp.ps_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 4250, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.43, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 5000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.35 s (Optimal), selected 7 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C orders.o_orderdate,C orders.o_orderkey,C orders.o_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 5000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.35, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 5750, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.32 s (Optimal), selected 7 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 5750, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.32, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 6500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.32 s (Optimal), selected 10 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C part.p_size), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderdate,C orders.o_orderkey,C orders.o_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_availqty,C partsupp.ps_supplycost)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 6500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.32, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 8000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.27 s (Optimal), selected 12 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_availqty,C partsupp.ps_supplycost)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 8000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.27, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 10000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.26 s (Optimal), selected 13 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C orders.o_orderdate,C orders.o_orderkey,C orders.o_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_availqty,C partsupp.ps_supplycost)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 10000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.26, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 12500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.28 s (Optimal), selected 14 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C orders.o_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_extendedprice,C lineitem.l_shipmode), I(C orders.o_orderdate,C orders.o_orderkey,C orders.o_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_availqty,C partsupp.ps_supplycost)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 12500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.28, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 15000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.26 s (Optimal), selected 15 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_shipdate), I(C orders.o_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_receiptdate,C lineitem.l_commitdate), I(C lineitem.l_partkey,C lineitem.l_extendedprice,C lineitem.l_shipmode), I(C orders.o_orderdate,C orders.o_orderkey,C orders.o_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_availqty,C partsupp.ps_supplycost)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 15000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.79, 'what_if_cost_requests': 23066, 'solve_time_s': 0.26, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C part.p_size)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C part.p_size)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_custkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_custkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C orders.o_custkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_name), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderkey,C orders.o_orderstatus), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_partkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C lineitem.l_shipdate)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'dexter', 'parameters': {'min_saving_percentage': 10, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'dexter', 'parameters': {'min_saving_percentage': 10, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_dexter_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'dexter', 'parameters': {'min_saving_percentage': 50, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey), I(C orders.o_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'dexter', 'parameters': {'min_saving_percentage': 50, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_dexter_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'dexter', 'parameters': {'min_saving_percentage': 90, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'dexter', 'parameters': {'min_saving_percentage': 90, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_dexter_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'dexter', 'parameters': {'min_saving_percentage': 95, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'dexter', 'parameters': {'min_saving_percentage': 95, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_dexter_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'dexter', 'parameters': {'min_saving_percentage': 99, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'dexter', 'parameters': {'min_saving_percentage': 99, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_dexter_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 1, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 1, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 14
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C orders.o_orderkey), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey)}
+INFO:root:Number of candidates: 3
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_orderkey)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 1, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 2, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 2, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 7
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_orderkey), I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 2, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 3, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 3, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 10
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C orders.o_orderkey,C orders.o_orderpriority), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 3, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 4, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 4, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 12
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C orders.o_orderkey,C orders.o_orderpriority), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C partsupp.ps_suppkey)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 4, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 5, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 5, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 15
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C orders.o_custkey,C orders.o_comment), I(C lineitem.l_partkey,C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C orders.o_orderkey,C orders.o_orderpriority), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C partsupp.ps_suppkey), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_orderkey,C orders.o_orderpriority)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 5, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 6, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 6, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 17
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey,C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_suppkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_orderkey,C orders.o_orderpriority)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 6, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 7, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 7, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 18
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C lineitem.l_orderkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_orderkey,C orders.o_orderpriority)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 7, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 8, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 8, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 20
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand,C part.p_size), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_brand,C part.p_container), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 8, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 9, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 9, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 21
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand,C part.p_size), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_brand,C part.p_container), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 9, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 10, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 10, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 23
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_brand,C part.p_container), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_custkey,C customer.c_nationkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C part.p_brand,C part.p_size), I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 10, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 11, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 11, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 24
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_brand,C part.p_container), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_custkey,C customer.c_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C part.p_brand,C part.p_size), I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C lineitem.l_shipdate), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 11, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 12, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 12, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 25
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_brand,C part.p_container), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_custkey,C customer.c_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C part.p_brand,C part.p_size), I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C part.p_type), I(C lineitem.l_shipdate), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 12, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'auto_admin', 'parameters': {'max_indexes': 13, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes AutoAdmin
+INFO:root:Parameters: {'max_indexes': 13, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}
+INFO:root:Number of candidates: 18
+Candidates: {I(C orders.o_orderdate), I(C nation.n_nationkey), I(C lineitem.l_discount), I(C part.p_brand), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C orders.o_orderpriority), I(C lineitem.l_extendedprice), I(C customer.c_custkey), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C supplier.s_nationkey)}
+INFO:root:Number of candidates: 26
+Candidates: {I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_brand,C part.p_container), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_partkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_custkey,C customer.c_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey), I(C lineitem.l_shipdate,C lineitem.l_commitdate), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderstatus), I(C lineitem.l_orderkey), I(C customer.c_acctbal), I(C customer.c_custkey,C customer.c_mktsegment), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Indexes found: {I(C part.p_brand,C part.p_size), I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C part.p_type), I(C orders.o_custkey), I(C lineitem.l_shipdate), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_shipmode), I(C orders.o_custkey,C orders.o_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'auto_admin', 'parameters': {'max_indexes': 13, 'max_indexes_naive': 1, 'max_index_width': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_auto_admin_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 1, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 1, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipdate). 6 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_custkey). 5 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_custkey). 4 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_suppkey). 3 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderkey). 2 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_partkey). 1 indexes remaining.
+INFO:root:Indexes found: {I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 1, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 2, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipdate). 6 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_custkey). 5 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_custkey). 4 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_suppkey). 3 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderkey). 2 indexes remaining.
+INFO:root:Indexes found: {I(C lineitem.l_partkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 2, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 3, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 3, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipdate). 6 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_custkey). 5 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_custkey). 4 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_suppkey). 3 indexes remaining.
+INFO:root:Indexes found: {I(C orders.o_orderkey), I(C lineitem.l_partkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 3, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 4, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 4, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipdate). 6 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_custkey). 5 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_custkey). 4 indexes remaining.
+INFO:root:Indexes found: {I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 4, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 5, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 5, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipdate). 6 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_custkey). 5 indexes remaining.
+INFO:root:Indexes found: {I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 5, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 6, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 6, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipdate). 6 indexes remaining.
+INFO:root:Indexes found: {I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 6, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 7, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 7, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_brand). 7 indexes remaining.
+INFO:root:Indexes found: {I(C orders.o_orderkey), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 7, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 8, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 8, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_type). 8 indexes remaining.
+INFO:root:Indexes found: {I(C part.p_brand), I(C orders.o_orderkey), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 8, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 9, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 9, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_suppkey). 9 indexes remaining.
+INFO:root:Indexes found: {I(C part.p_brand), I(C orders.o_orderkey), I(C part.p_type), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 9, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 10, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 10, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_size). 10 indexes remaining.
+INFO:root:Indexes found: {I(C part.p_brand), I(C orders.o_orderkey), I(C part.p_type), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 10, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 11, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 11, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_container). 11 indexes remaining.
+INFO:root:Indexes found: {I(C part.p_brand), I(C orders.o_orderkey), I(C part.p_type), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C part.p_size), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 11, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 12, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 12, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_nationkey). 12 indexes remaining.
+INFO:root:Indexes found: {I(C part.p_brand), I(C orders.o_orderkey), I(C part.p_type), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C part.p_size), I(C part.p_container), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 12, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'drop', 'parameters': {'max_indexes': 13, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes (drop heuristic)
+INFO:root:Parameters: {'max_indexes': 13, 'benchmark_name': 'tpch'}
+INFO:root:Dropping Index: I(C nation.n_name). 50 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_supplycost). 49 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_receiptdate). 48 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_mktsegment). 47 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipinstruct). 46 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_quantity). 45 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_address). 44 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_shippriority). 43 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_extendedprice). 42 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_returnflag). 41 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_name). 40 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_name). 39 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_partkey). 38 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_commitdate). 37 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_linestatus). 36 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_partkey). 35 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderdate). 34 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_discount). 33 indexes remaining.
+INFO:root:Dropping Index: I(C partsupp.ps_availqty). 32 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderstatus). 31 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_name). 30 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_phone). 29 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_regionkey). 28 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_comment). 27 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_comment). 26 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_totalprice). 25 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_suppkey). 24 indexes remaining.
+INFO:root:Dropping Index: I(C orders.o_orderpriority). 23 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_shipmode). 22 indexes remaining.
+INFO:root:Dropping Index: I(C part.p_name). 21 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_phone). 20 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_nationkey). 19 indexes remaining.
+INFO:root:Dropping Index: I(C region.r_regionkey). 18 indexes remaining.
+INFO:root:Dropping Index: I(C lineitem.l_tax). 17 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_address). 16 indexes remaining.
+INFO:root:Dropping Index: I(C supplier.s_comment). 15 indexes remaining.
+INFO:root:Dropping Index: I(C nation.n_nationkey). 14 indexes remaining.
+INFO:root:Dropping Index: I(C customer.c_acctbal). 13 indexes remaining.
+INFO:root:Indexes found: {I(C part.p_brand), I(C orders.o_orderkey), I(C part.p_type), I(C lineitem.l_shipdate), I(C partsupp.ps_suppkey), I(C supplier.s_nationkey), I(C supplier.s_suppkey), I(C orders.o_custkey), I(C lineitem.l_partkey), I(C part.p_size), I(C part.p_container), I(C customer.c_custkey), I(C lineitem.l_orderkey)}
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'drop', 'parameters': {'max_indexes': 13, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_drop_tpch_19_queries.csv

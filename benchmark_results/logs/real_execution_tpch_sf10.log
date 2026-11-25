@@ -1,0 +1,137 @@
+2026-11-24 13:35:28,515 Postgres: Set random seed `SELECT setseed(0.17)`
+2026-11-24 13:35:28,519 Postgres: Set random seed `SELECT setseed(0.17)`
+2026-11-24 13:35:28,519 Generating TPC-H Queries
+2026-11-24 13:35:28,574 Queries generated
+2026-11-24 13:35:28,575 Dropping indexes
+2026-11-24 13:35:46,982 anytime 1500MB: 4 indexes in 18s
+2026-11-24 13:54:55,271 Dropping indexes
+2026-11-24 13:54:55,291 Dropping indexes
+2026-11-24 13:55:50,883 anytime 5000MB: 13 indexes in 56s
+2026-11-24 14:26:20,853 Dropping indexes
+2026-11-24 14:26:20,922 Dropping indexes
+2026-11-24 14:28:30,104 anytime 10000MB: 22 indexes in 129s
+2026-11-24 14:55:57,557 Dropping indexes
+2026-11-24 14:55:57,647 Dropping indexes
+2026-11-24 14:56:55,777 auto_admin 3idx: 3 indexes in 58s
+2026-11-24 15:24:43,017 Dropping indexes
+2026-11-24 15:24:43,094 Dropping indexes
+2026-11-24 15:27:38,740 auto_admin 10idx: 10 indexes in 176s
+2026-11-24 15:56:15,229 Dropping indexes
+2026-11-24 15:56:15,314 Dropping indexes
+2026-11-24 15:56:31,846 cophy 1500MB: 4 indexes in 17s
+2026-11-24 16:12:21,056 Dropping indexes
+2026-11-24 16:12:21,102 Dropping indexes
+2026-11-24 16:13:10,024 cophy 5000MB: 7 indexes in 49s
+2026-11-24 16:33:02,132 Dropping indexes
+2026-11-24 16:33:02,198 Dropping indexes
+2026-11-24 16:34:59,393 cophy 10000MB: 13 indexes in 117s
+2026-11-24 16:51:44,900 Dropping indexes
+2026-11-24 16:51:44,998 Dropping indexes
+2026-11-24 16:51:57,335 db2advis 1500MB: 14 indexes in 12s
+2026-11-24 17:09:18,710 21, canceling statement due to statement timeout
+
+2026-11-24 17:14:18,820 21, canceling statement due to statement timeout
+
+2026-11-24 17:19:18,886 21, canceling statement due to statement timeout
+
+2026-11-24 17:24:18,936 21, canceling statement due to statement timeout
+
+2026-11-24 17:24:28,781 Dropping indexes
+2026-11-24 17:24:28,812 Dropping indexes
+2026-11-24 17:25:42,111 db2advis 5000MB: 18 indexes in 73s
+2026-11-24 17:39:49,136 Dropping indexes
+2026-11-24 17:39:49,199 Dropping indexes
+2026-11-24 17:42:16,091 db2advis 10000MB: 23 indexes in 147s
+2026-11-24 17:53:44,068 Dropping indexes
+2026-11-24 17:53:44,165 Dropping indexes
+2026-11-24 17:54:42,248 dexter 10%: 5 indexes in 58s
+2026-11-24 18:02:14,460 Dropping indexes
+2026-11-24 18:02:14,545 Dropping indexes
+2026-11-24 18:02:46,507 drop 3idx: 3 indexes in 32s
+2026-11-24 18:14:50,517 Dropping indexes
+2026-11-24 18:14:50,563 Dropping indexes
+2026-11-24 18:16:24,099 drop 10idx: 10 indexes in 94s
+2026-11-24 18:27:47,910 Dropping indexes
+2026-11-24 18:27:47,987 Dropping indexes
+2026-11-24 18:27:57,616 extend 1500MB: 1 indexes in 10s
+2026-11-24 18:34:46,061 Dropping indexes
+2026-11-24 18:34:46,103 Dropping indexes
+2026-11-24 18:35:24,953 extend 5000MB: 7 indexes in 39s
+2026-11-24 18:48:06,228 Dropping indexes
+2026-11-24 18:48:06,276 Dropping indexes
+2026-11-24 18:48:55,736 extend 10000MB: 7 indexes in 49s
+2026-11-24 19:07:53,390 Dropping indexes
+2026-11-24 19:07:53,462 Dropping indexes
+2026-11-24 19:08:03,949 gadis_w1 1500MB: 6 indexes in 10s
+2026-11-24 19:15:07,907 Dropping indexes
+2026-11-24 19:15:07,956 Dropping indexes
+2026-11-24 19:15:47,386 gadis_w1 5000MB: 14 indexes in 39s
+2026-11-24 19:30:20,678 Dropping indexes
+2026-11-24 19:30:20,740 Dropping indexes
+2026-11-24 19:32:22,752 gadis_w1 10000MB: 17 indexes in 122s
+2026-11-24 19:51:58,809 Dropping indexes
+2026-11-24 19:51:58,879 Dropping indexes
+2026-11-24 19:52:21,213 gadis_w2 1500MB: 7 indexes in 22s
+2026-11-24 20:10:31,940 Dropping indexes
+2026-11-24 20:10:31,987 Dropping indexes
+2026-11-24 20:11:46,213 gadis_w2 5000MB: 11 indexes in 74s
+2026-11-24 20:30:52,666 Dropping indexes
+2026-11-24 20:30:52,772 Dropping indexes
+2026-11-24 20:33:15,802 gadis_w2 10000MB: 16 indexes in 143s
+2026-11-24 20:50:40,714 Dropping indexes
+2026-11-24 20:50:40,854 Dropping indexes
+2026-11-24 20:50:40,855 no_index -: 0 indexes in 0s
+2026-11-24 21:12:27,706 21, canceling statement due to statement timeout
+
+2026-11-24 21:17:27,738 21, canceling statement due to statement timeout
+
+2026-11-24 21:22:27,824 21, canceling statement due to statement timeout
+
+2026-11-24 21:27:27,969 21, canceling statement due to statement timeout
+
+2026-11-24 21:27:37,420 Dropping indexes
+2026-11-24 21:27:37,443 Dropping indexes
+2026-11-24 21:27:49,082 relaxation 1500MB: 3 indexes in 12s
+2026-11-24 21:35:34,497 Dropping indexes
+2026-11-24 21:35:34,532 Dropping indexes
+2026-11-24 21:36:15,390 relaxation 5000MB: 9 indexes in 41s
+2026-11-24 21:50:54,550 Dropping indexes
+2026-11-24 21:50:54,608 Dropping indexes
+2026-11-24 21:52:48,379 relaxation 10000MB: 23 indexes in 114s
+2026-11-24 22:06:08,289 Dropping indexes
+2026-11-24 22:06:08,371 Dropping indexes
+2026-11-24 22:06:19,802 two_phase_greedy 1500MB: 6 indexes in 11s
+2026-11-24 22:13:53,521 Dropping indexes
+2026-11-24 22:13:53,572 Dropping indexes
+2026-11-24 22:14:33,294 two_phase_greedy 5000MB: 7 indexes in 40s
+2026-11-24 22:21:16,509 Dropping indexes
+2026-11-24 22:21:16,567 Dropping indexes
+2026-11-24 22:23:12,053 two_phase_greedy 10000MB: 21 indexes in 115s
+2026-11-24 22:33:17,518 Dropping indexes
+2026-11-24 22:33:17,583 Dropping indexes
+2026-11-24 22:33:29,171 two_phase_greedy_wii 1500MB: 2 indexes in 12s
+2026-11-24 22:46:44,278 Dropping indexes
+2026-11-24 22:46:44,325 Dropping indexes
+2026-11-24 22:47:41,806 two_phase_greedy_wii 5000MB: 3 indexes in 57s
+2026-11-24 23:08:22,922 Dropping indexes
+2026-11-24 23:08:22,980 Dropping indexes
+2026-11-24 23:10:28,848 two_phase_greedy_wii 10000MB: 11 indexes in 126s
+2026-11-24 23:29:51,133 Dropping indexes
+2026-11-24 23:29:51,208 Dropping indexes
+2026-11-24 23:30:05,844 two_phase_greedy_esc 1500MB: 6 indexes in 15s
+2026-11-24 23:40:51,544 Dropping indexes
+2026-11-24 23:40:51,577 Dropping indexes
+2026-11-24 23:41:41,767 two_phase_greedy_esc 5000MB: 7 indexes in 50s
+2026-11-24 23:49:21,581 Dropping indexes
+2026-11-24 23:49:21,629 Dropping indexes
+2026-11-24 23:51:10,268 two_phase_greedy_esc 10000MB: 19 indexes in 109s
+2026-11-25 00:04:02,923 Dropping indexes
+2026-11-25 00:04:03,000 Dropping indexes
+2026-11-25 00:04:16,988 two_phase_greedy_wii_esc 1500MB: 2 indexes in 14s
+2026-11-25 00:19:32,470 Dropping indexes
+2026-11-25 00:19:32,511 Dropping indexes
+2026-11-25 00:20:25,642 two_phase_greedy_wii_esc 5000MB: 3 indexes in 53s
+2026-11-25 00:39:19,193 Dropping indexes
+2026-11-25 00:39:19,234 Dropping indexes
+2026-11-25 00:41:24,430 two_phase_greedy_wii_esc 10000MB: 11 indexes in 125s
+2026-11-25 00:59:43,918 Dropping indexes

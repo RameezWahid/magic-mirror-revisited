@@ -11,6 +11,10 @@ This repository contains the source code for the evaluation platform presented i
 - The Extend algorithm [7]
 - An algorithm loosely following SQLServer's DTA Anytime index selection [8]
 
+Additional algorithms added in this fork:
+
+- GADIS, a genetic algorithm for index selection [9] (`gadis`). The fitness is the paper's speed-up S(x) computed from what-if costs instead of measured runtimes, a repair operator enforces the storage budget, and `max_index_width > 1` adds multi-column genes. See `selection/algorithms/gadis_algorithm.py`; config: `configs/tpch_sf1_gadis.json`.
+
 The implementations of the algorithms can be found under `selection/algorithms`. Documentation, also regarding the parameters of the algorithms, is part of the source files.
 
 While some of the chosen algorithms are related to tools employed in commercial DBMS products, the re-implemented algorithms do not fully reflect the behavior and performance of the original tools, which may be continuously enhanced and optimized.
@@ -112,6 +116,8 @@ The code can be automatically formatted and linted by calling `./scripts/format.
 [7] (Extend): Rainer Schlosser, Jan Kossmann, Martin Boissier: Efficient Scalable Multi-attribute Index Selection Using Recursive Strategies. ICDE 2019: 1238-1249
 
 [8] (Anytime): Not published yet. DTA documentation: https://docs.microsoft.com/de-de/sql/tools/dta/dta-utility?view=sql-server-ver15
+
+[9] (GADIS): Priscilla Neuhaus, Julia Couto, Jonatas Wehrmann, Duncan D. Ruiz, Felipe Meneguzzi: GADIS: A Genetic Algorithm for Database Index Selection. SEKE 2019: 39-42
 
 # Acknowledgements
 We thank S. Chaudhuri, V. Narasayya, J. Rouhaud, A. Sharma, and D. Zilio for support, detailed answers, providing source code, and bug fixes.

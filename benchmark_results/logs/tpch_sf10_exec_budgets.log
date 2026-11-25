@@ -1,0 +1,169 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/tpch_sf10_exec_budgets.json
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Generating TPC-H Queries
+INFO:root:Queries generated
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 2500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Creating input for CoPhy
+INFO:root:Parameters: {'budget_MB': 2500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}
+INFO:root:Query-based enumeration of index combinations
+INFO:root:Evaluate 1213 index combinations 
+INFO:root:  ... 1213 / 1213 done
+INFO:root:What-if time: 19.481491088867188 s
+Running HiGHS 1.16.0 (git hash: f3f113d): Copyright (c) 2026 under MIT licence terms
+Includes third-party software components, see THIRD_PARTY_NOTICES.md for full details
+INFO:root:CoPhy solved in 0.43 s (Optimal), selected 5 indexes
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 2500, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': False, 'what_if_time_s': 19.48, 'what_if_cost_requests': 23066, 'solve_time_s': 0.43, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'cophy', 'parameters': {'budget_MB': 5000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True}, 'timeout': 300}
+INFO:root:Reusing CoPhy input of a previous run
+INFO:root:CoPhy solved in 0.36 s (Optimal), selected 10 indexes
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C orders.o_orderdate,C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'cophy', 'parameters': {'budget_MB': 5000, 'max_index_width': 3, 'max_indexes_per_query': 1, 'solver': 'highs', 'benchmark_name': 'tpch', 'enumeration': 'query-based', 'solver_time_limit_s': None, 'reuse_input': True, 'output_folder': None, 'overwrite': True, 'input_reused': True, 'what_if_time_s': 19.48, 'what_if_cost_requests': 23066, 'solve_time_s': 0.36, 'solver_status': 'Optimal'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_cophy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'max_index_width': 2, 'budget_MB': 2500, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_nationkey,C nation.n_regionkey), I(C nation.n_name), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderstatus,C orders.o_orderkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C part.p_size), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'max_index_width': 2, 'budget_MB': 2500, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'db2advis', 'parameters': {'max_index_width': 2, 'budget_MB': 5000, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Calculating best indexes DB2Advis
+INFO:root:Indexes found: [I(C nation.n_nationkey,C nation.n_regionkey), I(C nation.n_name), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand), I(C part.p_container,C part.p_size), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_acctbal), I(C orders.o_orderstatus,C orders.o_orderkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_type,C part.p_partkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_custkey), I(C orders.o_orderkey,C orders.o_orderdate)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'db2advis', 'parameters': {'max_index_width': 2, 'budget_MB': 5000, 'try_variations_seconds': 0, 'benchmark_name': 'tpch', 'try_variations_max_removals': 4}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_db2advis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'none', 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False}, 'timeout': 300}
+INFO:root:Budget-aware tuning: calls=1591 (init 19), skipped=0, derived after budget=0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_nationkey,C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C part.p_brand,C part.p_container), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_suppkey), I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'none', 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'whatif_calls': 1591, 'whatif_calls_init': 19, 'phase1_calls': 1287, 'phase2_candidates': 24, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.886, 'bound_time_s': 0.0, 'total_time_s': 2.993}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'none', 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False}, 'timeout': 300}
+INFO:root:Budget-aware tuning: calls=1994 (init 19), skipped=0, derived after budget=0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'none', 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'whatif_calls': 1994, 'whatif_calls_init': 19, 'phase1_calls': 1586, 'phase2_candidates': 24, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.738, 'bound_time_s': 0.0, 'total_time_s': 3.865}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'wii', 'alpha': 0.9, 'benchmark_name': 'tpch', 'whatif_budget': None, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False}, 'timeout': 300}
+INFO:root:Budget-aware tuning: calls=380 (init 38), skipped=671, derived after budget=0
+INFO:root:Indexes found: [I(C orders.o_orderkey,C orders.o_orderdate), I(C lineitem.l_orderkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'wii', 'alpha': 0.9, 'benchmark_name': 'tpch', 'whatif_budget': None, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'whatif_calls': 380, 'whatif_calls_init': 38, 'phase1_calls': 358, 'phase2_candidates': 11, 'skipped_calls': 671, 'derived_after_budget': 0, 'whatif_time_s': 0.825, 'bound_time_s': 0.0018, 'total_time_s': 0.856}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'wii', 'alpha': 0.9, 'benchmark_name': 'tpch', 'whatif_budget': None, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False}, 'timeout': 300}
+INFO:root:Budget-aware tuning: calls=416 (init 38), skipped=911, derived after budget=0
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C part.p_brand,C part.p_container), I(C orders.o_orderkey,C orders.o_orderdate), I(C part.p_brand,C part.p_size), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'wii', 'alpha': 0.9, 'benchmark_name': 'tpch', 'whatif_budget': None, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'whatif_calls': 416, 'whatif_calls_init': 38, 'phase1_calls': 393, 'phase2_candidates': 12, 'skipped_calls': 911, 'derived_after_budget': 0, 'whatif_time_s': 0.859, 'bound_time_s': 0.0021, 'total_time_s': 0.888}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 1, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 50 genes (candidate indexes)
+INFO:root:GADIS result: 9 indexes, 2477.68 MB, speed-up 1.278, 775 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C orders.o_custkey), I(C orders.o_orderkey), I(C part.p_brand), I(C part.p_type), I(C partsupp.ps_suppkey), I(C supplier.s_nationkey), I(C supplier.s_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 1, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 1, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 51 genes (candidate indexes)
+INFO:root:GADIS result: 13 indexes, 4023.27 MB, speed-up 1.383, 1759 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_acctbal), I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C orders.o_custkey), I(C orders.o_orderkey), I(C part.p_brand), I(C part.p_container), I(C part.p_size), I(C part.p_type), I(C partsupp.ps_suppkey), I(C supplier.s_nationkey), I(C supplier.s_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 1, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 282 genes (candidate indexes)
+INFO:root:GADIS result: 9 indexes, 2484.07 MB, speed-up 1.284, 706 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_custkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C part.p_brand,C part.p_partkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 295 genes (candidate indexes)
+INFO:root:GADIS result: 7 indexes, 4971.44 MB, speed-up 1.382, 500 distinct configurations evaluated
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C lineitem.l_partkey), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C supplier.s_suppkey,C supplier.s_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'max_runtime_minutes': None, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpch_19_queries.csv

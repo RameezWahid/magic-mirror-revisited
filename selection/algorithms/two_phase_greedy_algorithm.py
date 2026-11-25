@@ -8,6 +8,7 @@ from selection.budget_aware import (
     log_summary,
     table_row_counts,
 )
+from selection.esc import EarlyStoppingChecker
 from selection.candidate_generation import (
     candidates_per_query,
     syntactically_relevant_indexes,
@@ -29,6 +30,11 @@ DEFAULT_PARAMETERS = {
     "budget_MB": None,
     "max_index_width": DEFAULT_PARAMETER_VALUES["max_index_width"],
     "record_gaps": False,
+    # Esc early stopping: "none" or "esc_b"; epsilon is the tolerated loss of
+    # improvement (0.05 = 5 percentage points). esc_clamp: see EarlyStoppingChecker.
+    "esc": "none",
+    "esc_epsilon": 0.05,
+    "esc_clamp": False,
 }
 
 
@@ -63,6 +69,7 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
             seed=parameters["seed"],
             record_gaps=parameters["record_gaps"],
             table_rows=table_row_counts(self.database_connector),
+            need_omega=parameters["esc"] != "none",
         )
         # Column counts for the coverage refinement. Only coverage uses them, but
         # they're cheap: no optimizer calls.
@@ -79,6 +86,15 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
             storage_budget=storage,
             index_size=self._index_size,
         )
+        if parameters["esc"] == "esc_b":
+            self.search.checker = EarlyStoppingChecker(
+                self.oracle,
+                parameters["max_indexes"],
+                epsilon=parameters["esc_epsilon"],
+                clamp_omega=parameters["esc_clamp"],
+                storage_budget=storage,
+                index_size=self._index_size,
+            )
         indexes = self.search.run()
         log_summary(self.oracle, self.search)
         self._store_statistics(time.time() - start)
@@ -107,4 +123,15 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
                 "total_time_s": round(runtime, 3),
             }
         )
+        checker = self.search.checker
+        if checker is not None:
+            self.parameters.update(
+                {
+                    "esc_stopped_early": self.search.stopped_early,
+                    "esc_checks": checker.checks,
+                    "esc_violations": checker.violations,
+                    "esc_time_s": round(checker.time, 4),
+                    "esc_trace": checker.trace,
+                }
+            )
         logging.debug(f"Two-phase greedy statistics: {self.parameters}")

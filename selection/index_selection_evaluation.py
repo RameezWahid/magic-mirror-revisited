@@ -13,6 +13,7 @@ from selection.algorithms.db2advis_algorithm import DB2AdvisAlgorithm
 from selection.algorithms.dexter_algorithm import DexterAlgorithm
 from selection.algorithms.drop_heuristic_algorithm import DropHeuristicAlgorithm
 from selection.algorithms.extend_algorithm import ExtendAlgorithm
+from selection.algorithms.gadis_algorithm import GadisAlgorithm
 from selection.algorithms.relaxation_algorithm import RelaxationAlgorithm
 from selection.algorithms.two_phase_greedy_algorithm import TwoPhaseGreedyAlgorithm
 from selection.benchmark import Benchmark
@@ -33,6 +34,7 @@ ALGORITHMS = {
     "dexter": DexterAlgorithm,
     "drop": DropHeuristicAlgorithm,
     "extend": ExtendAlgorithm,
+    "gadis": GadisAlgorithm,
     "relaxation": RelaxationAlgorithm,
     "two_phase_greedy": TwoPhaseGreedyAlgorithm,
     "no_index": NoIndexAlgorithm,

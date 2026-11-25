@@ -1,0 +1,669 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/tpcds_sf10_gadis.json
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Generating tpcds data
+INFO:root:scale factor: 10
+INFO:root:No need to run make
+INFO:root:[SUBPROCESS OUTPUT] dsdgen Population Generator (Version 2.10.0)
+INFO:root:[SUBPROCESS OUTPUT] Copyright Transaction Processing Performance Council (TPC) 2001 - 2018
+INFO:root:[SUBPROCESS OUTPUT] Warning: Selected scale factor is NOT valid for result publication
+INFO:root:[Generate command] ./dsdgen -SCALE 10 -FORCE
+INFO:root:Files generated: ['inventory.dat', 'warehouse.dat', 'store_sales.dat', 'web_page.dat', 'call_center.dat', 'customer.dat', 'web_site.dat', 'dbgen_version.dat', 'household_demographics.dat', 'reason.dat', 'web_sales.dat', 'customer_address.dat', 'item.dat', 'store_returns.dat', 'store.dat', 'catalog_page.dat', 'ship_mode.dat', 'income_band.dat', 'web_returns.dat', 'time_dim.dat', 'customer_demographics.dat', 'catalog_sales.dat', 'promotion.dat', 'catalog_returns.dat', 'date_dim.dat']
+INFO:root:Database indexselection_tpcds___10 created
+INFO:root:Creating tables
+INFO:root:Loading data into the tables
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Generating TPC-DS Queries
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'no_index', 'parameters': {'benchmark_name': 'tpcds'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'no_index', 'parameters': {'benchmark_name': 'tpcds'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_no_index_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C date_dim.d_date_sk), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C date_dim.d_date_sk), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C customer_demographics.cd_demo_sk), I(C store_returns.sr_ticket_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C date_dim.d_date_sk), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C web_sales.ws_sold_date_sk), I(C store_returns.sr_ticket_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C date_dim.d_date_sk), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C date_dim.d_date_sk), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_sold_date_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk), I(C store_sales.ss_customer_sk,C store_sales.ss_store_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk), I(C store_sales.ss_customer_sk,C store_sales.ss_store_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk), I(C inventory.inv_item_sk), I(C customer_address.ca_address_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk), I(C customer_address.ca_address_sk), I(C inventory.inv_item_sk,C inventory.inv_date_sk), I(C catalog_returns.cr_order_number), I(C store_sales.ss_customer_sk,C store_sales.ss_store_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk), I(C customer_address.ca_address_sk), I(C inventory.inv_item_sk,C inventory.inv_date_sk), I(C catalog_returns.cr_order_number), I(C store_sales.ss_customer_sk,C store_sales.ss_store_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C warehouse.w_warehouse_name), I(C item.i_item_sk), I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C catalog_returns.cr_returned_date_sk), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C customer_demographics.cd_demo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_sold_date_sk), I(C date_dim.d_year), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_order_number), I(C store_sales.ss_ticket_number,C store_sales.ss_item_sk), I(C customer_address.ca_address_sk), I(C inventory.inv_item_sk,C inventory.inv_date_sk), I(C catalog_returns.cr_order_number), I(C store_sales.ss_customer_sk,C store_sales.ss_store_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'tpcds', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 189 genes (candidate indexes)
+INFO:root:GADIS result: 24 indexes, 249.93 MB, speed-up 1.066, 1427 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C call_center.cc_call_center_sk), I(C catalog_page.cp_catalog_page_sk), I(C catalog_returns.cr_order_number), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C item.i_current_price), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_site.web_site_sk), I(C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 215 genes (candidate indexes)
+INFO:root:GADIS result: 27 indexes, 499.47 MB, speed-up 1.130, 1861 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_page.cp_catalog_page_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_current_price), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manager_id), I(C item.i_manufact_id), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 236 genes (candidate indexes)
+INFO:root:GADIS result: 27 indexes, 999.38 MB, speed-up 1.185, 1895 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_page.cp_catalog_page_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_current_price), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manager_id), I(C item.i_manufact_id), I(C store.s_store_name), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 236 genes (candidate indexes)
+INFO:root:GADIS result: 25 indexes, 1497.85 MB, speed-up 1.255, 1964 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C item.i_current_price), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C store.s_store_name), I(C store_sales.ss_item_sk), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 236 genes (candidate indexes)
+INFO:root:GADIS result: 28 indexes, 1999.77 MB, speed-up 1.269, 1911 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_current_price), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C store_sales.ss_item_sk), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 236 genes (candidate indexes)
+INFO:root:GADIS result: 26 indexes, 2495.28 MB, speed-up 1.290, 2075 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_page.cp_catalog_page_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_moy), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_demo_sk), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C store.s_store_name), I(C store_sales.ss_item_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 236 genes (candidate indexes)
+INFO:root:GADIS result: 32 indexes, 2995.27 MB, speed-up 1.322, 2098 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_returns.wr_order_number), I(C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 33 indexes, 3492.97 MB, speed-up 1.345, 2123 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C store_returns.sr_item_sk), I(C store_returns.sr_returned_date_sk), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_returns.wr_order_number), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 34 indexes, 4179.64 MB, speed-up 1.366, 2170 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk), I(C catalog_page.cp_catalog_page_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C store.s_store_name), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_warehouse_name), I(C web_returns.wr_order_number), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 4250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 34 indexes, 4992.68 MB, speed-up 1.378, 2157 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_demo_sk), I(C household_demographics.hd_dep_count), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C store.s_store_name), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_returns.wr_order_number), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5750, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 47 indexes, 5541.40 MB, speed-up 1.390, 2186 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_demo_sk), I(C household_demographics.hd_dep_count), I(C item.i_color), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C store.s_store_name), I(C store_returns.sr_cdemo_sk), I(C store_returns.sr_return_amt), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_page.wp_web_page_sk), I(C web_returns.wr_order_number), I(C web_returns.wr_return_amt), I(C web_returns.wr_returned_date_sk), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_promo_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5750, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 6500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 47 indexes, 5676.42 MB, speed-up 1.393, 2194 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_quarter_name), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_demo_sk), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C store_returns.sr_cdemo_sk), I(C store_returns.sr_item_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_site.web_site_sk), I(C web_page.wp_web_page_sk), I(C web_returns.wr_order_number), I(C web_returns.wr_returned_date_sk), I(C web_sales.ws_bill_customer_sk), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_promo_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 6500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 8000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 43 indexes, 7977.84 MB, speed-up 1.436, 2180 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_demo_sk), I(C household_demographics.hd_dep_count), I(C item.i_brand), I(C item.i_color), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C inventory.inv_item_sk), I(C promotion.p_promo_sk), I(C store.s_store_name), I(C store_returns.sr_item_sk), I(C store_returns.sr_returned_date_sk), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_returns.wr_order_number), I(C web_returns.wr_returned_date_sk), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 8000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 10000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 49 indexes, 8872.31 MB, speed-up 1.451, 2198 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_buy_potential), I(C item.i_category), I(C item.i_color), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C inventory.inv_item_sk), I(C store.s_gmt_offset), I(C store.s_store_name), I(C store_returns.sr_cdemo_sk), I(C store_returns.sr_item_sk), I(C store_returns.sr_return_amt), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_site.web_site_sk), I(C web_returns.wr_order_number), I(C web_returns.wr_return_amt), I(C web_returns.wr_returned_date_sk), I(C web_sales.ws_bill_customer_sk), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_promo_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 10000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 12500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 46 indexes, 11853.26 MB, speed-up 1.453, 2192 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_year), I(C household_demographics.hd_demo_sk), I(C item.i_color), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C inventory.inv_date_sk), I(C inventory.inv_item_sk), I(C promotion.p_promo_sk), I(C store.s_gmt_offset), I(C store.s_store_name), I(C store_returns.sr_cdemo_sk), I(C store_returns.sr_item_sk), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C web_page.wp_web_page_sk), I(C web_returns.wr_order_number), I(C web_returns.wr_returned_date_sk), I(C web_sales.ws_bill_customer_sk), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_promo_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 12500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 15000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 240 genes (candidate indexes)
+INFO:root:GADIS result: 54 indexes, 10201.37 MB, speed-up 1.471, 2199 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_current_addr_sk), I(C customer.c_customer_id), I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_page.cp_catalog_page_sk), I(C catalog_returns.cr_order_number), I(C catalog_returns.cr_returned_date_sk), I(C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_order_number), I(C catalog_sales.cs_ship_date_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_buy_potential), I(C household_demographics.hd_demo_sk), I(C household_demographics.hd_dep_count), I(C item.i_color), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C inventory.inv_item_sk), I(C store.s_gmt_offset), I(C store_returns.sr_cdemo_sk), I(C store_returns.sr_item_sk), I(C store_returns.sr_return_amt), I(C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number), I(C store_sales.ss_customer_sk), I(C store_sales.ss_hdemo_sk), I(C store_sales.ss_item_sk), I(C store_sales.ss_sold_date_sk), I(C store_sales.ss_store_sk), I(C store_sales.ss_ticket_number), I(C time_dim.t_hour), I(C time_dim.t_time_sk), I(C warehouse.w_state), I(C warehouse.w_warehouse_name), I(C warehouse.w_warehouse_sk), I(C web_site.web_site_sk), I(C web_page.wp_web_page_sk), I(C web_returns.wr_order_number), I(C web_returns.wr_return_amt), I(C web_returns.wr_returned_date_sk), I(C web_sales.ws_bill_customer_sk), I(C web_sales.ws_item_sk), I(C web_sales.ws_order_number), I(C web_sales.ws_promo_sk), I(C web_sales.ws_sold_date_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 15000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 1523 genes (candidate indexes)
+INFO:root:GADIS result: 27 indexes, 168.48 MB, speed-up 1.039, 2191 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_year), I(C item.i_item_sk), I(C item.i_manufact_id), I(C customer_address.ca_address_sk,C customer_address.ca_gmt_offset), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_address.ca_state,C customer_address.ca_location_type), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_week_seq), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_category,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_tv), I(C store.s_store_name,C store.s_zip), I(C warehouse.w_state,C warehouse.w_warehouse_sq_ft), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 1833 genes (candidate indexes)
+INFO:root:GADIS result: 30 indexes, 450.67 MB, speed-up 1.122, 2162 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_state), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_year), I(C item.i_item_sk), I(C store.s_store_name), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_address_sk,C customer_address.ca_gmt_offset), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_zip), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date,C date_dim.d_week_seq), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_moy,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_manufact_id,C item.i_item_sk), I(C warehouse.w_state,C warehouse.w_county), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2146 genes (candidate indexes)
+INFO:root:GADIS result: 29 indexes, 890.58 MB, speed-up 1.181, 2192 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_year), I(C store.s_store_name), I(C web_sales.ws_item_sk), I(C customer.c_customer_sk,C customer.c_current_addr_sk), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_marital_status), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date,C date_dim.d_week_seq), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_color), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_wholesale_cost), I(C item.i_manufact_id,C item.i_manager_id), I(C warehouse.w_state,C warehouse.w_warehouse_sk), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2172 genes (candidate indexes)
+INFO:root:GADIS result: 40 indexes, 1278.64 MB, speed-up 1.196, 2186 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_state), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_year), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_address.ca_address_sk,C customer_address.ca_zip), I(C customer_address.ca_gmt_offset,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_gender), I(C date_dim.d_date,C date_dim.d_week_seq), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_week_seq,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_date_sk), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_manufact_id), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manager_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_units), I(C item.i_manufact_id,C item.i_current_price), I(C promotion.p_promo_sk,C promotion.p_channel_event), I(C store.s_store_name,C store.s_suite_number), I(C warehouse.w_state,C warehouse.w_city), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2172 genes (candidate indexes)
+INFO:root:GADIS result: 40 indexes, 1657.05 MB, speed-up 1.265, 2181 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer_address.ca_address_sk), I(C catalog_returns.cr_order_number), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_year), I(C item.i_item_id), I(C item.i_item_sk), I(C item.i_manufact_id), I(C store_sales.ss_item_sk), I(C customer.c_customer_sk,C customer.c_current_addr_sk), I(C customer.c_preferred_cust_flag,C customer.c_customer_sk), I(C customer_address.ca_address_sk,C customer_address.ca_gmt_offset), I(C customer_address.ca_address_sk,C customer_address.ca_zip), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_zip), I(C customer_demographics.cd_marital_status,C customer_demographics.cd_demo_sk), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_week_seq,C date_dim.d_date), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_category,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_units), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_email), I(C store.s_store_name,C store.s_zip), I(C warehouse.w_state,C warehouse.w_warehouse_name), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2172 genes (candidate indexes)
+INFO:root:GADIS result: 40 indexes, 2008.11 MB, speed-up 1.318, 2188 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_year), I(C item.i_item_id), I(C web_sales.ws_item_sk), I(C customer.c_customer_sk,C customer.c_login), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_address.ca_address_sk,C customer_address.ca_zip), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_gmt_offset,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_marital_status), I(C catalog_returns.cr_order_number,C catalog_returns.cr_item_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_moy,C date_dim.d_date), I(C date_dim.d_week_seq,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_date_sk), I(C item.i_class,C item.i_item_sk), I(C item.i_color,C item.i_item_sk), I(C item.i_item_id,C item.i_color), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_class_id), I(C item.i_item_sk,C item.i_current_price), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_units), I(C item.i_manufact_id,C item.i_item_sk), I(C store.s_store_name,C store.s_zip), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sq_ft), I(C warehouse.w_warehouse_name,C warehouse.w_state), I(C web_sales.ws_promo_sk,C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2172 genes (candidate indexes)
+INFO:root:GADIS result: 41 indexes, 2652.41 MB, speed-up 1.345, 2187 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer_demographics.cd_demo_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C customer.c_customer_sk,C customer.c_login), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_address.ca_address_sk,C customer_address.ca_street_number), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_demographics.cd_marital_status,C customer_demographics.cd_demo_sk), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_month_seq,C date_dim.d_qoy), I(C date_dim.d_moy,C date_dim.d_week_seq), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_dow), I(C date_dim.d_year,C date_dim.d_moy), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_brand,C item.i_item_sk), I(C item.i_brand_id,C item.i_item_sk), I(C item.i_category_id,C item.i_manufact_id), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_color), I(C item.i_item_sk,C item.i_current_price), I(C item.i_item_sk,C item.i_item_desc), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_event), I(C store.s_store_name,C store.s_store_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_name), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2176 genes (candidate indexes)
+INFO:root:GADIS result: 33 indexes, 3020.14 MB, speed-up 1.370, 2183 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C customer_demographics.cd_demo_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_year), I(C item.i_manufact_id), I(C customer.c_customer_sk,C customer.c_current_addr_sk), I(C customer_address.ca_address_sk,C customer_address.ca_gmt_offset), I(C customer_address.ca_state,C customer_address.ca_city), I(C customer_address.ca_state,C customer_address.ca_zip), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_item_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_dow,C date_dim.d_date), I(C date_dim.d_month_seq,C date_dim.d_date_sk), I(C date_dim.d_month_seq,C date_dim.d_week_seq), I(C item.i_category,C item.i_item_sk), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_color), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_sk,C item.i_class_id), I(C item.i_item_sk,C item.i_item_desc), I(C store.s_store_name,C store.s_zip), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sq_ft), I(C warehouse.w_warehouse_name,C warehouse.w_state), I(C web_sales.ws_item_sk,C web_sales.ws_sold_date_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 37 indexes, 3458.15 MB, speed-up 1.392, 2189 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_moy), I(C date_dim.d_year), I(C item.i_item_sk), I(C item.i_manufact_id), I(C customer_address.ca_address_sk,C customer_address.ca_suite_number), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_marital_status), I(C catalog_returns.cr_item_sk,C catalog_returns.cr_order_number), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_order_number), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_month_seq,C date_dim.d_year), I(C date_dim.d_week_seq,C date_dim.d_date), I(C date_dim.d_year,C date_dim.d_date_sk), I(C item.i_brand,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_units), I(C item.i_manufact_id,C item.i_current_price), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_email), I(C store.s_store_name,C store.s_street_number), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sq_ft), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 46 indexes, 4306.85 MB, speed-up 1.399, 2188 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C customer_address.ca_state), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C item.i_manufact_id), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_zip), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_marital_status), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_order_number), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_dow,C date_dim.d_year), I(C date_dim.d_week_seq,C date_dim.d_date), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_dom), I(C date_dim.d_year,C date_dim.d_moy), I(C date_dim.d_year,C date_dim.d_qoy), I(C item.i_brand,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_color), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_wholesale_cost), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_email), I(C store.s_store_name,C store.s_market_id), I(C store_returns.sr_item_sk,C store_returns.sr_customer_sk), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_name), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sk), I(C web_sales.ws_item_sk,C web_sales.ws_ext_discount_amt), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_promo_sk,C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 48 indexes, 5318.12 MB, speed-up 1.417, 2190 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_address_sk), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_date_sk), I(C date_dim.d_moy), I(C date_dim.d_year), I(C web_sales.ws_item_sk), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_gmt_offset), I(C customer_address.ca_state,C customer_address.ca_zip), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_marital_status), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_order_number), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_month_seq,C date_dim.d_date_sk), I(C date_dim.d_week_seq,C date_dim.d_date), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_category,C item.i_manufact_id), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_color), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_color), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_units), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_event), I(C store.s_store_name,C store.s_suite_number), I(C store_returns.sr_ticket_number,C store_returns.sr_item_sk), I(C store_sales.ss_item_sk,C store_sales.ss_store_sk), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_name), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sk), I(C web_sales.ws_item_sk,C web_sales.ws_ext_discount_amt), I(C web_sales.ws_order_number,C web_sales.ws_item_sk), I(C web_sales.ws_promo_sk,C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 45 indexes, 5254.63 MB, speed-up 1.426, 2188 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer_address.ca_state), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C item.i_manufact_id), I(C time_dim.t_hour), I(C customer.c_customer_sk,C customer.c_current_addr_sk), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_demographics.cd_marital_status,C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number,C catalog_returns.cr_net_loss), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_order_number), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_item_sk), I(C date_dim.d_date,C date_dim.d_week_seq), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_month_seq,C date_dim.d_qoy), I(C date_dim.d_moy,C date_dim.d_year), I(C date_dim.d_year,C date_dim.d_date_sk), I(C household_demographics.hd_dep_count,C household_demographics.hd_vehicle_count), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_color), I(C item.i_item_sk,C item.i_current_price), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_units), I(C promotion.p_promo_sk,C promotion.p_channel_event), I(C store.s_store_name,C store.s_zip), I(C store_returns.sr_ticket_number,C store_returns.sr_returned_date_sk), I(C store_sales.ss_item_sk,C store_sales.ss_store_sk), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sk), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_ext_discount_amt), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_promo_sk,C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 49 indexes, 5950.95 MB, speed-up 1.461, 2193 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer_address.ca_state), I(C catalog_returns.cr_order_number), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_item_sk), I(C item.i_manufact_id), I(C web_sales.ws_item_sk), I(C customer.c_customer_sk,C customer.c_login), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_address_sk,C customer_address.ca_state), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_gmt_offset,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_county), I(C customer_address.ca_state,C customer_address.ca_zip), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_gender), I(C customer_demographics.cd_marital_status,C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_item_sk,C catalog_returns.cr_order_number), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_order_number), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date,C date_dim.d_week_seq), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_month_seq,C date_dim.d_date_sk), I(C date_dim.d_week_seq,C date_dim.d_month_seq), I(C date_dim.d_year,C date_dim.d_date_sk), I(C item.i_category,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_wholesale_cost), I(C item.i_manufact_id,C item.i_current_price), I(C store.s_store_name,C store.s_zip), I(C store_returns.sr_item_sk,C store_returns.sr_ticket_number), I(C store_returns.sr_ticket_number,C store_returns.sr_returned_date_sk), I(C store_sales.ss_customer_sk,C store_sales.ss_coupon_amt), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C time_dim.t_hour,C time_dim.t_time_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sq_ft), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 54 indexes, 7592.33 MB, speed-up 1.483, 2192 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_address.ca_state), I(C catalog_returns.cr_order_number), I(C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date), I(C date_dim.d_week_seq), I(C date_dim.d_year), I(C item.i_item_sk), I(C time_dim.t_hour), I(C web_sales.ws_item_sk), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_address_sk,C customer_address.ca_gmt_offset), I(C customer_address.ca_state,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_city), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_dep_count), I(C customer_demographics.cd_marital_status,C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number,C catalog_returns.cr_item_sk), I(C catalog_sales.cs_bill_customer_sk,C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_order_number), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_month_seq,C date_dim.d_qoy), I(C date_dim.d_week_seq,C date_dim.d_date), I(C household_demographics.hd_dep_count,C household_demographics.hd_vehicle_count), I(C item.i_category,C item.i_manufact_id), I(C item.i_category_id,C item.i_item_sk), I(C item.i_color,C item.i_item_id), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_wholesale_cost), I(C item.i_manufact_id,C item.i_current_price), I(C promotion.p_promo_sk,C promotion.p_channel_tv), I(C store.s_store_name,C store.s_state), I(C store_returns.sr_item_sk,C store_returns.sr_returned_date_sk), I(C store_returns.sr_ticket_number,C store_returns.sr_item_sk), I(C store_sales.ss_customer_sk,C store_sales.ss_addr_sk), I(C store_sales.ss_item_sk,C store_sales.ss_store_sk), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sk), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_order_number,C web_sales.ws_item_sk), I(C web_sales.ws_promo_sk,C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_bill_customer_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 62 indexes, 8418.08 MB, speed-up 1.503, 2190 distinct configurations evaluated
+INFO:root:Indexes found: [I(C customer.c_customer_sk), I(C customer_demographics.cd_demo_sk), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_moy), I(C date_dim.d_year), I(C household_demographics.hd_dep_count), I(C item.i_item_sk), I(C store_sales.ss_customer_sk), I(C customer.c_customer_sk,C customer.c_current_addr_sk), I(C customer_address.ca_address_sk,C customer_address.ca_city), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_gmt_offset,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_street_name), I(C customer_address.ca_state,C customer_address.ca_zip), I(C customer_demographics.cd_marital_status,C customer_demographics.cd_demo_sk), I(C catalog_returns.cr_order_number,C catalog_returns.cr_net_loss), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_sold_time_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_order_number), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_ship_date_sk), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_month_seq), I(C date_dim.d_date_sk,C date_dim.d_quarter_name), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_qoy,C date_dim.d_month_seq), I(C date_dim.d_week_seq,C date_dim.d_date), I(C date_dim.d_year,C date_dim.d_date_sk), I(C date_dim.d_year,C date_dim.d_week_seq), I(C item.i_brand_id,C item.i_item_sk), I(C item.i_category,C item.i_manufact_id), I(C item.i_category_id,C item.i_item_sk), I(C item.i_color,C item.i_item_sk), I(C item.i_current_price,C item.i_item_sk), I(C item.i_item_id,C item.i_category), I(C item.i_item_id,C item.i_color), I(C item.i_item_id,C item.i_item_sk), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_category), I(C item.i_item_sk,C item.i_current_price), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_item_sk,C item.i_product_name), I(C item.i_item_sk,C item.i_units), I(C item.i_manufact_id,C item.i_category_id), I(C promotion.p_promo_sk,C promotion.p_channel_email), I(C store.s_store_name,C store.s_county), I(C store.s_store_name,C store.s_market_id), I(C store_returns.sr_ticket_number,C store_returns.sr_item_sk), I(C store_returns.sr_ticket_number,C store_returns.sr_returned_date_sk), I(C store_sales.ss_item_sk,C store_sales.ss_hdemo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C store_sales.ss_store_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sk), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sq_ft), I(C web_sales.ws_item_sk,C web_sales.ws_ext_discount_amt), I(C web_sales.ws_item_sk,C web_sales.ws_order_number), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 2188 genes (candidate indexes)
+INFO:root:GADIS result: 46 indexes, 8805.16 MB, speed-up 1.512, 2188 distinct configurations evaluated
+INFO:root:Indexes found: [I(C catalog_returns.cr_order_number), I(C catalog_sales.cs_sold_date_sk), I(C date_dim.d_date_sk), I(C date_dim.d_month_seq), I(C date_dim.d_moy), I(C date_dim.d_year), I(C item.i_item_sk), I(C store_returns.sr_item_sk), I(C web_sales.ws_item_sk), I(C customer.c_customer_sk,C customer.c_login), I(C customer_address.ca_address_sk,C customer_address.ca_gmt_offset), I(C customer_address.ca_city,C customer_address.ca_address_sk), I(C customer_address.ca_state,C customer_address.ca_street_number), I(C customer_demographics.cd_demo_sk,C customer_demographics.cd_gender), I(C catalog_sales.cs_item_sk,C catalog_sales.cs_quantity), I(C catalog_sales.cs_ship_date_sk,C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_bill_customer_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_item_sk), I(C catalog_sales.cs_sold_date_sk,C catalog_sales.cs_order_number), I(C date_dim.d_date,C date_dim.d_date_sk), I(C date_dim.d_date_sk,C date_dim.d_date), I(C date_dim.d_date_sk,C date_dim.d_year), I(C date_dim.d_week_seq,C date_dim.d_moy), I(C household_demographics.hd_dep_count,C household_demographics.hd_vehicle_count), I(C item.i_item_id,C item.i_color), I(C item.i_item_id,C item.i_manufact_id), I(C item.i_item_sk,C item.i_item_desc), I(C item.i_item_sk,C item.i_item_id), I(C item.i_item_sk,C item.i_manufact_id), I(C item.i_manufact_id,C item.i_category), I(C item.i_manufact_id,C item.i_item_sk), I(C promotion.p_promo_sk,C promotion.p_channel_tv), I(C store.s_store_name,C store.s_county), I(C store_returns.sr_ticket_number,C store_returns.sr_returned_date_sk), I(C store_sales.ss_item_sk,C store_sales.ss_hdemo_sk), I(C store_sales.ss_item_sk,C store_sales.ss_ticket_number), I(C store_sales.ss_sold_date_sk,C store_sales.ss_customer_sk), I(C store_sales.ss_sold_date_sk,C store_sales.ss_item_sk), I(C store_sales.ss_store_sk,C store_sales.ss_customer_sk), I(C store_sales.ss_store_sk,C store_sales.ss_item_sk), I(C warehouse.w_state,C warehouse.w_warehouse_sk), I(C warehouse.w_warehouse_name,C warehouse.w_warehouse_sk), I(C web_sales.ws_item_sk,C web_sales.ws_ext_discount_amt), I(C web_sales.ws_order_number,C web_sales.ws_item_sk), I(C web_sales.ws_promo_sk,C web_sales.ws_item_sk), I(C web_sales.ws_sold_date_sk,C web_sales.ws_item_sk)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'tpcds', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_tpcds_90_queries.csv

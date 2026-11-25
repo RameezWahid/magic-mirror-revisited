@@ -1,0 +1,527 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/job_gadis.json
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'no_index', 'parameters': {'benchmark_name': 'JOB'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'no_index', 'parameters': {'benchmark_name': 'JOB'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_no_index_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C name.id), I(C movie_companies.movie_id), I(C movie_link.link_type_id,C movie_link.movie_id), I(C company_name.id), I(C aka_name.person_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C keyword.keyword), I(C name.id), I(C movie_companies.movie_id), I(C movie_link.link_type_id), I(C company_name.id), I(C movie_link.movie_id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C movie_info_idx.movie_id), I(C char_name.id), I(C aka_name.person_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C company_name.id), I(C complete_cast.movie_id), I(C name.id), I(C movie_info.movie_id), I(C movie_companies.movie_id), I(C keyword.keyword), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 1750, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C company_name.id), I(C name.id), I(C movie_info.movie_id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 1750, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C movie_keyword.movie_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C title.id), I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C movie_keyword.movie_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 4000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C cast_info.person_id), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 4000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 4500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C cast_info.person_id), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 4500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id), I(C cast_info.person_id,C cast_info.note)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 6250, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id), I(C cast_info.person_id,C cast_info.note), I(C name.gender)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 6250, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 7500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id), I(C cast_info.person_id,C cast_info.note), I(C name.gender)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 7500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id), I(C cast_info.person_id,C cast_info.note), I(C name.gender)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id), I(C cast_info.person_id,C cast_info.note), I(C name.gender)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C name.id), I(C movie_companies.movie_id), I(C cast_info.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C char_name.id), I(C aka_name.person_id), I(C movie_info_idx.movie_id), I(C person_info.person_id), I(C cast_info.role_id), I(C keyword.id), I(C aka_title.movie_id), I(C movie_companies.company_id), I(C company_name.id,C company_name.country_code), I(C movie_info.movie_id,C movie_info.info_type_id), I(C movie_info_idx.info), I(C title.production_year), I(C person_info.note,C person_info.info_type_id), I(C title.id,C title.title), I(C title.id), I(C movie_keyword.movie_id), I(C cast_info.person_id,C cast_info.note), I(C name.gender)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'JOB', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 62 genes (candidate indexes)
+INFO:root:GADIS result: 13 indexes, 247.86 MB, speed-up 1.289, 707 distinct configurations evaluated
+INFO:root:Indexes found: [I(C name.id), I(C company_type.id), I(C info_type.id), I(C comp_cast_type.id), I(C keyword.id), I(C kind_type.id), I(C link_type.id), I(C title.id), I(C company_name.id), I(C movie_link.linked_movie_id), I(C movie_link.movie_id), I(C movie_companies.movie_id), I(C aka_name.person_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 66 genes (candidate indexes)
+INFO:root:GADIS result: 12 indexes, 498.87 MB, speed-up 1.596, 857 distinct configurations evaluated
+INFO:root:Indexes found: [I(C company_type.id), I(C comp_cast_type.id), I(C title.id), I(C role_type.id), I(C company_name.id), I(C keyword.keyword), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_link.movie_id), I(C movie_companies.movie_id), I(C aka_name.person_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 72 genes (candidate indexes)
+INFO:root:GADIS result: 21 indexes, 999.13 MB, speed-up 2.140, 1465 distinct configurations evaluated
+INFO:root:Indexes found: [I(C company_name.country_code), I(C name.id), I(C company_type.id), I(C info_type.id), I(C char_name.id), I(C keyword.id), I(C link_type.id), I(C title.id), I(C company_name.id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C movie_companies.movie_id), I(C aka_name.person_id), I(C person_info.person_id), I(C complete_cast.status_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1750, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 22 indexes, 1742.23 MB, speed-up 9.843, 1609 distinct configurations evaluated
+INFO:root:Indexes found: [I(C company_name.country_code), I(C name.id), I(C company_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C role_type.id), I(C company_name.id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C aka_name.person_id), I(C person_info.person_id), I(C complete_cast.status_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1750, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 23 indexes, 2499.92 MB, speed-up 12.410, 1632 distinct configurations evaluated
+INFO:root:Indexes found: [I(C company_name.country_code), I(C name.id), I(C company_type.id), I(C info_type.id), I(C char_name.id), I(C keyword.id), I(C link_type.id), I(C title.id), I(C role_type.id), I(C company_name.id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C aka_name.person_id), I(C cast_info.role_id), I(C complete_cast.subject_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 29 indexes, 2942.02 MB, speed-up 14.720, 2029 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C company_name.country_code), I(C name.id), I(C info_type.id), I(C char_name.id), I(C comp_cast_type.id), I(C keyword.id), I(C link_type.id), I(C title.id), I(C role_type.id), I(C company_name.id), I(C movie_info_idx.info), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C aka_name.person_id), I(C person_info.person_id), I(C title.production_year), I(C cast_info.role_id), I(C title.title)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 25 indexes, 3499.30 MB, speed-up 14.921, 1740 distinct configurations evaluated
+INFO:root:Indexes found: [I(C company_name.country_code), I(C name.id), I(C company_type.id), I(C info_type.id), I(C char_name.id), I(C comp_cast_type.id), I(C keyword.id), I(C link_type.id), I(C title.id), I(C role_type.id), I(C company_name.id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C cast_info.role_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 31 indexes, 3942.06 MB, speed-up 15.544, 2086 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C company_name.country_code), I(C name.gender), I(C name.id), I(C company_type.id), I(C info_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C role_type.id), I(C company_name.id), I(C movie_info_idx.info), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C title.production_year), I(C cast_info.role_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 4000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 30 indexes, 3942.74 MB, speed-up 15.545, 1783 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C company_name.country_code), I(C name.gender), I(C name.id), I(C info_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info_idx.info), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C title.production_year), I(C cast_info.role_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 4500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 32 indexes, 4049.40 MB, speed-up 15.553, 1781 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C company_name.country_code), I(C name.gender), I(C name.id), I(C company_type.id), I(C info_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info_idx.info), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C title.production_year), I(C cast_info.role_id), I(C title.title)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 5000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 6250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 31 indexes, 5545.81 MB, speed-up 15.783, 1554 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C company_name.country_code), I(C name.gender), I(C name.id), I(C company_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info.info), I(C movie_info_idx.info), I(C movie_info.info_type_id), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C title.production_year), I(C cast_info.role_id), I(C title.title)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 6250, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 7500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 33 indexes, 5440.55 MB, speed-up 15.785, 1553 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C company_name.country_code), I(C name.gender), I(C name.id), I(C company_type.id), I(C info_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info.info), I(C movie_info_idx.info), I(C movie_info.info_type_id), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_link.link_type_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C title.production_year), I(C cast_info.role_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 7500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 10000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 36 indexes, 6443.57 MB, speed-up 15.768, 1424 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C name.gender), I(C name.id), I(C company_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info.info), I(C movie_info_idx.info), I(C movie_info.info_type_id), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C title.kind_id), I(C movie_link.link_type_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C cast_info.person_role_id), I(C title.production_year), I(C cast_info.role_id), I(C complete_cast.status_id), I(C complete_cast.subject_id), I(C title.title)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 10000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 12500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 36 indexes, 6443.57 MB, speed-up 15.768, 1424 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C name.gender), I(C name.id), I(C company_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info.info), I(C movie_info_idx.info), I(C movie_info.info_type_id), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C title.kind_id), I(C movie_link.link_type_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C cast_info.person_role_id), I(C title.production_year), I(C cast_info.role_id), I(C complete_cast.status_id), I(C complete_cast.subject_id), I(C title.title)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 12500, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 15000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 74 genes (candidate indexes)
+INFO:root:GADIS result: 36 indexes, 6443.57 MB, speed-up 15.768, 1424 distinct configurations evaluated
+INFO:root:Indexes found: [I(C movie_companies.company_id), I(C name.gender), I(C name.id), I(C company_type.id), I(C char_name.id), I(C keyword.id), I(C title.id), I(C company_name.id), I(C movie_info.info), I(C movie_info_idx.info), I(C movie_info.info_type_id), I(C person_info.info_type_id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C title.kind_id), I(C movie_link.link_type_id), I(C movie_link.linked_movie_id), I(C complete_cast.movie_id), I(C movie_info.movie_id), I(C movie_keyword.movie_id), I(C movie_link.movie_id), I(C movie_info_idx.movie_id), I(C aka_title.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.name), I(C person_info.note), I(C cast_info.person_id), I(C aka_name.person_id), I(C person_info.person_id), I(C cast_info.person_role_id), I(C title.production_year), I(C cast_info.role_id), I(C complete_cast.status_id), I(C complete_cast.subject_id), I(C title.title)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 15000, 'max_index_width': 1, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 226 genes (candidate indexes)
+INFO:root:GADIS result: 8 indexes, 249.80 MB, speed-up 1.281, 1258 distinct configurations evaluated
+INFO:root:Indexes found: [I(C name.id), I(C company_type.id), I(C movie_companies.movie_id), I(C company_name.id,C company_name.country_code), I(C keyword.keyword,C keyword.id), I(C title.kind_id,C title.id), I(C movie_link.linked_movie_id,C movie_link.id), I(C complete_cast.movie_id,C complete_cast.status_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 242 genes (candidate indexes)
+INFO:root:GADIS result: 12 indexes, 494.06 MB, speed-up 1.585, 1848 distinct configurations evaluated
+INFO:root:Indexes found: [I(C title.id), I(C keyword.keyword), I(C movie_info.movie_id), I(C movie_companies.movie_id), I(C company_name.country_code,C company_name.id), I(C keyword.id,C keyword.keyword), I(C comp_cast_type.id,C comp_cast_type.kind), I(C company_name.id,C company_name.country_code), I(C company_type.kind,C company_type.id), I(C movie_link.link_type_id,C movie_link.linked_movie_id), I(C movie_link.linked_movie_id,C movie_link.movie_id), I(C complete_cast.movie_id,C complete_cast.status_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 256 genes (candidate indexes)
+INFO:root:GADIS result: 17 indexes, 955.03 MB, speed-up 2.134, 1406 distinct configurations evaluated
+INFO:root:Indexes found: [I(C keyword.id), I(C name.id), I(C comp_cast_type.id), I(C char_name.id), I(C title.id), I(C movie_info.movie_id), I(C movie_companies.movie_id), I(C complete_cast.movie_id), I(C aka_name.person_id), I(C keyword.id,C keyword.keyword), I(C info_type.id,C info_type.info), I(C company_name.id,C company_name.country_code), I(C name.id,C name.gender), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C complete_cast.movie_id,C complete_cast.subject_id), I(C movie_info_idx.movie_id,C movie_info_idx.note)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 1750, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 286 genes (candidate indexes)
+INFO:root:GADIS result: 16 indexes, 1694.29 MB, speed-up 7.751, 1371 distinct configurations evaluated
+INFO:root:Indexes found: [I(C keyword.id), I(C name.id), I(C keyword.keyword), I(C movie_keyword.keyword_id), I(C movie_info_idx.movie_id), I(C cast_info.movie_id), I(C movie_companies.movie_id), I(C company_name.country_code,C company_name.id), I(C title.id,C title.kind_id), I(C company_name.id,C company_name.name), I(C comp_cast_type.id,C comp_cast_type.kind), I(C movie_link.link_type_id,C movie_link.id), I(C movie_info.movie_id,C movie_info.id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C movie_link.movie_id,C movie_link.link_type_id), I(C aka_name.person_id,C aka_name.name_pcode_cf)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 1750, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 296 genes (candidate indexes)
+INFO:root:GADIS result: 23 indexes, 2293.06 MB, speed-up 10.740, 1092 distinct configurations evaluated
+INFO:root:Indexes found: [I(C keyword.id), I(C info_type.id), I(C company_name.id), I(C movie_info_idx.movie_id), I(C movie_info.movie_id), I(C complete_cast.movie_id), I(C company_name.country_code,C company_name.id), I(C char_name.id,C char_name.name), I(C title.id,C title.episode_nr), I(C name.id,C name.gender), I(C movie_info_idx.info,C movie_info_idx.movie_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C movie_link.link_type_id,C movie_link.linked_movie_id), I(C movie_link.linked_movie_id,C movie_link.movie_id), I(C movie_companies.movie_id,C movie_companies.company_type_id), I(C complete_cast.movie_id,C complete_cast.status_id), I(C aka_name.person_id,C aka_name.name), I(C person_info.person_id,C person_info.info_type_id), I(C title.production_year,C title.title), I(C aka_title.production_year,C aka_title.movie_id), I(C cast_info.role_id,C cast_info.movie_id), I(C complete_cast.subject_id,C complete_cast.status_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 296 genes (candidate indexes)
+INFO:root:GADIS result: 28 indexes, 2445.07 MB, speed-up 11.125, 969 distinct configurations evaluated
+INFO:root:Indexes found: [I(C name.id), I(C company_name.id), I(C title.id), I(C aka_title.movie_id), I(C movie_info_idx.movie_id), I(C cast_info.movie_id), I(C movie_info.movie_id), I(C movie_companies.movie_id), I(C complete_cast.status_id), I(C movie_companies.company_type_id,C movie_companies.company_id), I(C movie_companies.company_type_id,C movie_companies.movie_id), I(C company_type.id,C company_type.kind), I(C char_name.id,C char_name.name), I(C info_type.id,C info_type.info), I(C company_name.id,C company_name.country_code), I(C name.id,C name.gender), I(C info_type.info,C info_type.id), I(C movie_info_idx.info,C movie_info_idx.movie_id), I(C keyword.keyword,C keyword.id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C title.kind_id,C title.production_year), I(C movie_link.linked_movie_id,C movie_link.movie_id), I(C movie_info_idx.movie_id,C movie_info_idx.info), I(C complete_cast.movie_id,C complete_cast.status_id), I(C aka_name.person_id,C aka_name.id), I(C person_info.person_id,C person_info.note), I(C complete_cast.status_id,C complete_cast.movie_id), I(C title.title,C title.id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 296 genes (candidate indexes)
+INFO:root:GADIS result: 33 indexes, 2724.41 MB, speed-up 11.402, 926 distinct configurations evaluated
+INFO:root:Indexes found: [I(C comp_cast_type.id), I(C company_type.id), I(C keyword.keyword), I(C cast_info.movie_id), I(C movie_keyword.movie_id), I(C movie_companies.movie_id), I(C aka_name.person_id), I(C person_info.person_id), I(C complete_cast.status_id), I(C title.title), I(C movie_companies.company_id,C movie_companies.movie_id), I(C movie_companies.company_type_id,C movie_companies.company_id), I(C company_name.country_code,C company_name.id), I(C company_name.country_code,C company_name.name), I(C title.id,C title.kind_id), I(C keyword.id,C keyword.keyword), I(C char_name.id,C char_name.name), I(C name.id,C name.name), I(C company_name.id,C company_name.country_code), I(C name.id,C name.gender), I(C movie_info_idx.info_type_id,C movie_info_idx.movie_id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C movie_link.link_type_id,C movie_link.linked_movie_id), I(C movie_link.linked_movie_id,C movie_link.link_type_id), I(C movie_link.linked_movie_id,C movie_link.movie_id), I(C movie_companies.movie_id,C movie_companies.company_type_id), I(C movie_info_idx.movie_id,C movie_info_idx.id), I(C complete_cast.movie_id,C complete_cast.subject_id), I(C aka_title.movie_id,C aka_title.production_year), I(C movie_info.movie_id,C movie_info.info_type_id), I(C title.production_year,C title.id), I(C complete_cast.status_id,C complete_cast.movie_id), I(C complete_cast.subject_id,C complete_cast.movie_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 296 genes (candidate indexes)
+INFO:root:GADIS result: 28 indexes, 3758.13 MB, speed-up 16.043, 882 distinct configurations evaluated
+INFO:root:Indexes found: [I(C char_name.id), I(C info_type.id), I(C company_name.id), I(C keyword.keyword), I(C movie_info_idx.movie_id), I(C movie_info.movie_id), I(C movie_companies.movie_id), I(C aka_name.person_id), I(C cast_info.role_id), I(C company_name.country_code,C company_name.id), I(C title.id,C title.production_year), I(C company_type.id,C company_type.kind), I(C title.id,C title.title), I(C comp_cast_type.id,C comp_cast_type.kind), I(C name.id,C name.gender), I(C info_type.info,C info_type.id), I(C movie_info.info_type_id,C movie_info.movie_id), I(C movie_keyword.keyword_id,C movie_keyword.movie_id), I(C movie_link.link_type_id,C movie_link.linked_movie_id), I(C cast_info.movie_id,C cast_info.role_id), I(C aka_title.movie_id,C aka_title.production_year), I(C complete_cast.movie_id,C complete_cast.status_id), I(C movie_link.movie_id,C movie_link.link_type_id), I(C movie_keyword.movie_id,C movie_keyword.id), I(C movie_companies.movie_id,C movie_companies.note), I(C person_info.person_id,C person_info.id), I(C title.production_year,C title.id), I(C complete_cast.status_id,C complete_cast.movie_id)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'gadis', 'parameters': {'budget_MB': 4000, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_gadis_JOB_113_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'gadis', 'parameters': {'budget_MB': 4500, 'max_index_width': 2, 'max_runtime_minutes': 30, 'benchmark_name': 'JOB', 'population_size': 50, 'generations': 50, 'elite_size': 4, 'crossover_probability': 0.6, 'mutation_probability': 0.9, 'mutation_rate': 0.05, 'mutation_decay': None, 'tournament_size': 3, 'init_probability': 0.5, 'seed': 0, 'prune_unused': True}, 'timeout': 300}
+INFO:root:Calculating best indexes GADIS
+INFO:root:GADIS: 296 genes (candidate indexes)

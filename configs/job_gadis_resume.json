@@ -1,0 +1,24 @@
+{
+    "database_system": "postgres",
+    "database_name": "indexselection_job",
+    "benchmark_name": "JOB",
+    "algorithms": [
+        {
+            "name": "gadis",
+            "parameters": {
+                "budget_MB": [
+                    4500,
+                    5000,
+                    6250,
+                    7500,
+                    10000,
+                    12500,
+                    15000
+                ],
+                "max_index_width": 2,
+                "max_runtime_minutes": 30
+            },
+            "timeout": 300
+        }
+    ]
+}

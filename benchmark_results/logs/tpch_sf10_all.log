@@ -1,0 +1,1332 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/tpch_sf10_all.json
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Generating TPC-H Queries
+INFO:root:Queries generated
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_no_index_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey), I(C orders.o_orderkey), I(C orders.o_custkey), I(C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C orders.o_orderkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C orders.o_orderkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'extend', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Calculating best indexes Extend
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'extend', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'min_cost_improvement': 1.003}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_extend_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 1000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 1500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_custkey,C orders.o_orderkey), I(C part.p_brand)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 2000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 2500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 3000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C lineitem.l_orderkey), I(C part.p_brand,C part.p_size), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 3500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 4250, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 5000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C orders.o_orderkey), I(C supplier.s_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 5750, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C supplier.s_suppkey), I(C part.p_brand), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 6500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C part.p_brand,C part.p_size), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 8000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C part.p_brand), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C part.p_container,C part.p_size), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_partkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_acctbal), I(C partsupp.ps_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderstatus,C orders.o_orderkey), I(C nation.n_name,C nation.n_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 10000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_shipdate), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C part.p_brand), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C part.p_container,C part.p_size), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_partkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_acctbal), I(C partsupp.ps_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderstatus,C orders.o_orderkey), I(C nation.n_name,C nation.n_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 12500, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'relaxation', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Calculating best indexes Relaxation
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_shipdate), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C part.p_brand), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_custkey), I(C part.p_container,C part.p_size), I(C lineitem.l_orderkey), I(C lineitem.l_suppkey,C lineitem.l_partkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_name,C nation.n_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C customer.c_acctbal), I(C lineitem.l_partkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_suppkey), I(C orders.o_orderstatus,C orders.o_orderkey), I(C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'relaxation', 'parameters': {'budget_MB': 15000, 'max_index_width': 2, 'benchmark_name': 'tpch', 'allowed_transformations': ['splitting', 'merging', 'prefixing', 'removal']}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_relaxation_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 250, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 30
+INFO:root:Seed 2 from 30
+INFO:root:Seed 3 from 30
+INFO:root:Seed 4 from 30
+INFO:root:Seed 5 from 30
+INFO:root:Seed 6 from 30
+INFO:root:Seed 7 from 30
+INFO:root:Seed 8 from 30
+INFO:root:Seed 9 from 30
+INFO:root:Seed 10 from 30
+INFO:root:Seed 11 from 30
+INFO:root:Seed 12 from 30
+INFO:root:Seed 13 from 30
+INFO:root:Seed 14 from 30
+INFO:root:Seed 15 from 30
+INFO:root:Seed 16 from 30
+INFO:root:Seed 17 from 30
+INFO:root:Seed 18 from 30
+INFO:root:Seed 19 from 30
+INFO:root:Seed 20 from 30
+INFO:root:Seed 21 from 30
+INFO:root:Seed 22 from 30
+INFO:root:Seed 23 from 30
+INFO:root:Seed 24 from 30
+INFO:root:Seed 25 from 30
+INFO:root:Seed 26 from 30
+INFO:root:Seed 27 from 30
+INFO:root:Seed 28 from 30
+INFO:root:Seed 29 from 30
+INFO:root:Seed 30 from 30
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 250, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 35
+INFO:root:Seed 2 from 35
+INFO:root:Seed 3 from 35
+INFO:root:Seed 4 from 35
+INFO:root:Seed 5 from 35
+INFO:root:Seed 6 from 35
+INFO:root:Seed 7 from 35
+INFO:root:Seed 8 from 35
+INFO:root:Seed 9 from 35
+INFO:root:Seed 10 from 35
+INFO:root:Seed 11 from 35
+INFO:root:Seed 12 from 35
+INFO:root:Seed 13 from 35
+INFO:root:Seed 14 from 35
+INFO:root:Seed 15 from 35
+INFO:root:Seed 16 from 35
+INFO:root:Seed 17 from 35
+INFO:root:Seed 18 from 35
+INFO:root:Seed 19 from 35
+INFO:root:Seed 20 from 35
+INFO:root:Seed 21 from 35
+INFO:root:Seed 22 from 35
+INFO:root:Seed 23 from 35
+INFO:root:Seed 24 from 35
+INFO:root:Seed 25 from 35
+INFO:root:Seed 26 from 35
+INFO:root:Seed 27 from 35
+INFO:root:Seed 28 from 35
+INFO:root:Seed 29 from 35
+INFO:root:Seed 30 from 35
+INFO:root:Seed 31 from 35
+INFO:root:Seed 32 from 35
+INFO:root:Seed 33 from 35
+INFO:root:Seed 34 from 35
+INFO:root:Seed 35 from 35
+INFO:root:Indexes found: [I(C part.p_size,C part.p_brand), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderstatus,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 1000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 36
+INFO:root:Seed 2 from 36
+INFO:root:Seed 3 from 36
+INFO:root:Seed 4 from 36
+INFO:root:Seed 5 from 36
+INFO:root:Seed 6 from 36
+INFO:root:Seed 7 from 36
+INFO:root:Seed 8 from 36
+INFO:root:Seed 9 from 36
+INFO:root:Seed 10 from 36
+INFO:root:Seed 11 from 36
+INFO:root:Seed 12 from 36
+INFO:root:Seed 13 from 36
+INFO:root:Seed 14 from 36
+INFO:root:Seed 15 from 36
+INFO:root:Seed 16 from 36
+INFO:root:Seed 17 from 36
+INFO:root:Seed 18 from 36
+INFO:root:Seed 19 from 36
+INFO:root:Seed 20 from 36
+INFO:root:Seed 21 from 36
+INFO:root:Seed 22 from 36
+INFO:root:Seed 23 from 36
+INFO:root:Seed 24 from 36
+INFO:root:Seed 25 from 36
+INFO:root:Seed 26 from 36
+INFO:root:Seed 27 from 36
+INFO:root:Seed 28 from 36
+INFO:root:Seed 29 from 36
+INFO:root:Seed 30 from 36
+INFO:root:Seed 31 from 36
+INFO:root:Seed 32 from 36
+INFO:root:Seed 33 from 36
+INFO:root:Seed 34 from 36
+INFO:root:Seed 35 from 36
+INFO:root:Seed 36 from 36
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C orders.o_custkey), I(C partsupp.ps_suppkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C supplier.s_nationkey,C supplier.s_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 1000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 1500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 39
+INFO:root:Seed 2 from 39
+INFO:root:Seed 3 from 39
+INFO:root:Seed 4 from 39
+INFO:root:Seed 5 from 39
+INFO:root:Seed 6 from 39
+INFO:root:Seed 7 from 39
+INFO:root:Seed 8 from 39
+INFO:root:Seed 9 from 39
+INFO:root:Seed 10 from 39
+INFO:root:Seed 11 from 39
+INFO:root:Seed 12 from 39
+INFO:root:Seed 13 from 39
+INFO:root:Seed 14 from 39
+INFO:root:Seed 15 from 39
+INFO:root:Seed 16 from 39
+INFO:root:Seed 17 from 39
+INFO:root:Seed 18 from 39
+INFO:root:Seed 19 from 39
+INFO:root:Seed 20 from 39
+INFO:root:Seed 21 from 39
+INFO:root:Seed 22 from 39
+INFO:root:Seed 23 from 39
+INFO:root:Seed 24 from 39
+INFO:root:Seed 25 from 39
+INFO:root:Seed 26 from 39
+INFO:root:Seed 27 from 39
+INFO:root:Seed 28 from 39
+INFO:root:Seed 29 from 39
+INFO:root:Seed 30 from 39
+INFO:root:Seed 31 from 39
+INFO:root:Seed 32 from 39
+INFO:root:Seed 33 from 39
+INFO:root:Seed 34 from 39
+INFO:root:Seed 35 from 39
+INFO:root:Seed 36 from 39
+INFO:root:Seed 37 from 39
+INFO:root:Seed 38 from 39
+INFO:root:Seed 39 from 39
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_nationkey,C supplier.s_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 1500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 2000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 50
+INFO:root:Seed 2 from 50
+INFO:root:Seed 3 from 50
+INFO:root:Seed 4 from 50
+INFO:root:Seed 5 from 50
+INFO:root:Seed 6 from 50
+INFO:root:Seed 7 from 50
+INFO:root:Seed 8 from 50
+INFO:root:Seed 9 from 50
+INFO:root:Seed 10 from 50
+INFO:root:Seed 11 from 50
+INFO:root:Seed 12 from 50
+INFO:root:Seed 13 from 50
+INFO:root:Seed 14 from 50
+INFO:root:Seed 15 from 50
+INFO:root:Seed 16 from 50
+INFO:root:Seed 17 from 50
+INFO:root:Seed 18 from 50
+INFO:root:Seed 19 from 50
+INFO:root:Seed 20 from 50
+INFO:root:Seed 21 from 50
+INFO:root:Seed 22 from 50
+INFO:root:Seed 23 from 50
+INFO:root:Seed 24 from 50
+INFO:root:Seed 25 from 50
+INFO:root:Seed 26 from 50
+INFO:root:Seed 27 from 50
+INFO:root:Seed 28 from 50
+INFO:root:Seed 29 from 50
+INFO:root:Seed 30 from 50
+INFO:root:Seed 31 from 50
+INFO:root:Seed 32 from 50
+INFO:root:Seed 33 from 50
+INFO:root:Seed 34 from 50
+INFO:root:Seed 35 from 50
+INFO:root:Seed 36 from 50
+INFO:root:Seed 37 from 50
+INFO:root:Seed 38 from 50
+INFO:root:Seed 39 from 50
+INFO:root:Seed 40 from 50
+INFO:root:Seed 41 from 50
+INFO:root:Seed 42 from 50
+INFO:root:Seed 43 from 50
+INFO:root:Seed 44 from 50
+INFO:root:Seed 45 from 50
+INFO:root:Seed 46 from 50
+INFO:root:Seed 47 from 50
+INFO:root:Seed 48 from 50
+INFO:root:Seed 49 from 50
+INFO:root:Seed 50 from 50
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderstatus,C orders.o_orderkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 2000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 2500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C orders.o_orderstatus,C orders.o_orderkey), I(C customer.c_custkey,C customer.c_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 2500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 3000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey), I(C supplier.s_nationkey,C supplier.s_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 3000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 3500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C part.p_size,C part.p_brand), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_suppkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 3500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 4250, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C orders.o_orderstatus,C orders.o_orderkey), I(C customer.c_custkey,C customer.c_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 4250, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 5000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C part.p_brand,C part.p_type), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_partkey), I(C part.p_size,C part.p_container), I(C customer.c_mktsegment,C customer.c_custkey), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C customer.c_custkey,C customer.c_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 5000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 5750, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C customer.c_custkey,C customer.c_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 5750, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 6500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C supplier.s_suppkey,C supplier.s_nationkey), I(C nation.n_nationkey,C nation.n_regionkey), I(C part.p_brand), I(C orders.o_custkey,C orders.o_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C customer.c_custkey,C customer.c_nationkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 6500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 8000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C part.p_container,C part.p_size), I(C part.p_brand,C part.p_type), I(C customer.c_custkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_acctbal), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey), I(C part.p_brand), I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_size,C part.p_container), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 8000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 10000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C part.p_container,C part.p_size), I(C part.p_brand,C part.p_type), I(C customer.c_custkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_acctbal), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C partsupp.ps_suppkey), I(C part.p_brand), I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_orderkey,C orders.o_orderpriority), I(C partsupp.ps_suppkey,C partsupp.ps_partkey), I(C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 10000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 12500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54
+INFO:root:Seed 13 from 54
+INFO:root:Seed 14 from 54
+INFO:root:Seed 15 from 54
+INFO:root:Seed 16 from 54
+INFO:root:Seed 17 from 54
+INFO:root:Seed 18 from 54
+INFO:root:Seed 19 from 54
+INFO:root:Seed 20 from 54
+INFO:root:Seed 21 from 54
+INFO:root:Seed 22 from 54
+INFO:root:Seed 23 from 54
+INFO:root:Seed 24 from 54
+INFO:root:Seed 25 from 54
+INFO:root:Seed 26 from 54
+INFO:root:Seed 27 from 54
+INFO:root:Seed 28 from 54
+INFO:root:Seed 29 from 54
+INFO:root:Seed 30 from 54
+INFO:root:Seed 31 from 54
+INFO:root:Seed 32 from 54
+INFO:root:Seed 33 from 54
+INFO:root:Seed 34 from 54
+INFO:root:Seed 35 from 54
+INFO:root:Seed 36 from 54
+INFO:root:Seed 37 from 54
+INFO:root:Seed 38 from 54
+INFO:root:Seed 39 from 54
+INFO:root:Seed 40 from 54
+INFO:root:Seed 41 from 54
+INFO:root:Seed 42 from 54
+INFO:root:Seed 43 from 54
+INFO:root:Seed 44 from 54
+INFO:root:Seed 45 from 54
+INFO:root:Seed 46 from 54
+INFO:root:Seed 47 from 54
+INFO:root:Seed 48 from 54
+INFO:root:Seed 49 from 54
+INFO:root:Seed 50 from 54
+INFO:root:Seed 51 from 54
+INFO:root:Seed 52 from 54
+INFO:root:Seed 53 from 54
+INFO:root:Seed 54 from 54
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C orders.o_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C part.p_container,C part.p_size), I(C part.p_brand,C part.p_type), I(C orders.o_orderkey,C orders.o_orderdate), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C customer.c_custkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C customer.c_custkey,C customer.c_nationkey), I(C part.p_size), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_acctbal), I(C partsupp.ps_suppkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderstatus,C orders.o_orderkey), I(C lineitem.l_shipdate), I(C part.p_brand), I(C part.p_size,C part.p_type), I(C lineitem.l_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_size,C part.p_container), I(C partsupp.ps_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 12500, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+INFO:root:Results written to benchmark_results/results_anytime_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+INFO:root:Dropping indexes
+INFO:root:Cost estimation with whatif
+INFO:root:Running algorithm {'name': 'anytime', 'parameters': {'max_index_width': 2, 'budget_MB': 15000, 'max_runtime_minutes': 30, 'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Calculating best indexes Anytime
+INFO:root:Seed 1 from 54
+INFO:root:Seed 2 from 54
+INFO:root:Seed 3 from 54
+INFO:root:Seed 4 from 54
+INFO:root:Seed 5 from 54
+INFO:root:Seed 6 from 54
+INFO:root:Seed 7 from 54
+INFO:root:Seed 8 from 54
+INFO:root:Seed 9 from 54
+INFO:root:Seed 10 from 54
+INFO:root:Seed 11 from 54
+INFO:root:Seed 12 from 54

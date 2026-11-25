@@ -150,6 +150,21 @@ class TestIndexSelection(unittest.TestCase):
         # We only test for three exact occurences because the fourth selected index
         # is subject to random fluctuations based on database internals
 
+    def test_gadis_algorithm_integration(self):
+        for max_index_width in [1, 2]:
+            parameters = {
+                "budget_MB": 0.1,
+                "max_index_width": max_index_width,
+                "population_size": 10,
+                "generations": 5,
+            }
+            gadis = self.index_selection.create_algorithm_object("gadis", parameters)
+            indexes = gadis.calculate_best_indexes(self.tpch_5_and_6)
+            self.assertGreater(len(indexes), 0)
+            size = sum(index.estimated_size for index in indexes)
+            self.assertLessEqual(size, 0.1 * 1000 * 1000)
+            self.assertLess(gadis.history[-1]["best_cost"], gadis.initial_cost)
+
     def test_run_cli_config(self):
         sys.argv = [sys.argv[0]]
         sys.argv.append("tests/config_tests.json")
