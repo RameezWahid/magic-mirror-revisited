@@ -1,0 +1,1337 @@
+INFO:root:Starting Index Selection Evaluation
+INFO:root:Using config file configs/tpch_sf10_esc_ablation.json
+DEBUG:root:Database connector created: None
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: None
+DEBUG:root:Database with given scale factor already existing
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+INFO:root:Generating TPC-H Queries
+DEBUG:root:No need to run make
+INFO:root:Queries generated
+INFO:root:Dropping indexes
+INFO:root:Postgres: Run `analyze`
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		0
+INFO:root:Indexes found: []
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'no_index', 'parameters': {'benchmark_name': 'tpch'}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 1966443.87}, {'Runtimes': [], 'Hits': [], 'Cost': 2074822.13}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1963370.86}, {'Runtimes': [], 'Hits': [], 'Cost': 1946663.28}, {'Runtimes': [], 'Hits': [], 'Cost': 2198924.69}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 522410.1}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1548065.35}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3255414.3}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 6561867.43}, {'Runtimes': [], 'Hits': [], 'Cost': 1954073.24}, {'Runtimes': [], 'Hits': [], 'Cost': 5176207.62}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 42633186.46
+INFO:root:Results written to benchmark_results/results_no_index_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 250, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Esc: stop at 538 calls, eta_L=0.0114, eta_U=0.0170
+INFO:root:Budget-aware tuning: calls=538 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 250, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 538, 'whatif_calls_init': 38, 'phase1_calls': 510, 'phase2_candidates': 15, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 0.902, 'bound_time_s': 0.0, 'total_time_s': 0.924, 'esc_stopped_early': True, 'esc_checks': 2, 'esc_violations': 0, 'esc_time_s': 0.0017, 'esc_trace': [(510, 0, 0.011231550108253496, 0.4473414429834761), (538, 1, 0.011356976576317623, 0.017036644227413467)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		519
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_suppkey), I(C nation.n_nationkey,C nation.n_name)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 250, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 538, 'whatif_calls_init': 38, 'phase1_calls': 510, 'phase2_candidates': 15, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 0.902, 'bound_time_s': 0.0, 'total_time_s': 0.924, 'esc_stopped_early': True, 'esc_checks': 2, 'esc_violations': 0, 'esc_time_s': 0.0017, 'esc_trace': [(510, 0, 0.011231550108253496, 0.4473414429834761), (538, 1, 0.011356976576317623, 0.017036644227413467)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 1966443.87}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954024.89}, {'Runtimes': [], 'Hits': [], 'Cost': 1929529.61}, {'Runtimes': [], 'Hits': [], 'Cost': 2196060.21}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1540900.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 6561867.43}, {'Runtimes': [], 'Hits': [], 'Cost': 1954073.24}, {'Runtimes': [], 'Hits': [], 'Cost': 5176207.62}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 42148208.92
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=877 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 877, 'whatif_calls_init': 38, 'phase1_calls': 735, 'phase2_candidates': 19, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 1.373, 'bound_time_s': 0.0, 'total_time_s': 1.407, 'esc_stopped_early': False, 'esc_checks': 6, 'esc_violations': 0, 'esc_time_s': 0.0063, 'esc_trace': [(735, 0, 0.014048515715848309, 0.8879949866172868), (782, 1, 0.01796582577093153, 0.07171890571371564), (826, 2, 0.01796582577093153, 0.07171890571371564), (839, 3, 0.018023318775877373, 0.07171873237457271), (858, 4, 0.018023318775877373, 0.07073611499411248), (871, 5, 0.018023318775877373, 0.07073611499411248)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		858
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C customer.c_nationkey,C customer.c_custkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderdate)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 877, 'whatif_calls_init': 38, 'phase1_calls': 735, 'phase2_candidates': 19, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 1.373, 'bound_time_s': 0.0, 'total_time_s': 1.407, 'esc_stopped_early': False, 'esc_checks': 6, 'esc_violations': 0, 'esc_time_s': 0.0063, 'esc_trace': [(735, 0, 0.014048515715848309, 0.8879949866172868), (782, 1, 0.01796582577093153, 0.07171890571371564), (826, 2, 0.01796582577093153, 0.07171890571371564), (839, 3, 0.018023318775877373, 0.07171873237457271), (858, 4, 0.018023318775877373, 0.07073611499411248), (871, 5, 0.018023318775877373, 0.07073611499411248)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 1966443.87}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954024.89}, {'Runtimes': [], 'Hits': [], 'Cost': 1929522.26}, {'Runtimes': [], 'Hits': [], 'Cost': 1849077.61}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 517771.18}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1540900.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 6561867.43}, {'Runtimes': [], 'Hits': [], 'Cost': 1954073.24}, {'Runtimes': [], 'Hits': [], 'Cost': 4825604.02}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 41864795.07
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 1000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=1030 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 1000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1030, 'whatif_calls_init': 38, 'phase1_calls': 850, 'phase2_candidates': 20, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 1.578, 'bound_time_s': 0.0, 'total_time_s': 1.614, 'esc_stopped_early': False, 'esc_checks': 8, 'esc_violations': 0, 'esc_time_s': 0.0078, 'esc_trace': [(850, 0, 0.029719803167628456, 1.0), (906, 1, 0.03128598964216389, 0.09141090154395182), (967, 2, 0.03135317580012764, 0.09141090154395182), (978, 3, 0.03135317580012764, 0.09141090154395182), (989, 4, 0.03135317580012764, 0.09141090154395182), (1010, 5, 0.03135317861483633, 0.0904057737653795), (1024, 6, 0.03135317861483633, 0.0904057737653795), (1030, 7, 0.03135317861483633, 0.0904057737653795)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		1011
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C partsupp.ps_suppkey), I(C nation.n_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C part.p_type,C part.p_partkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C supplier.s_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 1000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1030, 'whatif_calls_init': 38, 'phase1_calls': 850, 'phase2_candidates': 20, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 1.578, 'bound_time_s': 0.0, 'total_time_s': 1.614, 'esc_stopped_early': False, 'esc_checks': 8, 'esc_violations': 0, 'esc_time_s': 0.0078, 'esc_trace': [(850, 0, 0.029719803167628456, 1.0), (906, 1, 0.03128598964216389, 0.09141090154395182), (967, 2, 0.03135317580012764, 0.09141090154395182), (978, 3, 0.03135317580012764, 0.09141090154395182), (989, 4, 0.03135317580012764, 0.09141090154395182), (1010, 5, 0.03135317861483633, 0.0904057737653795), (1024, 6, 0.03135317861483633, 0.0904057737653795), (1030, 7, 0.03135317861483633, 0.0904057737653795)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 1966443.87}, {'Runtimes': [], 'Hits': [], 'Cost': 2065617.85}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1961720.54}, {'Runtimes': [], 'Hits': [], 'Cost': 1895329.3}, {'Runtimes': [], 'Hits': [], 'Cost': 1849244.51}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1548065.35}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 6561867.43}, {'Runtimes': [], 'Hits': [], 'Cost': 1954073.24}, {'Runtimes': [], 'Hits': [], 'Cost': 4825604.03}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 41296500.55
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 1500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=997 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 1500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 997, 'whatif_calls_init': 38, 'phase1_calls': 861, 'phase2_candidates': 21, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 1.447, 'bound_time_s': 0.0, 'total_time_s': 1.479, 'esc_stopped_early': False, 'esc_checks': 5, 'esc_violations': 0, 'esc_time_s': 0.0053, 'esc_trace': [(861, 0, 0.18346080458561154, 1.0), (899, 1, 0.18414072491076006, 0.3128455747147547), (939, 2, 0.18414072491076006, 0.3128455747147547), (978, 3, 0.18419977468416526, 0.3120051622808022), (991, 4, 0.18419977468416526, 0.3120051622808022)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		978
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_orderkey), I(C supplier.s_suppkey,C supplier.s_nationkey), I(C customer.c_mktsegment,C customer.c_custkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 1500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 997, 'whatif_calls_init': 38, 'phase1_calls': 861, 'phase2_candidates': 21, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 1.447, 'bound_time_s': 0.0, 'total_time_s': 1.479, 'esc_stopped_early': False, 'esc_checks': 5, 'esc_violations': 0, 'esc_time_s': 0.0053, 'esc_trace': [(861, 0, 0.18346080458561154, 1.0), (899, 1, 0.18414072491076006, 0.3128455747147547), (939, 2, 0.18414072491076006, 0.3128455747147547), (978, 3, 0.18419977468416526, 0.3120051622808022), (991, 4, 0.18419977468416526, 0.3120051622808022)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058463.86}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954060.33}, {'Runtimes': [], 'Hits': [], 'Cost': 1929522.26}, {'Runtimes': [], 'Hits': [], 'Cost': 2196060.34}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 520850.6}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1540900.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242240.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 3538936.26}, {'Runtimes': [], 'Hits': [], 'Cost': 1954073.24}, {'Runtimes': [], 'Hits': [], 'Cost': 1976512.9}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 34780163.12
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=1389 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 2000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1389, 'whatif_calls_init': 38, 'phase1_calls': 1169, 'phase2_candidates': 22, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.028, 'bound_time_s': 0.0, 'total_time_s': 2.07, 'esc_stopped_early': False, 'esc_checks': 8, 'esc_violations': 0, 'esc_time_s': 0.0103, 'esc_trace': [(1169, 0, 0.2033005651156763, 1.0), (1224, 1, 0.1985760550162734, 0.6132126073787261), (1281, 2, 0.1985760550162734, 0.6119067784078553), (1330, 3, 0.19892297067583542, 0.6119067779387373), (1367, 4, 0.1989804639153402, 0.6110665388439276), (1369, 5, 0.1989804639153402, 0.6110665388439276), (1383, 6, 0.1989804639153402, 0.6107652148973337), (1389, 7, 0.198980466730049, 0.6107652148973337)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		1370
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C nation.n_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C customer.c_custkey,C customer.c_nationkey), I(C orders.o_custkey,C orders.o_orderkey), I(C part.p_brand,C part.p_container)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1389, 'whatif_calls_init': 38, 'phase1_calls': 1169, 'phase2_candidates': 22, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.028, 'bound_time_s': 0.0, 'total_time_s': 2.07, 'esc_stopped_early': False, 'esc_checks': 8, 'esc_violations': 0, 'esc_time_s': 0.0103, 'esc_trace': [(1169, 0, 0.2033005651156763, 1.0), (1224, 1, 0.1985760550162734, 0.6132126073787261), (1281, 2, 0.1985760550162734, 0.6119067784078553), (1330, 3, 0.19892297067583542, 0.6119067779387373), (1367, 4, 0.1989804639153402, 0.6110665388439276), (1369, 5, 0.1989804639153402, 0.6110665388439276), (1383, 6, 0.1989804639153402, 0.6107652148973337), (1389, 7, 0.198980466730049, 0.6107652148973337)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1762013.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1938698.07}, {'Runtimes': [], 'Hits': [], 'Cost': 2196221.58}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 517771.18}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1444997.64}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 3538936.26}, {'Runtimes': [], 'Hits': [], 'Cost': 1916064.29}, {'Runtimes': [], 'Hits': [], 'Cost': 1976512.9}, {'Runtimes': [], 'Hits': [], 'Cost': 110816.92}]
+DEBUG:root:Overall Costs: 34150015.12
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=1683 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1683, 'whatif_calls_init': 38, 'phase1_calls': 1376, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.48, 'bound_time_s': 0.0, 'total_time_s': 2.535, 'esc_stopped_early': False, 'esc_checks': 9, 'esc_violations': 0, 'esc_time_s': 0.0165, 'esc_trace': [(1376, 0, 0.2119559582645374, 1.0), (1449, 1, 0.2154748737493266, 0.7052101401852382), (1533, 2, 0.21194914995335778, 0.6964034848264542), (1599, 3, 0.21201255103182348, 0.682556895138539), (1607, 4, 0.21201255103182348, 0.682556895138539), (1644, 5, 0.21207004403676943, 0.6817164831737046), (1648, 6, 0.21207004403676943, 0.6817164831737046), (1670, 7, 0.21207004403676943, 0.6814151592271107), (1677, 8, 0.21207004403676943, 0.6814151592271107)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		1664
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C customer.c_nationkey,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C supplier.s_suppkey), I(C part.p_brand,C part.p_container)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 2500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1683, 'whatif_calls_init': 38, 'phase1_calls': 1376, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.48, 'bound_time_s': 0.0, 'total_time_s': 2.535, 'esc_stopped_early': False, 'esc_checks': 9, 'esc_violations': 0, 'esc_time_s': 0.0165, 'esc_trace': [(1376, 0, 0.2119559582645374, 1.0), (1449, 1, 0.2154748737493266, 0.7052101401852382), (1533, 2, 0.21194914995335778, 0.6964034848264542), (1599, 3, 0.21201255103182348, 0.682556895138539), (1607, 4, 0.21201255103182348, 0.682556895138539), (1644, 5, 0.21207004403676943, 0.6817164831737046), (1648, 6, 0.21207004403676943, 0.6817164831737046), (1670, 7, 0.21207004403676943, 0.6814151592271107), (1677, 8, 0.21207004403676943, 0.6814151592271107)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954024.89}, {'Runtimes': [], 'Hits': [], 'Cost': 1929522.26}, {'Runtimes': [], 'Hits': [], 'Cost': 1849406.0}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1540900.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 3538936.26}, {'Runtimes': [], 'Hits': [], 'Cost': 1916064.29}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 33591964.73
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 3000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=1654 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 3000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1654, 'whatif_calls_init': 38, 'phase1_calls': 1456, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.85, 'bound_time_s': 0.0, 'total_time_s': 2.921, 'esc_stopped_early': False, 'esc_checks': 7, 'esc_violations': 0, 'esc_time_s': 0.009, 'esc_trace': [(1456, 0, 0.2511561184863872, 1.0), (1529, 1, 0.2511561184863872, 0.7052101401852382), (1617, 2, 0.2511561184863872, 0.6964034848264542), (1631, 3, 0.2511561184863872, 0.6964034848264542), (1636, 4, 0.2511561184863872, 0.6964034848264542), (1648, 5, 0.2511561184863872, 0.6961021608798602), (1654, 6, 0.2511561213010959, 0.6961021608798602)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		1635
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C nation.n_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 3000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1654, 'whatif_calls_init': 38, 'phase1_calls': 1456, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 2.85, 'bound_time_s': 0.0, 'total_time_s': 2.921, 'esc_stopped_early': False, 'esc_checks': 7, 'esc_violations': 0, 'esc_time_s': 0.009, 'esc_trace': [(1456, 0, 0.2511561184863872, 1.0), (1529, 1, 0.2511561184863872, 0.7052101401852382), (1617, 2, 0.2511561184863872, 0.6964034848264542), (1631, 3, 0.2511561184863872, 0.6964034848264542), (1636, 4, 0.2511561184863872, 0.6964034848264542), (1648, 5, 0.2511561184863872, 0.6961021608798602), (1654, 6, 0.2511561213010959, 0.6961021608798602)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2065617.85}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1961720.54}, {'Runtimes': [], 'Hits': [], 'Cost': 1068113.52}, {'Runtimes': [], 'Hits': [], 'Cost': 2196221.58}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1548065.35}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 3538936.26}, {'Runtimes': [], 'Hits': [], 'Cost': 321764.66}, {'Runtimes': [], 'Hits': [], 'Cost': 1976512.9}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 31925600.71
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 3500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=1864 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 3500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1864, 'whatif_calls_init': 38, 'phase1_calls': 1578, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.058, 'bound_time_s': 0.0, 'total_time_s': 3.129, 'esc_stopped_early': False, 'esc_checks': 8, 'esc_violations': 0, 'esc_time_s': 0.0167, 'esc_trace': [(1578, 0, 0.2600379767625749, 1.0), (1651, 1, 0.2623196284071515, 0.7052101401852382), (1761, 2, 0.2623196284071515, 0.465655149389929), (1799, 3, 0.26250966252546915, 0.4655917483114632), (1807, 4, 0.26250966252546915, 0.4655917483114632), (1844, 5, 0.2625671555304149, 0.4647515089820945), (1846, 6, 0.2625671555304149, 0.4647515089820945), (1858, 7, 0.2625671583451237, 0.4644628500517669)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		1845
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C supplier.s_suppkey), I(C part.p_brand,C part.p_container), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 3500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 1864, 'whatif_calls_init': 38, 'phase1_calls': 1578, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.058, 'bound_time_s': 0.0, 'total_time_s': 3.129, 'esc_stopped_early': False, 'esc_checks': 8, 'esc_violations': 0, 'esc_time_s': 0.0167, 'esc_trace': [(1578, 0, 0.2600379767625749, 1.0), (1651, 1, 0.2623196284071515, 0.7052101401852382), (1761, 2, 0.2623196284071515, 0.465655149389929), (1799, 3, 0.26250966252546915, 0.4655917483114632), (1807, 4, 0.26250966252546915, 0.4655917483114632), (1844, 5, 0.2625671555304149, 0.4647515089820945), (1846, 6, 0.2625671555304149, 0.4647515089820945), (1858, 7, 0.2625671583451237, 0.4644628500517669)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954024.89}, {'Runtimes': [], 'Hits': [], 'Cost': 1051941.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1785912.71}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1540900.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 3538936.26}, {'Runtimes': [], 'Hits': [], 'Cost': 283781.59}, {'Runtimes': [], 'Hits': [], 'Cost': 1976512.9}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 31439111.96
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 4250, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=2151 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 4250, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2151, 'whatif_calls_init': 38, 'phase1_calls': 1757, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.381, 'bound_time_s': 0.0, 'total_time_s': 3.462, 'esc_stopped_early': False, 'esc_checks': 10, 'esc_violations': 0, 'esc_time_s': 0.0257, 'esc_trace': [(1757, 0, 0.27476788278517994, 1.0), (1830, 1, 0.284014791419839, 0.7052101401852382), (1943, 2, 0.28973824092622136, 0.465655149389929), (2000, 3, 0.28048367159277077, 0.4655917483114632), (2066, 4, 0.28050784806386253, 0.451745158623548), (2075, 5, 0.28050784806386253, 0.451745158623548), (2112, 6, 0.28056534106880826, 0.4509049192941793), (2116, 7, 0.28056534106880826, 0.4509049192941793), (2138, 8, 0.28056534388351695, 0.45061626036385183), (2145, 9, 0.28056534388351695, 0.45061626036385183)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2132
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_suppkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C lineitem.l_orderkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C partsupp.ps_suppkey), I(C part.p_brand,C part.p_container)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 4250, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2151, 'whatif_calls_init': 38, 'phase1_calls': 1757, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.381, 'bound_time_s': 0.0, 'total_time_s': 3.462, 'esc_stopped_early': False, 'esc_checks': 10, 'esc_violations': 0, 'esc_time_s': 0.0257, 'esc_trace': [(1757, 0, 0.27476788278517994, 1.0), (1830, 1, 0.284014791419839, 0.7052101401852382), (1943, 2, 0.28973824092622136, 0.465655149389929), (2000, 3, 0.28048367159277077, 0.4655917483114632), (2066, 4, 0.28050784806386253, 0.451745158623548), (2075, 5, 0.28050784806386253, 0.451745158623548), (2112, 6, 0.28056534106880826, 0.4509049192941793), (2116, 7, 0.28056534106880826, 0.4509049192941793), (2138, 8, 0.28056534388351695, 0.45061626036385183), (2145, 9, 0.28056534388351695, 0.45061626036385183)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954024.89}, {'Runtimes': [], 'Hits': [], 'Cost': 1051941.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1439097.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1540900.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 3538936.26}, {'Runtimes': [], 'Hits': [], 'Cost': 283781.59}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 30671791.96
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=2140 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2140, 'whatif_calls_init': 38, 'phase1_calls': 1836, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.264, 'bound_time_s': 0.0, 'total_time_s': 3.331, 'esc_stopped_early': False, 'esc_checks': 7, 'esc_violations': 0, 'esc_time_s': 0.0131, 'esc_trace': [(1836, 0, 0.2737323929786317, 1.0), (1909, 1, 0.27245078316860105, 0.7052101401852382), (2022, 2, 0.27245078316860105, 0.465655149389929), (2098, 3, 0.27246956642330233, 0.41128303056707527), (2120, 4, 0.27246956642330233, 0.41128303056707527), (2134, 5, 0.2724695692380109, 0.4109943716367477), (2140, 6, 0.2724695692380109, 0.4109943716367477)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2121
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C nation.n_nationkey), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C lineitem.l_orderkey), I(C supplier.s_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2140, 'whatif_calls_init': 38, 'phase1_calls': 1836, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.264, 'bound_time_s': 0.0, 'total_time_s': 3.331, 'esc_stopped_early': False, 'esc_checks': 7, 'esc_violations': 0, 'esc_time_s': 0.0131, 'esc_trace': [(1836, 0, 0.2737323929786317, 1.0), (1909, 1, 0.27245078316860105, 0.7052101401852382), (2022, 2, 0.27245078316860105, 0.465655149389929), (2098, 3, 0.27246956642330233, 0.41128303056707527), (2120, 4, 0.27246956642330233, 0.41128303056707527), (2134, 5, 0.2724695692380109, 0.4109943716367477), (2140, 6, 0.2724695692380109, 0.4109943716367477)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2065617.85}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1961720.54}, {'Runtimes': [], 'Hits': [], 'Cost': 1068281.41}, {'Runtimes': [], 'Hits': [], 'Cost': 1785912.59}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 517771.18}, {'Runtimes': [], 'Hits': [], 'Cost': 2182132.45}, {'Runtimes': [], 'Hits': [], 'Cost': 1548065.35}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 321790.54}, {'Runtimes': [], 'Hits': [], 'Cost': 1976512.9}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 31016940.51
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5750, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Budget-aware tuning: calls=2318 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 5750, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2318, 'whatif_calls_init': 38, 'phase1_calls': 1854, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.575, 'bound_time_s': 0.0, 'total_time_s': 3.663, 'esc_stopped_early': False, 'esc_checks': 9, 'esc_violations': 0, 'esc_time_s': 0.0268, 'esc_trace': [(1854, 0, 0.2931412183259079, 1.0), (1927, 1, 0.2984397995195033, 0.7052101401852382), (2040, 2, 0.297590658908492, 0.465655149389929), (2120, 3, 0.29057923061001245, 0.35657001768476293), (2212, 4, 0.29057923061001245, 0.35657001768476293), (2257, 5, 0.2906034070811042, 0.35657001768476293), (2285, 6, 0.29066090008605006, 0.3557297783553943), (2305, 7, 0.29066090290075874, 0.35544111942506673), (2312, 8, 0.29066090290075874, 0.35544111942506673)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2299
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C customer.c_nationkey,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C lineitem.l_orderkey), I(C customer.c_custkey), I(C supplier.s_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 5750, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2318, 'whatif_calls_init': 38, 'phase1_calls': 1854, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.575, 'bound_time_s': 0.0, 'total_time_s': 3.663, 'esc_stopped_early': False, 'esc_checks': 9, 'esc_violations': 0, 'esc_time_s': 0.0268, 'esc_trace': [(1854, 0, 0.2931412183259079, 1.0), (1927, 1, 0.2984397995195033, 0.7052101401852382), (2040, 2, 0.297590658908492, 0.465655149389929), (2120, 3, 0.29057923061001245, 0.35657001768476293), (2212, 4, 0.29057923061001245, 0.35657001768476293), (2257, 5, 0.2906034070811042, 0.35657001768476293), (2285, 6, 0.29066090008605006, 0.3557297783553943), (2305, 7, 0.29066090290075874, 0.35544111942506673), (2312, 8, 0.29066090290075874, 0.35544111942506673)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2713619.65}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1954024.89}, {'Runtimes': [], 'Hits': [], 'Cost': 1051941.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1439097.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 517771.18}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1536648.94}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 321790.54}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 455527.67}]
+DEBUG:root:Overall Costs: 30241386.11
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 6500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Esc: stop at 2144 calls, eta_L=0.3162, eta_U=0.3566
+INFO:root:Budget-aware tuning: calls=2144 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 6500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2144, 'whatif_calls_init': 38, 'phase1_calls': 1878, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.321, 'bound_time_s': 0.0, 'total_time_s': 3.399, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0221, 'esc_trace': [(1878, 0, 0.2742226967005834, 1.0), (1951, 1, 0.307365102589613, 0.7052101401852382), (2064, 2, 0.3130885520959955, 0.465655149389929), (2144, 3, 0.3161691050854658, 0.35657001768476293)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2125
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_custkey), I(C lineitem.l_partkey,C lineitem.l_suppkey), I(C lineitem.l_orderkey), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C part.p_brand,C part.p_container)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 6500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2144, 'whatif_calls_init': 38, 'phase1_calls': 1878, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.321, 'bound_time_s': 0.0, 'total_time_s': 3.399, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0221, 'esc_trace': [(1878, 0, 0.2742226967005834, 1.0), (1951, 1, 0.307365102589613, 0.7052101401852382), (2064, 2, 0.3130885520959955, 0.465655149389929), (2144, 3, 0.3161691050854658, 0.35657001768476293)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2065617.85}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1769178.35}, {'Runtimes': [], 'Hits': [], 'Cost': 1068281.41}, {'Runtimes': [], 'Hits': [], 'Cost': 1439097.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1440745.64}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 427087.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 283781.59}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 110816.92}]
+DEBUG:root:Overall Costs: 29152859.330000002
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 8000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Esc: stop at 2152 calls, eta_L=0.3193, eta_U=0.3566
+INFO:root:Budget-aware tuning: calls=2152 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 8000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.208, 'bound_time_s': 0.0, 'total_time_s': 3.288, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0318, 'esc_trace': [(1886, 0, 0.3079477923217847, 1.0), (1959, 1, 0.3111346596728205, 0.7052101401852382), (2072, 2, 0.31685818963295953, 0.465655149389929), (2152, 3, 0.3192819800783899, 0.35657001768476293)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2133
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C supplier.s_suppkey), I(C part.p_brand,C part.p_container), I(C orders.o_custkey,C orders.o_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_custkey), I(C lineitem.l_shipdate), I(C lineitem.l_orderkey), I(C customer.c_nationkey,C customer.c_custkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 8000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.208, 'bound_time_s': 0.0, 'total_time_s': 3.288, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0318, 'esc_trace': [(1886, 0, 0.3079477923217847, 1.0), (1959, 1, 0.3111346596728205, 0.7052101401852382), (2072, 2, 0.31685818963295953, 0.465655149389929), (2152, 3, 0.3192819800783899, 0.35657001768476293)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1761482.71}, {'Runtimes': [], 'Hits': [], 'Cost': 1051941.18}, {'Runtimes': [], 'Hits': [], 'Cost': 1439097.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1440745.64}, {'Runtimes': [], 'Hits': [], 'Cost': 1492179.02}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 415221.77}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 283474.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 110816.92}]
+DEBUG:root:Overall Costs: 29019039.61
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 10000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Esc: stop at 2152 calls, eta_L=0.3228, eta_U=0.3566
+INFO:root:Budget-aware tuning: calls=2152 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 10000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.215, 'bound_time_s': 0.0, 'total_time_s': 3.302, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0376, 'esc_trace': [(1886, 0, 0.30858028785493696, 1.0), (1959, 1, 0.3166084534325, 0.7052101401852382), (2072, 2, 0.3223319029388825, 0.465655149389929), (2152, 3, 0.3228490622654716, 0.35657001768476293)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2133
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C part.p_type), I(C part.p_brand,C part.p_container), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C customer.c_acctbal), I(C lineitem.l_orderkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 10000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.215, 'bound_time_s': 0.0, 'total_time_s': 3.302, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0376, 'esc_trace': [(1886, 0, 0.30858028785493696, 1.0), (1959, 1, 0.3166084534325, 0.7052101401852382), (2072, 2, 0.3223319029388825, 0.465655149389929), (2152, 3, 0.3228490622654716, 0.35657001768476293)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1761482.71}, {'Runtimes': [], 'Hits': [], 'Cost': 1028695.15}, {'Runtimes': [], 'Hits': [], 'Cost': 1439097.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1423025.64}, {'Runtimes': [], 'Hits': [], 'Cost': 1582626.07}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 393555.75}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 88425.27}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 109941.93}]
+DEBUG:root:Overall Costs: 28850930.45
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 12500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Esc: stop at 2152 calls, eta_L=0.3254, eta_U=0.3566
+INFO:root:Budget-aware tuning: calls=2152 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 12500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.229, 'bound_time_s': 0.0, 'total_time_s': 3.327, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0446, 'esc_trace': [(1886, 0, 0.31859016104141336, 1.0), (1959, 1, 0.31903327288851213, 0.7052101401852382), (2072, 2, 0.32445350086553204, 0.465655149389929), (2152, 3, 0.32537657589856817, 0.35657001768476293)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2133
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C lineitem.l_partkey), I(C part.p_type), I(C part.p_brand,C part.p_container), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C customer.c_acctbal), I(C lineitem.l_shipdate), I(C lineitem.l_orderkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 12500, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.229, 'bound_time_s': 0.0, 'total_time_s': 3.327, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0446, 'esc_trace': [(1886, 0, 0.31859016104141336, 1.0), (1959, 1, 0.31903327288851213, 0.7052101401852382), (2072, 2, 0.32445350086553204, 0.465655149389929), (2152, 3, 0.32537657589856817, 0.35657001768476293)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1761482.71}, {'Runtimes': [], 'Hits': [], 'Cost': 1028527.26}, {'Runtimes': [], 'Hits': [], 'Cost': 1439097.01}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1423025.64}, {'Runtimes': [], 'Hits': [], 'Cost': 1492179.02}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 393555.75}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 88425.27}, {'Runtimes': [], 'Hits': [], 'Cost': 1732504.02}, {'Runtimes': [], 'Hits': [], 'Cost': 109941.93}]
+DEBUG:root:Overall Costs: 28760315.51
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv
+INFO:root:Dropping indexes
+INFO:root:Create new database connector (closing old)
+DEBUG:root:Database connector closed: indexselection_tpch___10
+DEBUG:root:Database connector created: indexselection_tpch___10
+INFO:root:Postgres: Set random seed `SELECT setseed(0.17)`
+DEBUG:root:Postgres connector created: indexselection_tpch___10
+DEBUG:root:Init selection algorithm
+INFO:root:Dropping indexes
+DEBUG:root:Init cost evaluation
+INFO:root:Cost estimation with whatif
+DEBUG:root:Init WhatIfIndexCreation
+INFO:root:Running algorithm {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 15000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False}, 'timeout': 300}
+DEBUG:root:Q1
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 49
+DEBUG:root:Q3
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 36
+DEBUG:root:Q4
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 18
+DEBUG:root:Q5
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 46
+DEBUG:root:Q6
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 16
+DEBUG:root:Q7
+DEBUG:root:Indexable columns: 13
+DEBUG:root:Potential indexes: 41
+DEBUG:root:Q8
+DEBUG:root:Indexable columns: 19
+DEBUG:root:Potential indexes: 59
+DEBUG:root:Q9
+DEBUG:root:Indexable columns: 17
+DEBUG:root:Potential indexes: 61
+DEBUG:root:Q10
+DEBUG:root:Indexable columns: 16
+DEBUG:root:Potential indexes: 78
+DEBUG:root:Q11
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q12
+DEBUG:root:Indexable columns: 7
+DEBUG:root:Potential indexes: 29
+DEBUG:root:Q13
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+DEBUG:root:Q14
+DEBUG:root:Indexable columns: 6
+DEBUG:root:Potential indexes: 20
+DEBUG:root:Q15
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 32
+DEBUG:root:Q16
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q18
+DEBUG:root:Indexable columns: 8
+DEBUG:root:Potential indexes: 24
+DEBUG:root:Q19
+DEBUG:root:Indexable columns: 10
+DEBUG:root:Potential indexes: 52
+DEBUG:root:Q21
+DEBUG:root:Indexable columns: 11
+DEBUG:root:Potential indexes: 33
+DEBUG:root:Q22
+DEBUG:root:Indexable columns: 4
+DEBUG:root:Potential indexes: 10
+INFO:root:Esc: stop at 2152 calls, eta_L=0.3254, eta_U=0.3566
+INFO:root:Budget-aware tuning: calls=2152 (init 38), skipped=0, derived after budget=0
+DEBUG:root:Two-phase greedy statistics: {'budget_MB': 15000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.266, 'bound_time_s': 0.0, 'total_time_s': 3.377, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0503, 'esc_trace': [(1886, 0, 0.3254049964812318, 1.0), (1959, 1, 0.3254049964812318, 0.7052101401852382), (2072, 2, 0.3254049964812318, 0.465655149389929), (2152, 3, 0.3254049964812318, 0.35657001768476293)]}
+DEBUG:root:Total cost cache hits:	0
+DEBUG:root:Total cost requests:		2133
+DEBUG:root:Cost cache hit ratio:	0.0%
+INFO:root:Indexes found: [I(C orders.o_orderstatus,C orders.o_orderkey), I(C lineitem.l_shipmode,C lineitem.l_partkey), I(C supplier.s_suppkey), I(C orders.o_custkey,C orders.o_orderkey), I(C customer.c_mktsegment,C customer.c_custkey), I(C orders.o_orderkey,C orders.o_orderdate), I(C customer.c_custkey), I(C customer.c_nationkey,C customer.c_custkey), I(C part.p_size), I(C partsupp.ps_suppkey), I(C lineitem.l_orderkey,C lineitem.l_suppkey), I(C lineitem.l_partkey), I(C part.p_type), I(C part.p_brand,C part.p_container), I(C supplier.s_nationkey,C supplier.s_suppkey), I(C orders.o_orderkey,C orders.o_orderpriority), I(C nation.n_nationkey), I(C customer.c_acctbal), I(C lineitem.l_shipdate), I(C lineitem.l_orderkey), I(C partsupp.ps_partkey,C partsupp.ps_suppkey), I(C orders.o_custkey), I(C lineitem.l_orderkey,C lineitem.l_quantity), I(C lineitem.l_partkey,C lineitem.l_suppkey)]
+INFO:root:Dropping indexes
+INFO:root:Benchmark with config: {'name': 'two_phase_greedy', 'parameters': {'budget_MB': 15000, 'max_indexes': 100, 'interception': 'none', 'esc': 'esc_b', 'esc_epsilon': 0.05, 'esc_storage_bound': False, 'benchmark_name': 'tpch', 'whatif_budget': None, 'alpha': 0.9, 'skip_probability': 0.9, 'seed': 0, 'max_index_width': 2, 'record_gaps': False, 'esc_clamp': False, 'whatif_calls': 2152, 'whatif_calls_init': 38, 'phase1_calls': 1886, 'phase2_candidates': 25, 'skipped_calls': 0, 'derived_after_budget': 0, 'whatif_time_s': 3.266, 'bound_time_s': 0.0, 'total_time_s': 3.377, 'esc_stopped_early': True, 'esc_checks': 4, 'esc_violations': 0, 'esc_time_s': 0.0503, 'esc_trace': [(1886, 0, 0.3254049964812318, 1.0), (1959, 1, 0.3254049964812318, 0.7052101401852382), (2072, 2, 0.3254049964812318, 0.465655149389929), (2152, 3, 0.3254049964812318, 0.35657001768476293)]}, 'timeout': 300}
+INFO:root:Benchmark all queries
+DEBUG:root:Execution times: [{'Runtimes': [], 'Hits': [], 'Cost': 2300013.27}, {'Runtimes': [], 'Hits': [], 'Cost': 2679237.47}, {'Runtimes': [], 'Hits': [], 'Cost': 438000.38}, {'Runtimes': [], 'Hits': [], 'Cost': 2058453.44}, {'Runtimes': [], 'Hits': [], 'Cost': 1690858.39}, {'Runtimes': [], 'Hits': [], 'Cost': 1761482.71}, {'Runtimes': [], 'Hits': [], 'Cost': 1028534.62}, {'Runtimes': [], 'Hits': [], 'Cost': 1438929.86}, {'Runtimes': [], 'Hits': [], 'Cost': 2113059.08}, {'Runtimes': [], 'Hits': [], 'Cost': 103591.48}, {'Runtimes': [], 'Hits': [], 'Cost': 2040019.21}, {'Runtimes': [], 'Hits': [], 'Cost': 1423025.64}, {'Runtimes': [], 'Hits': [], 'Cost': 1492179.02}, {'Runtimes': [], 'Hits': [], 'Cost': 3242132.6}, {'Runtimes': [], 'Hits': [], 'Cost': 393555.75}, {'Runtimes': [], 'Hits': [], 'Cost': 2626211.58}, {'Runtimes': [], 'Hits': [], 'Cost': 88425.27}, {'Runtimes': [], 'Hits': [], 'Cost': 1732490.23}, {'Runtimes': [], 'Hits': [], 'Cost': 109941.93}]
+DEBUG:root:Overall Costs: 28760141.93
+INFO:root:Results written to benchmark_results/results_two_phase_greedy_tpch_19_queries.csv

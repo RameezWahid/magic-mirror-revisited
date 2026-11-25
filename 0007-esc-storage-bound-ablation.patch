@@ -1,0 +1,108 @@
+From 9011cda6315149ee6228186d9e5992183c0072b6 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Tue, 24 Nov 2026 00:52:51 +0530
+Subject: [PATCH] Esc: switch for the storage-aware bound (ablation) and
+ ablation config
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CjHr7mFBfqBd1hBxcjucKr
+---
+ configs/tpch_sf10_esc_ablation.json           | 62 +++++++++++++++++++
+ .../algorithms/two_phase_greedy_algorithm.py  |  4 ++
+ 2 files changed, 66 insertions(+)
+ create mode 100644 configs/tpch_sf10_esc_ablation.json
+
+diff --git a/configs/tpch_sf10_esc_ablation.json b/configs/tpch_sf10_esc_ablation.json
+new file mode 100644
+index 0000000..6e92eb9
+--- /dev/null
++++ b/configs/tpch_sf10_esc_ablation.json
+@@ -0,0 +1,62 @@
++{
++    "database_system": "postgres",
++    "benchmark_name": "tpch",
++    "scale_factor": 10,
++    "algorithms": [
++        {
++            "name": "no_index",
++            "parameters": {},
++            "timeout": 300
++        },
++        {
++            "name": "two_phase_greedy",
++            "parameters": {
++                "budget_MB": [
++                    250,
++                    500,
++                    1000,
++                    1500,
++                    2000,
++                    2500,
++                    3000,
++                    3500,
++                    4250,
++                    5000,
++                    5750,
++                    6500,
++                    8000,
++                    10000,
++                    12500,
++                    15000
++                ],
++                "max_indexes": 100,
++                "interception": "none",
++                "esc": "esc_b",
++                "esc_epsilon": 0.05,
++                "esc_storage_bound": false
++            },
++            "timeout": 300
++        }
++    ],
++    "queries": [
++        1,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9,
++        10,
++        11,
++        12,
++        13,
++        14,
++        15,
++        16,
++        18,
++        19,
++        21,
++        22
++    ]
++}
+\ No newline at end of file
+diff --git a/selection/algorithms/two_phase_greedy_algorithm.py b/selection/algorithms/two_phase_greedy_algorithm.py
+index 63ae65d..e708160 100644
+--- a/selection/algorithms/two_phase_greedy_algorithm.py
++++ b/selection/algorithms/two_phase_greedy_algorithm.py
+@@ -35,6 +35,9 @@ DEFAULT_PARAMETERS = {
+     "esc": "none",
+     "esc_epsilon": 0.05,
+     "esc_clamp": False,
++    # Storage-aware (fractional knapsack) upper bound; false = the paper's count-only
++    # bound. Only meant for the ablation in configs/tpch_sf10_esc_ablation.json.
++    "esc_storage_bound": True,
+ }
+ 
+ 
+@@ -94,6 +97,7 @@ class TwoPhaseGreedyAlgorithm(SelectionAlgorithm):
+                 clamp_omega=parameters["esc_clamp"],
+                 storage_budget=storage,
+                 index_size=self._index_size,
++                storage_bound=parameters["esc_storage_bound"],
+             )
+         indexes = self.search.run()
+         log_summary(self.oracle, self.search)
+-- 
+2.43.0
+
