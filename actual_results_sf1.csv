@@ -1,0 +1,4 @@
+algorithm,date,workload_cost,runtime_sec,successful_queries,failed_queries,index_creation_sec,physical_storage_MB,indexes
+no_index,2026-11-25 09:24:01,4339943.89,98.434,18,1,0.0,0.0,0
+extend,2026-11-25 09:25:26,3369066.34,80.512,19,0,2.34,135.13,4
+ben_knap,2026-11-25 09:26:52,3361576.68,80.92,19,0,2.52,138.85,7

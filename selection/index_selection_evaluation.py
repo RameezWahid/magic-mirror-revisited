@@ -21,6 +21,8 @@ from selection.selection_algorithm import AllIndexesAlgorithm, NoIndexAlgorithm
 from selection.table_generator import TableGenerator
 from selection.workload import Workload
 from selection.workload_parser import WorkloadParser
+from selection.algorithms.gadis_algorithm import GadisAlgorithm
+from selection.algorithms.ben_knap_algorithm import BenKnapAlgorithm
 
 ALGORITHMS = {
     "anytime": AnytimeAlgorithm,
@@ -33,6 +35,8 @@ ALGORITHMS = {
     "relaxation": RelaxationAlgorithm,
     "no_index": NoIndexAlgorithm,
     "all_indexes": AllIndexesAlgorithm,
+    "gadis": GadisAlgorithm,
+    "ben_knap": BenKnapAlgorithm
 }
 
 DBMSYSTEMS = {"postgres": PostgresDatabaseConnector, "hana": HanaDatabaseConnector}
@@ -171,9 +175,60 @@ class IndexSelection:
         self.db_connector.commit()
         self.setup_db_connector(self.database_name, self.database_system)
 
-        algorithm = self.create_algorithm_object(config["name"], config["parameters"])
+        algorithm = self.create_algorithm_object(
+            config["name"], config["parameters"]
+        )
+
         logging.info(f"Running algorithm {config}")
+
+        # Optimization metrics before index selection
+        calls_before = self.db_connector.cost_estimations
+        cost_time_before = self.db_connector.cost_estimation_duration
+        simulation_time_before = self.db_connector.index_simulation_duration
+        simulations_before = self.db_connector.simulated_indexes
+
+        optimization_start = time.perf_counter()
+
+        # Run index selection
         indexes = algorithm.calculate_best_indexes(self.workload)
+
+        optimization_runtime = time.perf_counter() - optimization_start
+
+        # Optimization metrics after index selection
+        optimizer_calls = (
+            self.db_connector.cost_estimations - calls_before
+        )
+
+        optimizer_time = (
+            self.db_connector.cost_estimation_duration
+            - cost_time_before
+        )
+
+        simulation_time = (
+            self.db_connector.index_simulation_duration
+            - simulation_time_before
+        )
+
+        simulation_calls = (
+            self.db_connector.simulated_indexes
+            - simulations_before
+        )
+
+        logging.info(
+            "OPTIMIZATION_METRICS "
+            "algorithm=%s budget_MB=%s "
+            "optimizer_calls=%d optimizer_time=%.6f "
+            "simulation_calls=%d simulation_time=%.6f "
+            "optimization_runtime=%.6f",
+            config["name"],
+            config["parameters"].get("budget_MB", 0),
+            optimizer_calls,
+            optimizer_time,
+            simulation_calls,
+            simulation_time,
+            optimization_runtime
+        )
+
         logging.info(f"Indexes found: {indexes}")
         what_if = algorithm.cost_evaluation.what_if
 

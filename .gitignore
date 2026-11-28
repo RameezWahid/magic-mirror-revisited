@@ -1,23 +1,67 @@
-**__pycache__
-**.pyc
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
 
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Coverage and tags
 tags
 .coverage
 htmlcov/
 
-**.DS_Store
-**.tbl
-query_0.sql
-**.dat
+# System files
+.DS_Store
 
+# Generated datasets
+*.tbl
+*.tbl.*
+*.dat
+*.dump
+query_0.sql
+
+# Miscellaneous files
 misc/**
 
+# Database credentials
 database_connection.json
-benchmark_results/plans
+.env
+.env.*
+.pgpass
+*.pem
+*.key
+
+# Backup files and folders
+backup_ben_knap/
+saved_results/
+*.bak
+*.before_cophy
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+
+# Editor files
+.vscode/
+.idea/
+
+# Benchmark generated files
+benchmark_results/plans/
 benchmark_results/notebooks/.ipynb_checkpoints/**
-benchmark_results/**/*.csv
 benchmark_results/**/*.pickle
 benchmark_results/parameters_tpcds
 benchmark_results/**/*_runtime.pdf
 benchmark_results/**/*_what_if_graph.pdf
 benchmark_results/**/*_cost_estimation.pdf
+
+# LaTeX temporary files
+*.aux
+*.out
+*.synctex.gz
